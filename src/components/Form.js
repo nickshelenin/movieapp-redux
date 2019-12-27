@@ -1,16 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Form extends Component {
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.props.loadData}>
-          <input type='text' placeholder='search for movie' name='movieSearch' />
-          <button>Search</button>
-        </form>
-      </div>
-    );
-  }
+function Form(props) {
+  return (
+    <form onSubmit={props.loadMovies} >
+      <input type='text' placeholder='Search for movie' name='search' />
+      <button>Search</button>
+    </form>
+  );
 }
 
 export default Form;

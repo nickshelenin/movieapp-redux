@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MovieList(props) {
+function LatestMovies(props) {
   let movies = props.movies;
 
   return (
@@ -18,4 +18,4 @@ function MovieList(props) {
   );
 }
 
-export default MovieList;
+export default LatestMovies;

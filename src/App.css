@@ -8,14 +8,33 @@ img {
   height: 200px;
 }
 
-.movieList {
+.movie-list {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   margin: 1em 5em;
 }
 
-.movieCard {
+.movie-card {
   box-shadow: 0px 0px 30px #000;
   margin-top: 3em;
   width: 200px;
+}
+
+.latestMovies-header {
+  margin-top: 3em;
+}
+
+input {
+  outline: none;
+}
+
+@media screen and (max-width: 768px) {
+  .movie-list {
+    grid-template-columns: repeat(3, 1fr);
+    margin: 1em;
+  }
+
+  .movie-card {
+    margin: 2em;
+  }
 }

@@ -1,26 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Form from './components/Form';
 import MovieList from './components/MovieList';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Movie from './components/Movie';
+import LatestMovies from './components/LatestMovies';
 
 const apiKey = 'e6fa15c602cbdbd00979f735cba5d1f1';
 
-class App extends React.Component {
+class App extends Component {
   state = {
     movies: [],
     latestMovies: []
   };
 
+  fetchLatestMovies = () => {
+    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false`)
+      .then((res) => res.json())
+      .then((data) =>
+        this.setState({
+          latestMovies: data.results
+        })
+      );
+  };
+
   fetchMovies = async (e) => {
     e.preventDefault();
 
-    const movieSearch = e.target.elements.movieSearch.value;
-    const call = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movieSearch}`);
+    const searchInput = e.target.elements.search.value;
+    const call = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchInput}`);
     const data = await call.json();
 
-    if (movieSearch) {
+    if (searchInput) {
       this.setState({
         movies: data.results
       });
@@ -31,54 +40,27 @@ class App extends React.Component {
     }
   };
 
-  fetchLatestMovies() {
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false`)
-      .then((res) => res.json())
-      .then((data) =>
-        this.setState({
-          latestMovies: data.results
-        })
-      );
-  }
+  outputMovies = () => {
+    if (this.state.movies.length == 0) {
+      return <LatestMovies movies={this.state.latestMovies} />;
+    } else {
+      return <MovieList movies={this.state.movies} />;
+    }
+  };
 
   componentDidMount() {
     this.fetchLatestMovies();
+    this.outputMovies();
   }
 
   render() {
-    let latestMovies = this.state.latestMovies;
-    let movies = this.state.movies;
-    console.log(movies);
-
     return (
-      <>
-        <Router>
-          <h1>Movie search</h1>
+      <div>
+        <h1>Movie search app</h1>
+        <Form loadMovies={this.fetchMovies} />
 
-          <Route exact path='/'>
-            <p>{this.state.movies.budget}</p>
-            <Form loadData={this.fetchMovies} />
-
-            <MovieList movies={this.state.movies} />
-          </Route>
-
-          {movies && (
-            <div className='movieList'>
-              {latestMovies.map((latestMovie) => {
-                return (
-                  <div key={latestMovie.id} className='movieCard'>
-                    <img src={'https://image.tmdb.org/t/p/w500/' + latestMovie.poster_path} alt='' />
-
-                    <p>{latestMovie.title}</p>
-                  </div>
-                );
-              })}
-            </div>
-          ) }
-
-          <Route exact path='/movie/:id' component={Movie} />
-        </Router>
-      </>
+        {this.outputMovies()}
+      </div>
     );
   }
 }
