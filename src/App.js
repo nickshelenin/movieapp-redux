@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Form from './components/Form';
 import MovieList from './components/MovieList';
@@ -6,23 +6,11 @@ import LatestMovies from './components/LatestMovies';
 
 const apiKey = 'e6fa15c602cbdbd00979f735cba5d1f1';
 
-class App extends Component {
-  state = {
-    movies: [],
-    latestMovies: []
-  };
+const App = () => {
+  const [movies, setMovies] = useState([]);
+  const [latestMovies, setLatestMovies] = useState([]);
 
-  fetchLatestMovies = () => {
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false`)
-      .then((res) => res.json())
-      .then((data) =>
-        this.setState({
-          latestMovies: data.results
-        })
-      );
-  };
-
-  fetchMovies = async (e) => {
+  const fetchMovies = async (e) => {
     e.preventDefault();
 
     const searchInput = e.target.elements.search.value;
@@ -30,39 +18,41 @@ class App extends Component {
     const data = await call.json();
 
     if (searchInput) {
-      this.setState({
-        movies: data.results
-      });
+      setMovies(data.results);
     } else {
-      this.setState({
-        movies: []
-      });
+      setMovies([]);
     }
   };
 
-  outputMovies = () => {
-    if (this.state.movies.length == 0) {
-      return <LatestMovies movies={this.state.latestMovies} />;
+  const fetchLatestMovies = () => {
+    const omdbKey = '61be56e8';
+    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false`)
+      // fetch(`http://img.omdbapi.com/?apikey=${omdbKey}`)
+      .then((res) => res.json())
+      .then((data) => setLatestMovies(data.results));
+  };
+
+  const outputMovies = () => {
+    if (movies.length === 0) {
+      return <LatestMovies movies={latestMovies} />;
     } else {
-      return <MovieList movies={this.state.movies} />;
+      return <MovieList movies={movies} />;
     }
   };
 
-  componentDidMount() {
-    this.fetchLatestMovies();
-    this.outputMovies();
-  }
+  useEffect(() => {
+    fetchLatestMovies();
+  }, []);
 
-  render() {
-    return (
-      <div>
-        <h1>Movie search app</h1>
-        <Form loadMovies={this.fetchMovies} />
+  return (
+    <div>
+      <h1>Search movie app</h1>
 
-        {this.outputMovies()}
-      </div>
-    );
-  }
-}
+      <Form loadMovies={fetchMovies} />
+
+      {outputMovies()}
+    </div>
+  );
+};
 
 export default App;

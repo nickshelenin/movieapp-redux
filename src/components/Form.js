@@ -2,8 +2,8 @@ import React from 'react';
 
 function Form(props) {
   return (
-    <form onSubmit={props.loadMovies} >
-      <input type='text' placeholder='Search for movie' name='search' />
+    <form onSubmit={props.loadMovies}>
+      <input type='text' name='search' />
       <button>Search</button>
     </form>
   );
