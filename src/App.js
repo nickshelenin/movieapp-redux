@@ -3,6 +3,8 @@ import './App.css';
 import Form from './components/Form';
 import MovieList from './components/MovieList';
 import LatestMovies from './components/LatestMovies';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Movie from './components/Movie';
 
 const apiKey = 'e6fa15c602cbdbd00979f735cba5d1f1';
 
@@ -25,9 +27,7 @@ const App = () => {
   };
 
   const fetchLatestMovies = () => {
-    const omdbKey = '61be56e8';
     fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false`)
-      // fetch(`http://img.omdbapi.com/?apikey=${omdbKey}`)
       .then((res) => res.json())
       .then((data) => setLatestMovies(data.results));
   };
@@ -46,11 +46,16 @@ const App = () => {
 
   return (
     <div>
-      <h1>Search movie app</h1>
+      <Router>
+        <h1>Search movie app</h1>
+        <Form loadMovies={fetchMovies} />
 
-      <Form loadMovies={fetchMovies} />
+        <Route exact path='/' component={this}>
+          {outputMovies()}
+        </Route>
 
-      {outputMovies()}
+        <Route path='/movie/:id' component={Movie} />
+      </Router>
     </div>
   );
 };

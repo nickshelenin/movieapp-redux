@@ -1,4 +1,6 @@
 import React from 'react';
+import MovieCard from './MovieCard';
+import { Link } from 'react-router-dom';
 
 function MovieList(props) {
   let movies = props.movies;
@@ -6,11 +8,9 @@ function MovieList(props) {
     <div className='movie-list'>
       {movies.map((movie) => {
         return (
-          <div key={movie.id} className='movie-card'>
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='' />
-            <h4>{movie.title}</h4>
-            <i>{movie.release_date}</i>
-          </div>
+          <Link to={`/movie/${movie.id}`}>
+            <MovieCard key={movie.id} {...movie} />
+          </Link>
         );
       })}
     </div>
