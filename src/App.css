@@ -28,13 +28,11 @@ input {
   outline: none;
 }
 
-@media screen and (max-width: 768px) {
-  .movie-list {
-    grid-template-columns: repeat(3, 1fr);
-    margin: 1em;
-  }
+ul {
+  list-style: none;
+  display: flex;
+}
 
-  .movie-card {
-    margin: 2em;
-  }
+li {
+  margin-right: 1em;
 }

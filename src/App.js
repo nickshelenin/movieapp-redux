@@ -5,12 +5,16 @@ import MovieList from './components/MovieList';
 import LatestMovies from './components/LatestMovies';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Movie from './components/Movie';
+import Header from './components/Header';
 
 const apiKey = 'e6fa15c602cbdbd00979f735cba5d1f1';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [latestMovies, setLatestMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [moviesPerPage] = useState(5);
 
   const fetchMovies = async (e) => {
     e.preventDefault();
@@ -26,11 +30,18 @@ const App = () => {
     }
   };
 
-  const fetchLatestMovies = () => {
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false`)
-      .then((res) => res.json())
-      .then((data) => setLatestMovies(data.results));
+  const fetchLatestMovies = async () => {
+    const call = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&primary_release_year=2019&page=1`
+    );
+    const data = await call.json();
+    setLatestMovies(data.results);
+    setLoading(false);
   };
+
+  useEffect(() => {
+    fetchLatestMovies();
+  }, []);
 
   const outputMovies = () => {
     if (movies.length === 0) {
@@ -40,14 +51,10 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    fetchLatestMovies();
-  }, []);
-
   return (
     <div>
+      <Header />
       <Router>
-        <h1>Search movie app</h1>
         <Form loadMovies={fetchMovies} />
 
         <Route exact path='/' component={this}>
