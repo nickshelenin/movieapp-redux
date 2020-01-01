@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Form(props) {
+function Form({ loadMovies }) {
   return (
-    <form onSubmit={props.loadMovies}>
-      <input type='text' name='search' />
-      <button>Search</button>
+    <form onSubmit={loadMovies}>
+      <input type='text' name='search' placeholder='Enter keyword here'  />
     </form>
   );
 }

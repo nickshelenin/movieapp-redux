@@ -8,7 +8,7 @@ function LatestMovies({ movies }) {
       {movies.map((movie) => {
         return (
           <>
-            <Link to={`/movie/${movie.id}`}>
+            <Link to={`/movie/${Number(movie.id)}`}>
               <MovieCard {...movie} />
             </Link>
           </>

@@ -3,13 +3,11 @@ import MovieCard from './MovieCard';
 import { Link } from 'react-router-dom';
 
 function MovieList({ movies }) {
-  console.log(movies);
-
   return (
     <div className='movie-list'>
       {movies.map((movie) => {
         return (
-          <Link to={`/movie/${movie.id}`}>
+          <Link to={`/movie/${Number(movie.id)}`}>
             <MovieCard {...movie} />
           </Link>
         );

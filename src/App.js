@@ -3,11 +3,9 @@ import './App.css';
 import Form from './components/Form';
 import MovieList from './components/MovieList';
 import LatestMovies from './components/LatestMovies';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Movie from './components/Movie';
 import Header from './components/Header';
-
-const apiKey = 'e6fa15c602cbdbd00979f735cba5d1f1';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -15,6 +13,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage] = useState(5);
+  const apiKey = 'e6fa15c602cbdbd00979f735cba5d1f1';
 
   const fetchMovies = async (e) => {
     e.preventDefault();
@@ -36,7 +35,6 @@ const App = () => {
     );
     const data = await call.json();
     setLatestMovies(data.results);
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -53,15 +51,18 @@ const App = () => {
 
   return (
     <div>
-      <Header />
       <Router>
+        <Header />
+
         <Form loadMovies={fetchMovies} />
 
-        <Route exact path='/' component={this}>
-          {outputMovies()}
-        </Route>
+        <div className='home-container'>
+          <Route exact path='/' component={LatestMovies}>
+            {outputMovies()}
+          </Route>
 
-        <Route path='/movie/:id' component={Movie} />
+          <Route path='/movie/:id' component={Movie} />
+        </div>
       </Router>
     </div>
   );
