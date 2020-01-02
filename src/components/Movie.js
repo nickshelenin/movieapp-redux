@@ -11,12 +11,6 @@ const Movie = (props) => {
     setMovie(data);
     setImdbId('tt2527338');
     console.log(imdbId);
-    
-
-    // const apiKey = '887d023b';
-    // const call = await fetch(`http://omdbapi.com/?i=${props.match.params.id}&apikey=${apiKey}`);
-    // const data = await call.json();
-    // console.log(data);
   };
 
   const fetchImdb = async () => {

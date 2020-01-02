@@ -3,21 +3,17 @@ import './App.css';
 import Form from './components/Form';
 import MovieList from './components/MovieList';
 import LatestMovies from './components/LatestMovies';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Movie from './components/Movie';
 import Header from './components/Header';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [latestMovies, setLatestMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [moviesPerPage] = useState(5);
   const apiKey = 'e6fa15c602cbdbd00979f735cba5d1f1';
 
   const fetchMovies = async (e) => {
     e.preventDefault();
-
     const searchInput = e.target.elements.search.value;
     const call = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchInput}`);
     const data = await call.json();
