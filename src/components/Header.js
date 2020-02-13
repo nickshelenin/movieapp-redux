@@ -1,23 +1,21 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Form from "./Form";
 
-function Header() {
-  return (
-    <div className='header-container'>
+function Header(props) {
+   return (
       <header>
-        <h1>Movie Search</h1>
-        <div>
-          <nav>
-            <ul>
-              <Link exact to='/'>
-                <li>Home</li>
-              </Link>
-            </ul>
-          </nav>
-        </div>
+         <div className="header-container">
+            <div className="logo-container">
+               <Link to="/">
+                  <img src="./img/logo.png" alt="" />
+               </Link>
+            </div>
+
+            <Form movies={props.movies} />
+         </div>
       </header>
-    </div>
-  );
+   );
 }
 
 export default Header;
