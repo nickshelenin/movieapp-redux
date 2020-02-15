@@ -1,3 +1,5 @@
+@import '../../styles/mixins';
+
 .home-container {
    width: 90%;
    margin: auto;
@@ -7,8 +9,4 @@
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
-
-   @media only screen and (min-width: 768px) {
-      justify-content: center;
-   }
 }

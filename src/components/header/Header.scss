@@ -1,3 +1,5 @@
+@import '../../styles/mixins';
+
 header {
    box-shadow: rgb(22, 24, 30) 0px 14px 27px 0px;
    margin-bottom: 2em;
@@ -8,7 +10,7 @@ header {
       margin: auto;
       height: 160px;
 
-      @media only screen and (min-width: 1024px) {
+      @include tabletPro {
          display: flex;
          justify-content: space-between;
          align-items: center;
@@ -28,7 +30,7 @@ header {
          position: relative;
          width: 100%;
 
-         @media only screen and (min-width: 1200px) {
+         @include desktop {
             width: 25%;
          }
 

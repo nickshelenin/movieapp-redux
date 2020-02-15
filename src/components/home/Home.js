@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Header from '../header/Header';
-import MovieThumb from '../movieThumb/movieThumb';
 import MovieCarousel from '../MovieCarousel/MovieCarousel';
 import Swiper from 'swiper';
+import 'swiper/css/swiper.css';
+import 'swiper/js/swiper.min.js';
 
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
 
@@ -11,7 +12,6 @@ import './Home.scss';
 // import Movies from "../Movies";
 // import LatestMovies from "../LatestMovies";
 // import Movie from "../Movie";
-// import Header from "../Header";
 
 class Home extends Component {
    constructor(props) {
@@ -24,7 +24,7 @@ class Home extends Component {
       };
    }
 
-   fetchUpcomingMovies = async () => {
+   fetchUpcomingMovies = () => {
       const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
 
       fetch(url)
@@ -37,7 +37,7 @@ class Home extends Component {
          .catch(error => console.log(error));
    };
 
-   fetchPopularMovies = async () => {
+   fetchPopularMovies = () => {
       const url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
 
       fetch(url)
@@ -50,7 +50,7 @@ class Home extends Component {
          .catch(error => console.log(error));
    };
 
-   fetchTopRatedMovies = async () => {
+   fetchTopRatedMovies = () => {
       const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
 
       fetch(url)
@@ -67,24 +67,21 @@ class Home extends Component {
       this.fetchUpcomingMovies();
       this.fetchPopularMovies();
       this.fetchTopRatedMovies();
-
-      console.log(this.state.moviesUpcoming);
    }
 
    render() {
       // console.log(this.state.moviesUpcoming);
 
       (() => {
-         const sliderEl = document.querySelectorAll('.swiper-container');
-         if (!sliderEl) {
-            return;
-         }
-         const slider = new Swiper(sliderEl, {
+         // const sliderEl = document.querySelectorAll('.swiper-container');
+         // if (!sliderEl) {
+         //    return;
+         // }
+         const swiper = new Swiper('.swiper-container', {
             init: true,
             slidesPerView: 7,
             loop: true,
             spaceBetween: 14,
-            observer: true,
 
             breakpoints: {
                1145: {
@@ -92,11 +89,10 @@ class Home extends Component {
                },
                699: {
                   slidesPerView: 3
+               },
+               100: {
+                  slidesPerView: 2
                }
-            },
-            pagination: {
-               el: '.swiper-pagination',
-               clickable: true
             },
             navigation: {
                nextEl: '.swiper-button-next',
@@ -110,8 +106,8 @@ class Home extends Component {
 
             <div className="home-container">
                <MovieCarousel title="Upcoming" movies={this.state.moviesUpcoming} />
-               {/* <MovieCarousel title="Popular" movies={this.state.moviesPopular} />
-               <MovieCarousel title="Top Rated" movies={this.state.moviesTopRated} /> */}
+               <MovieCarousel title="Popular" movies={this.state.moviesPopular} />
+               <MovieCarousel title="Top Rated" movies={this.state.moviesTopRated} />
             </div>
          </div>
       );
