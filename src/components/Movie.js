@@ -90,15 +90,15 @@ class Movie extends React.Component {
    componentDidMount() {
       this.fetchMovie();
 
-      const fetchImdb = async () => {
-         const apiKey = "887d023b";
-         const id = this.state.imdbId;
+      // const fetchImdb = async () => {
+      //    const apiKey = "887d023b";
+      //    const id = this.state.imdbId;
 
-         //  const call = await fetch(`http://omdbapi.com/?i=${Number(id)}&plot=full&apikey=${apiKey}`);
-         //  const data = await call.json();
-         //  console.log(data);
-      };
-      fetchImdb();
+      //    //  const call = await fetch(`http://omdbapi.com/?i=${Number(id)}&plot=full&apikey=${apiKey}`);
+      //    //  const data = await call.json();
+      //    //  console.log(data);
+      // };
+      // fetchImdb();
    }
 
    render() {
