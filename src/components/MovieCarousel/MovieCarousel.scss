@@ -1,9 +1,10 @@
 @import '../../styles/carousel';
 
-.swiper-slide {
+.movie-thumb {
+   width: 100px;
+   height: 50px;
+
    img {
-      width: 150px;
-      height: auto;
       border-radius: 5px;
    }
 }
