@@ -5,7 +5,7 @@ import './MovieCarousel.scss';
 
 class MovieCarousel extends Component {
    render() {
-      console.log(this.props.movies);
+      // console.log(this.props.movies);
 
       const movies = this.props.movies;
       return (

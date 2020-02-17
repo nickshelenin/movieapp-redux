@@ -29,7 +29,7 @@ class Header extends React.Component {
                   <div className="input-container">
                      <input type="text" name="search" placeholder="Search..." autoComplete="off" onChange={this.handleSeachInput} />
 
-                     <Link to={this.state.searchValue !== '' ? `/search?keyword=${this.state.searchValue}` : ''}>
+                     <Link to={this.state.searchValue !== '' ? `/search/${this.state.searchValue}` : ''}>
                         <button type="submit">
                            <i className="fa fa-search"></i>
                         </button>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../header/Header';
+import Header from '../Header/Header';
 import MovieCarousel from '../MovieCarousel/MovieCarousel';
 import Swiper from 'swiper';
 import 'swiper/css/swiper.css';
@@ -101,15 +101,15 @@ class Home extends Component {
          });
       })();
       return (
-         <div>
-            <Header />
+         <>
+            {/* <Header /> */}
 
             <div className="home-container">
                <MovieCarousel title="Upcoming" movies={this.state.moviesUpcoming} />
                <MovieCarousel title="Popular" movies={this.state.moviesPopular} />
                <MovieCarousel title="Top Rated" movies={this.state.moviesTopRated} />
             </div>
-         </div>
+         </>
       );
    }
 }
