@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { API_KEY } from '../../config';
+import React, { Component } from "react";
+import { API_KEY } from "../../config";
 
-import './SearchResults.scss';
+import "./SearchResults.scss";
 
 class SearchResults extends Component {
    state = {
@@ -23,21 +23,20 @@ class SearchResults extends Component {
          )
          .catch(error => console.log(error));
 
-    //   console.log(this.state.searchResults);
+      //   console.log(this.state.searchResults);
    };
 
    handleNextPage = () => {
       this.setState({
-         page: this.state.searchResults !== undefined && this.state.searchResults.length !== 0  ? this.state.page + 1 : 1
-         //  page: this.state.page + 1
+         // page: this.state.searchResults.length !== 0 ? this.state.page + 1 : this.state.page - 1
+         page: this.state.searchResults.length === 0 ? this.state.page - 1 : this.state.page + 1
       });
 
       window.scrollTo({ top: 0 });
    };
 
    handlePrevPage = () => {
-
-    // Disable prevpage button if current page = 1
+      // Disable prevpage button if current page = 1
 
       this.setState({
          page: this.state.page !== 1 ? this.state.page - 1 : 1
@@ -50,8 +49,10 @@ class SearchResults extends Component {
       this.fetchResults();
    }
 
-   componentDidUpdate() {
-      this.fetchResults();
+   componentDidUpdate(prevProps, prevState) {
+      if (prevState.searchResults !== this.state.SearchResults) {
+         this.fetchResults();
+      }
    }
 
    render() {
@@ -60,25 +61,28 @@ class SearchResults extends Component {
       const { title } = this.props.match.params;
 
       return (
-         <div className="search-results-container">
-            <h1 className="search-results-heading">Search results for {title}</h1>
+         <div className='search-results-container'>
+            <h1 className='search-results-heading'>Search results for {title}</h1>
 
-            <div className="search-results">
+            <div className='search-results'>
                {this.state.searchResults !== null &&
                   this.state.searchResults.map(searchResult => (
                      <>
-                        {searchResult.poster_path !== undefined && (
-                           <div className="search-result">
-                              <img src={`http://image.tmdb.org/t/p/w185/${searchResult.poster_path}`} alt="test" />
-                              <p className="search-result-title">{searchResult.name}</p>
+                        {searchResult.poster_path !== undefined && searchResult.poster_path !== null && (
+                           <div className='search-result' key={searchResult.id}>
+                              <img src={`http://image.tmdb.org/t/p/w185/${searchResult.poster_path}`} alt='test' />
+                              <p className='search-result-title'>{searchResult.name}</p>
                               <p>{searchResult.title}</p>
                            </div>
                         )}
                      </>
                   ))}
             </div>
-            <button onClick={this.handlePrevPage}>Prev</button>
-            <button onClick={this.handleNextPage}>Next</button>
+
+            <div className='page-navigation-buttons'>
+               <button onClick={this.handlePrevPage}>Prev</button>
+               <button onClick={this.handleNextPage}>Next</button>
+            </div>
          </div>
       );
    }
