@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Home from '../Home/Home';
-import SearchResults from '../SearchResults/SearchResults';
-import Header from '../Header/Header';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+import Header from "../Header/Header";
+import Home from "../Home/Home";
+import SearchResults from "../SearchResults/SearchResults";
 
 class App extends React.Component {
    render() {
       return (
          <Router>
             <Header />
-            
-            <Route exact path="/" component={Home} />
-            <Route path="/search/:title" component={SearchResults} />
+
+            <Route exact path='/' component={Home} />
+            <Route path='/search/:title' component={SearchResults} />
          </Router>
       );
    }
