@@ -66,40 +66,36 @@ class Home extends Component {
    }
 
    render() {
-      // console.log(this.state.moviesUpcoming);
+      // (() => {
+      // const sliderEl = document.querySelectorAll('.swiper-container');
+      // if (!sliderEl) {
+      //    return;
+      // }
+      // const swiper = new Swiper(".swiper-container", {
+      //    init: true,
+      //    slidesPerView: 7,
+      //    loop: true,
+      //    spaceBetween: 14,
+      //    touchRatio: 0,
+      //    breakpoints: {
+      //       1145: {
+      //          slidesPerView: 5
+      //       },
+      //       699: {
+      //          slidesPerView: 3
+      //       },
+      //       100: {
+      //          slidesPerView: 2
+      //       }
+      //    },
+      //    navigation: {
+      //       nextEl: ".swiper-button-next",
+      //       prevEl: ".swiper-button-prev"
+      //    }
+      // });
 
-      (() => {
-         // const sliderEl = document.querySelectorAll('.swiper-container');
-         // if (!sliderEl) {
-         //    return;
-         // }
-         const swiper = new Swiper(".swiper-container", {
-            init: true,
-            slidesPerView: 7,
-            loop: true,
-            spaceBetween: 14,
-
-            breakpoints: {
-               1145: {
-                  slidesPerView: 5
-               },
-               699: {
-                  slidesPerView: 3
-               },
-               100: {
-                  slidesPerView: 2
-               }
-            },
-            navigation: {
-               nextEl: ".swiper-button-next",
-               prevEl: ".swiper-button-prev"
-            }
-         });
-      })();
       return (
          <>
-            {/* <Header /> */}
-
             <div className='home-container'>
                <MovieCarousel title='Upcoming' movies={this.state.moviesUpcoming} />
                <MovieCarousel title='Popular' movies={this.state.moviesPopular} />
