@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
-import Header from '../Header/Header';
-import MovieCarousel from '../MovieCarousel/MovieCarousel';
-import Swiper from 'swiper';
-import 'swiper/css/swiper.css';
-import 'swiper/js/swiper.min.js';
+import React, { Component } from "react";
+import Header from "../Header/Header";
+import MovieCarousel from "../MovieCarousel/MovieCarousel";
+import Swiper from "swiper";
+import "swiper/css/swiper.css";
+import "swiper/js/swiper.min.js";
 
-import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
+import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from "../../config";
 
-import './Home.scss';
-
-// import Movies from "../Movies";
-// import LatestMovies from "../LatestMovies";
-// import Movie from "../Movie";
+import "./Home.scss";
 
 class Home extends Component {
    constructor(props) {
@@ -77,7 +73,7 @@ class Home extends Component {
          // if (!sliderEl) {
          //    return;
          // }
-         const swiper = new Swiper('.swiper-container', {
+         const swiper = new Swiper(".swiper-container", {
             init: true,
             slidesPerView: 7,
             loop: true,
@@ -95,8 +91,8 @@ class Home extends Component {
                }
             },
             navigation: {
-               nextEl: '.swiper-button-next',
-               prevEl: '.swiper-button-prev'
+               nextEl: ".swiper-button-next",
+               prevEl: ".swiper-button-prev"
             }
          });
       })();
@@ -104,10 +100,10 @@ class Home extends Component {
          <>
             {/* <Header /> */}
 
-            <div className="home-container">
-               <MovieCarousel title="Upcoming" movies={this.state.moviesUpcoming} />
-               <MovieCarousel title="Popular" movies={this.state.moviesPopular} />
-               <MovieCarousel title="Top Rated" movies={this.state.moviesTopRated} />
+            <div className='home-container'>
+               <MovieCarousel title='Upcoming' movies={this.state.moviesUpcoming} />
+               <MovieCarousel title='Popular' movies={this.state.moviesPopular} />
+               <MovieCarousel title='Top Rated' movies={this.state.moviesTopRated} />
             </div>
          </>
       );

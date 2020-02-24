@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { API_KEY } from "../../config";
+import { Link } from "react-router-dom";
 
 import "./SearchResults.scss";
 
@@ -11,7 +12,6 @@ class SearchResults extends Component {
 
    fetchResults = () => {
       const { title } = this.props.match.params;
-
       const url = `https://api.themoviedb.org/3/search/multi/?api_key=${API_KEY}&language=en-US&query=${title}&page=${this.state.page}&include_adult=false`;
 
       fetch(url)
@@ -28,7 +28,8 @@ class SearchResults extends Component {
 
    handleNextPage = () => {
       this.setState({
-         // page: this.state.searchResults.length !== 0 ? this.state.page + 1 : this.state.page - 1
+         
+
          page: this.state.searchResults.length === 0 ? this.state.page - 1 : this.state.page + 1
       });
 
@@ -56,7 +57,7 @@ class SearchResults extends Component {
    }
 
    render() {
-      console.log(this.state.searchResults !== null && this.state.searchResults.length);
+      // console.log(this.state.searchResults !== null && this.state.searchResults[0]);
 
       const { title } = this.props.match.params;
 
@@ -70,9 +71,11 @@ class SearchResults extends Component {
                      <>
                         {searchResult.poster_path !== undefined && searchResult.poster_path !== null && (
                            <div className='search-result' key={searchResult.id}>
-                              <img src={`http://image.tmdb.org/t/p/w185/${searchResult.poster_path}`} alt='test' />
-                              <p className='search-result-title'>{searchResult.name}</p>
-                              <p>{searchResult.title}</p>
+                              <Link to={`/film/${searchResult.id}`}>
+                                 <img src={`http://image.tmdb.org/t/p/w185/${searchResult.poster_path}`} alt='test' />
+                                 <p className='search-result-title'>{searchResult.name}</p>
+                                 <p>{searchResult.title}</p>
+                              </Link>
                            </div>
                         )}
                      </>
