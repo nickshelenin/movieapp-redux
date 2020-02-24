@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { API_KEY } from "../../config";
 import TrailerCarousel from "../TrailerCarousel/TrailerCarousel";
 
+// import Swiper from "swiper";
+// import "swiper/css/swiper.css";
+// import "swiper/js/swiper.min.js";
+
 import "./MovieDetails.scss";
 
 class MovieDetails extends Component {
@@ -76,13 +80,42 @@ class MovieDetails extends Component {
       const cast = this.state.cast;
       const trailers = this.state.trailers;
 
-      // console.log(movieDetails);
+      // (() => {
+      //    const sliderEl = document.querySelectorAll(".trailer-swiper-container");
+      //    if (!sliderEl) {
+      //       return;
+      //    }
+      //    const slider = new Swiper(sliderEl, {
+      //       init: true,
+      //       slidesPerView: 5,
+      //       loop: true,
+      //       spaceBetween: 0,
+      //       observer: true,
+      //       centeredSlides: true,
+
+      //       breakpoints: {
+      //          1145: {
+      //             slidesPerView: 5
+      //          },
+      //          699: {
+      //             slidesPerView: 3
+      //          },
+      //          100: {
+      //             slidesPerView: 2
+      //          }
+      //       },
+      //       navigation: {
+      //          prevEl: ".swiper-button-prev",
+      //          nextEl: ".swiper-button-next"
+      //       }
+      //    });
+      // })();
 
       return (
          <div className='movie-details-container'>
             {movieDetails !== null && (
                <>
-               {/* MOVIE HEADER WITH BACGROUND IMAGE */}
+                  {/* MOVIE HEADER WITH BACGROUND IMAGE */}
                   <div
                      className='movie-details__header'
                      style={{
@@ -133,7 +166,7 @@ class MovieDetails extends Component {
 
                   {/* TRAILERS CONTAINER */}
 
-                  <div>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>
+                  <div className='trailers-container'>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>
                </>
             )}
          </div>

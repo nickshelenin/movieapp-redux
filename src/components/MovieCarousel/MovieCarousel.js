@@ -9,7 +9,7 @@ import "./MovieCarousel.scss";
 
 class MovieCarousel extends Component {
    render() {
-      // Initiate swiper
+      // Initiates carousel
 
       (() => {
          const sliderEl = document.querySelectorAll(".swiper-container");
@@ -43,7 +43,7 @@ class MovieCarousel extends Component {
 
       const movies = this.props.movies;
       return (
-         <div className='carousel-container wow'>
+         // <div className='carousel-container wow'>
             <div className='swiper-container'>
                <h2 className='swiper-container__title'>{this.props.title}</h2>
 
@@ -63,7 +63,7 @@ class MovieCarousel extends Component {
                <div className='swiper-button-prev swiper-button-white'></div>
                <div className='swiper-button-next swiper-button-white'></div>
             </div>
-         </div>
+         // </div>
       );
    }
 }
