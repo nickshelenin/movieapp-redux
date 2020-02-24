@@ -11,6 +11,8 @@ class MovieDetails extends Component {
       trailers: null
    };
 
+   // FETCH MOVIE DETAILS
+
    fetchMovie = () => {
       const { id } = this.props.match.params;
       const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
@@ -27,6 +29,8 @@ class MovieDetails extends Component {
          .catch(error => console.log(error));
    };
 
+   // FETCH MOVIE CAST
+
    fetchCast = () => {
       const { id } = this.props.match.params;
       const url = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
@@ -42,6 +46,8 @@ class MovieDetails extends Component {
          )
          .catch(error => console.log(error));
    };
+
+   // FETCH MOVIE TRAILERS
 
    fetchTrailers = () => {
       const { id } = this.props.match.params;
@@ -76,6 +82,7 @@ class MovieDetails extends Component {
          <div className='movie-details-container'>
             {movieDetails !== null && (
                <>
+               {/* MOVIE HEADER WITH BACGROUND IMAGE */}
                   <div
                      className='movie-details__header'
                      style={{
@@ -98,12 +105,16 @@ class MovieDetails extends Component {
                      </div>
                   </div>
 
+                  {/* MOVIE DETAILS */}
+
                   <div className='movie-details-body'>
                      <div className='summary-container'>
                         <h1>summary</h1>
                         <p>{movieDetails.overview}</p>
                      </div>
                   </div>
+
+                  {/* CAST CONTAINER */}
 
                   <div className='cast-container'>
                      {cast !== null &&
@@ -119,6 +130,8 @@ class MovieDetails extends Component {
                               )
                         )}
                   </div>
+
+                  {/* TRAILERS CONTAINER */}
 
                   <div>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>
                </>

@@ -7,36 +7,36 @@ import "swiper/js/swiper.min.js";
 class TrailerCarousel extends Component {
    render() {
       // Initiate swiper
-      (() => {
-         const sliderEl = document.querySelectorAll(".swiper-container");
-         if (!sliderEl) {
-            return;
-         }
-         const slider = new Swiper(sliderEl, {
-            init: true,
-            slidesPerView: 5,
-            loop: true,
-            // spaceBetween: 14,
-            // navigation,
-            // observer: true,
+      // (() => {
+      //    const sliderEl = document.querySelectorAll(".swiper-container");
+      //    if (!sliderEl) {
+      //       return;
+      //    }
+      //    const slider = new Swiper(sliderEl, {
+      //       init: true,
+      //       slidesPerView: 5,
+      //       loop: true,
+      //       // spaceBetween: 14,
+      //       // navigation,
+      //       // observer: true,
 
-            breakpoints: {
-               1145: {
-                  slidesPerView: 5
-               },
-               699: {
-                  slidesPerView: 3
-               },
-               100: {
-                  slidesPerView: 2
-               }
-            },
-            navigation: {
-               nextEl: ".swiper-button-next",
-               prevEl: ".swiper-button-prev"
-            }
-         });
-      })();
+      //       breakpoints: {
+      //          1145: {
+      //             slidesPerView: 5
+      //          },
+      //          699: {
+      //             slidesPerView: 3
+      //          },
+      //          100: {
+      //             slidesPerView: 2
+      //          }
+      //       },
+      //       navigation: {
+      //          nextEl: ".swiper-button-next",
+      //          prevEl: ".swiper-button-prev"
+      //       }
+      //    });
+      // })();
       return (
          <div className='carousel-container wow'>
             <div className='swiper-container'>
