@@ -20,6 +20,8 @@ class Home extends Component {
       };
    }
 
+   // FETCHING UPCOMING MOVIES
+
    fetchUpcomingMovies = () => {
       const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
 
@@ -33,6 +35,8 @@ class Home extends Component {
          .catch(error => console.log(error));
    };
 
+   // FETCHING MOVIES BY POPULARITY
+
    fetchPopularMovies = () => {
       const url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
 
@@ -45,6 +49,8 @@ class Home extends Component {
          )
          .catch(error => console.log(error));
    };
+
+   // FETCHING MOVIES BY RATING
 
    fetchTopRatedMovies = () => {
       const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
@@ -66,36 +72,6 @@ class Home extends Component {
    }
 
    render() {
-      // (() => {
-      //    const sliderEl = document.querySelector(".swiper-container");
-      //    if (!sliderEl) {
-      //       return;
-      //    }
-      //    const swiper = new Swiper(".swiper-container", {
-      //       init: true,
-      //       slidesPerView: 5,
-      //       loop: true,
-      //       spaceBetween: 0,
-      //       // touchRatio: 0,
-
-      //       breakpoints: {
-      //          1145: {
-      //             slidesPerView: 5
-      //          },
-      //          699: {
-      //             slidesPerView: 3
-      //          },
-      //          100: {
-      //             slidesPerView: 2
-      //          }
-      //       },
-      //       navigation: {
-      //          nextEl: ".swiper-button-next",
-      //          prevEl: ".swiper-button-prev"
-      //       }
-      //    });
-      // })();
-
       return (
          <div className='home-container'>
             <MovieCarousel title='Upcoming' movies={this.state.moviesUpcoming} />

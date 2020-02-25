@@ -11,39 +11,8 @@ class MovieCarousel extends Component {
    render() {
       // Initiates carousel
 
-      // (() => {
-      //    const sliderEl = document.querySelectorAll(".swiper-container");
-      //    if (!sliderEl) {
-      //       return;
-      //    }
-      //    const slider = new Swiper(sliderEl, {
-      //       init: true,
-      //       slidesPerView: 7,
-      //       loop: true,
-      //       spaceBetween: 14,
-      //       observer: true,
-
-      //       breakpoints: {
-      //          1145: {
-      //             slidesPerView: 5
-      //          },
-      //          699: {
-      //             slidesPerView: 3
-      //          },
-      //          100: {
-      //             slidesPerView: 2
-      //          }
-      //       },
-
-      //       navigation: {
-      //          prevEl: ".swiper-button-prev",
-      //          nextEl: ".swiper-button-next"
-      //       }
-      //    });
-      // })();
-
       (() => {
-         const sliderEl = document.querySelectorAll(".swiper-container");
+         const sliderEl = document.querySelector(".swiper-container");
          if (!sliderEl) {
             return;
          }
