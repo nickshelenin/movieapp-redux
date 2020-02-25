@@ -134,21 +134,20 @@ class MovieDetails extends Component {
                   {/* CAST CONTAINER */}
 
                   <div className='cast-container'>
-                     {/* {cast !== null &&
-                        cast.map(
-                           actor =>
-                              actor.profile_path !== null &&
-                              actor.profile_path !== undefined && */}
-                     {cast.map((person, i) => (
-                        <div>
-                           <Link to={`/person/${person.id}`}>
-                              <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
-                              <p className='person'>{person.name}</p>
-                              <p className='character'>{person.character}</p>
-                           </Link>
-                        </div>
-                     ))}
-                     {/* )} */}
+                     {cast.map(
+                        (person, i) =>
+                           // display movie if poster exists
+
+                           person.profile_path !== null && (
+                              <div>
+                                 <Link to={`/person/${person.id}`}>
+                                    <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
+                                    <p className='person'>{person.name}</p>
+                                    <p className='character'>{person.character}</p>
+                                 </Link>
+                              </div>
+                           )
+                     )}
                   </div>
 
                   {/* TRAILERS CONTAINER */}
