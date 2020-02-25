@@ -69,10 +69,40 @@ class MovieDetails extends Component {
          .catch(error => console.log(error));
    };
 
+   // FETCH ACTOR PROFILE
+
+   fetchActor = () => {
+      const { id } = this.props.match.params;
+      const url = `https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}&language=en-US`;
+      fetch(url)
+         .then(res => res.json())
+         .then(data =>
+            //    this.setState({
+            //       trailers: data.results
+            //    })
+            console.log(data)
+         )
+         .catch(error => console.log(error));
+   };
+
+   // CONVERT MINUTES INTO HOURS
+
+   timeConvert = num => {
+      const hours = num / 60;
+      const rhours = Math.floor(hours);
+
+      const minutes = (hours - rhours) * 60;
+      const rminutes = Math.round(minutes);
+
+      return rhours + "h " + rminutes;
+   };
+
    componentDidMount() {
       this.fetchCast();
       this.fetchMovie();
       this.fetchTrailers();
+      this.fetchActor();
+      console.log(this.state.movieDetails);
    }
 
    render() {
@@ -133,7 +163,7 @@ class MovieDetails extends Component {
                               <span>|</span>
                               <p>{movieDetails.genres[1].name}</p>
                            </div>
-                           <p className='runtime'>{movieDetails.runtime} min</p>
+                           <p className='runtime'>{this.timeConvert(movieDetails.runtime)} min</p>
                         </div>
                      </div>
                   </div>

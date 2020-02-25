@@ -1,4 +1,4 @@
-@import '../../styles/carousel';
+@import "../../styles/carousel";
 
 .carousel-container {
    margin: 5em 0;
@@ -14,6 +14,10 @@
    p {
       width: 80%;
       font-weight: bold;
-
    }
+}
+
+.swiper-slide {
+   display: flex;
+   justify-content: center;
 }

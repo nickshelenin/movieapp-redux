@@ -77,6 +77,7 @@ class Home extends Component {
       //       loop: true,
       //       spaceBetween: 0,
       //       // touchRatio: 0,
+
       //       breakpoints: {
       //          1145: {
       //             slidesPerView: 5
@@ -96,13 +97,11 @@ class Home extends Component {
       // })();
 
       return (
-         <>
-            <div className='home-container'>
-               <MovieCarousel title='Upcoming' movies={this.state.moviesUpcoming} />
-               <MovieCarousel title='Popular' movies={this.state.moviesPopular} />
-               <MovieCarousel title='Top Rated' movies={this.state.moviesTopRated} />
-            </div>
-         </>
+         <div className='home-container'>
+            <MovieCarousel title='Upcoming' movies={this.state.moviesUpcoming} />
+            <MovieCarousel title='Popular' movies={this.state.moviesPopular} />
+            <MovieCarousel title='Top Rated' movies={this.state.moviesTopRated} />
+         </div>
       );
    }
 }
