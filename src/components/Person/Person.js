@@ -80,6 +80,7 @@ class Person extends Component {
                               {person.birthday} <span>|</span> {person.birthday !== null && this.calculateAge(person.birthday)}
                            </p>
                         )}
+
                         <a href={person.homepage} target='blank'>
                            {person.homepage}
                         </a>
