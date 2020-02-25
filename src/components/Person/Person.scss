@@ -3,6 +3,14 @@
    margin: auto;
 }
 
+.person-profile {
+   display: flex;
+
+   img {
+       margin-right: 5em;
+   }
+}
+
 .person-movies {
    display: grid;
    grid-template-columns: repeat(5, 1fr);
@@ -12,5 +20,10 @@
       border-radius: 10px;
       width: 180px;
       height: 270px;
+   }
+
+   p {
+      font-size: 1.1rem;
+      width: 80%;
    }
 }

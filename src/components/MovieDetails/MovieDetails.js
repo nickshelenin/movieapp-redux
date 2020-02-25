@@ -98,7 +98,7 @@ class MovieDetails extends Component {
 
       return (
          <div className='movie-details-container'>
-            {movieDetails !== null && (
+            {movieDetails !== null && cast !== null && trailers !== null && (
                <>
                   {/* MOVIE HERO SECTION */}
                   <div

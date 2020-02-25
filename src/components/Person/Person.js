@@ -42,32 +42,59 @@ class Person extends Component {
          .catch(error => console.log(error));
    };
 
+   calculateAge = num => {
+      const age = num.substring(0, 4);
+      const currentYear = new Date().getFullYear();
+
+      return currentYear - age + " years old";
+   };
+
    componentDidMount() {
       this.fetchPerson();
       this.fetchPersonMovies();
    }
 
    render() {
-      //   const person = this.sate.person;
+      const person = this.state.person;
+      const personMovies = this.state.personMovies;
 
-      console.log(this.state.personMovies);
+      console.log(this.state.person);
 
       return (
-         this.state.person !== null &&
-         this.state.personMovies !== null && (
+         person !== null &&
+         personMovies !== null && (
             <div className='person-container'>
-               <div className='person-biography'>
-                  <img src={`http://image.tmdb.org/t/p/w185/${this.state.person.profile_path}`} alt='test' />
+               <div>
+                  <div className='person-profile'>
+                     <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
 
-                  <h1>{this.state.person.name}</h1>
+                     <div className='person-biography'>
+                        <p>{person.name}</p>
 
-                  <p>{this.state.person.biography}</p>
+                        <p>
+                           {person.gender === 1 ? "female" : "male"} <span>|</span> {person.known_for_department}
+                        </p>
+
+                        {person.birthday !== null && (
+                           <p>
+                              {person.birthday} <span>|</span> {person.birthday !== null && this.calculateAge(person.birthday)}
+                           </p>
+                        )}
+                        <a href={person.homepage} target='blank'>
+                           {person.homepage}
+                        </a>
+                     </div>
+                  </div>
+
+                  <div className=''>
+                     <p>{person.biography}</p>
+                  </div>
                </div>
 
                <div>
-                  <h1>{this.state.person.name}'s movies</h1>
+                  <h1>{person.name}'s movies</h1>
                   <div className='person-movies'>
-                     {this.state.personMovies.map(
+                     {personMovies.map(
                         movie =>
                            // display movie if poster exists
 
@@ -75,6 +102,7 @@ class Person extends Component {
                               <div>
                                  <Link to={`/film/${movie.id}`}>
                                     <img src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='test' />
+                                    <p>{movie.title}</p>
                                  </Link>
                               </div>
                            )
