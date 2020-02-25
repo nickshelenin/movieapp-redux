@@ -73,7 +73,7 @@ class MovieDetails extends Component {
 
    fetchActor = () => {
       const { id } = this.props.match.params;
-      const url = `https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}&language=en-US`;
+      const url = `https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${API_KEY}&language=en-US`;
       fetch(url)
          .then(res => res.json())
          .then(data =>
@@ -94,7 +94,7 @@ class MovieDetails extends Component {
       const minutes = (hours - rhours) * 60;
       const rminutes = Math.round(minutes);
 
-      return rhours + "h " + rminutes;
+      return rhours + "h " + rminutes + "m";
    };
 
    componentDidMount() {
@@ -102,7 +102,6 @@ class MovieDetails extends Component {
       this.fetchMovie();
       this.fetchTrailers();
       this.fetchActor();
-      console.log(this.state.movieDetails);
    }
 
    render() {
@@ -110,42 +109,11 @@ class MovieDetails extends Component {
       const cast = this.state.cast;
       const trailers = this.state.trailers;
 
-      // (() => {
-      //    const sliderEl = document.querySelectorAll(".trailer-swiper-container");
-      //    if (!sliderEl) {
-      //       return;
-      //    }
-      //    const slider = new Swiper(sliderEl, {
-      //       init: true,
-      //       slidesPerView: 5,
-      //       loop: true,
-      //       spaceBetween: 0,
-      //       observer: true,
-      //       centeredSlides: true,
-
-      //       breakpoints: {
-      //          1145: {
-      //             slidesPerView: 5
-      //          },
-      //          699: {
-      //             slidesPerView: 3
-      //          },
-      //          100: {
-      //             slidesPerView: 2
-      //          }
-      //       },
-      //       navigation: {
-      //          prevEl: ".swiper-button-prev",
-      //          nextEl: ".swiper-button-next"
-      //       }
-      //    });
-      // })();
-
       return (
          <div className='movie-details-container'>
             {movieDetails !== null && (
                <>
-                  {/* MOVIE HEADER WITH BACGROUND IMAGE */}
+                  {/* MOVIE HERO SECTION */}
                   <div
                      className='movie-details__header'
                      style={{
@@ -159,16 +127,15 @@ class MovieDetails extends Component {
                            <p className='title'>{movieDetails.title}</p>
                            <p className='rating'>IMDB {movieDetails.vote_average}</p>
                            <div className='genres-container'>
-                              <p>{movieDetails.genres[0].name}</p>
-                              <span>|</span>
-                              <p>{movieDetails.genres[1].name}</p>
+                              {movieDetails !== null && movieDetails.genres.map(genre => <span key={genre.id}>{genre.name} | </span>)}
                            </div>
-                           <p className='runtime'>{this.timeConvert(movieDetails.runtime)} min</p>
+                           <p className='runtime'>{this.timeConvert(movieDetails.runtime)}</p>
+                           <p>{movieDetails.release_date}</p>
                         </div>
                      </div>
                   </div>
 
-                  {/* MOVIE DETAILS */}
+                  {/* SUMMARY */}
 
                   <div className='movie-details-body'>
                      <div className='summary-container'>

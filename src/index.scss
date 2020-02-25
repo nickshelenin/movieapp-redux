@@ -20,36 +20,3 @@ ul {
 li {
    margin-right: 1em;
 }
-
-.latest-movies-title {
-   margin: 5em auto 2em auto;
-}
-
-.movie-page {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-between;
-   margin-top: 7em;
-
-   img {
-      height: 450px;
-      width: 350px;
-   }
-
-   a {
-      text-decoration: underline;
-   }
-}
-
-.text-blue {
-   color: #00acc1;
-}
-
-.imdb {
-   color: #fbb869;
-   font-weight: 900;
-}
-
-.movie-description {
-   width: 65%;
-}
