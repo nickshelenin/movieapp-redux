@@ -5,6 +5,7 @@ import Header from "../Header/Header";
 import Home from "../Home/Home";
 import SearchResults from "../SearchResults/SearchResults";
 import MovieDetails from "../MovieDetails/MovieDetails";
+import Person from "../Person/Person";
 import NotFound from "../NotFound/NotFound";
 
 class App extends React.Component {
@@ -17,7 +18,9 @@ class App extends React.Component {
                <Route exact path='/' component={Home} />
                <Route path='/search/:title' component={SearchResults} />
                <Route path='/film/:id' component={MovieDetails} />
-               <Route path='*' component={NotFound} />
+               <Route path='/person/:id' component={Person} />
+               
+               <Route component={NotFound} />
             </Switch>
          </Router>
       );
