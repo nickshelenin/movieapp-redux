@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Header from "../Header/Header";
 import MovieCarousel from "../MovieCarousel/MovieCarousel";
-
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from "../../config";
+import HomeHero from "../HomeHero/HomeHero";
 
 import "./Home.scss";
 
@@ -71,9 +71,13 @@ class Home extends Component {
    render() {
       return (
          <div className='home-container'>
-            <MovieCarousel title='Upcoming' movies={this.state.moviesUpcoming} />
-            <MovieCarousel title='Popular' movies={this.state.moviesPopular} />
-            <MovieCarousel title='Top Rated' movies={this.state.moviesTopRated} />
+            <HomeHero movies={this.state.moviesPopular} />
+
+            <div className='home-sliders'>
+               <MovieCarousel title='Upcoming' movies={this.state.moviesUpcoming} />
+               <MovieCarousel title='Popular' movies={this.state.moviesPopular} />
+               <MovieCarousel title='Top Rated' movies={this.state.moviesTopRated} />
+            </div>
          </div>
       );
    }

@@ -94,7 +94,7 @@ class MovieDetails extends Component {
       const cast = this.state.cast;
       const trailers = this.state.trailers;
 
-      console.log(cast);
+      console.log(this.state.movieDetails);
 
       return (
          <div className='movie-details-container'>
