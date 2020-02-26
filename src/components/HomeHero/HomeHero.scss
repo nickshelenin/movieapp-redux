@@ -1,3 +1,39 @@
 .hero-swiper-container {
+   margin-top: -2em;
    overflow: hidden;
+   position: relative;
+
+   .swiper-wrapper {
+      width: 50%;
+      height: 80vh;
+
+      .swiper-slide {
+         background-position: center;
+         background-size: cover;
+         position: relative;
+
+         .description {
+            position: absolute;
+            left: 5em;
+            bottom: 10em;
+
+            .title {
+               font-size: 2rem;
+               color: #fff;
+
+               &:hover {
+                  color: inherit;
+               }
+            }
+         }
+      }
+   }
+
+   .swiper-pagination {
+      text-align: left;
+      margin-left: 5em;
+      .swiper-pagination-bullet {
+         background: #fff;
+      }
+   }
 }

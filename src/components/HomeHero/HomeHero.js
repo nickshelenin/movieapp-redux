@@ -20,31 +20,36 @@ export class HomeHero extends Component {
 
          pagination: {
             el: ".swiper-pagination",
-            type: "bullets"
+            // type: "bullets"
+            clickable: true
          }
       });
       return (
-         <div className='hero-container'>
-            <div className='hero-swiper-container'>
-               <div className='swiper-wrapper hero-slider'>
-                  {this.props.movies.map((movie, i) => {
-                     //   if (i >= 5) {
+         <div className='hero-swiper-container'>
+            <div className='swiper-wrapper'>
+               {this.props.movies.map((movie, i) => {
+                  if (i > 3 && i < 7) {
                      return (
                         <div
-                           className='swiper-slide hero-slide'
+                           className='swiper-slide'
                            style={{
-                              backgroundImage: `linear-gradient(rgba(0,0,0,.6), rgba(0,0,0, .6)), url(http://image.tmdb.org/t/p/original/${movie.backdrop_path})`
+                              backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.1), rgba(0,0,0, .9)), url(http://image.tmdb.org/t/p/original/${movie.poster_path}) `
                            }}
                         >
-                           <h1>{movie.original_title}</h1>
+                           <div className='description'>
+                              <Link to={`/film/${movie.id}`}>
+                                 <p className='title'>{movie.title}</p>
+                              </Link>
+                              <div>
+                                 <p></p>
+                              </div>
+                           </div>
                         </div>
                      );
-                     //   }
-                  })}
-               </div>
-
-               <div className='swiper-pagination'></div>
+                  }
+               })}
             </div>
+            <div className='swiper-pagination'></div>
          </div>
       );
    }
