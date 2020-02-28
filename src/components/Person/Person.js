@@ -55,7 +55,7 @@ class Person extends Component {
 
    render() {
       const person = this.state.person;
-      const personMovies = this.state.personMovies === null ? "" : this.state.personMovies.slice(0, 5);
+      const personMovies = this.state.personMovies;
 
       console.log(this.state.person);
 
@@ -71,29 +71,36 @@ class Person extends Component {
 
                      <div className='person-biography'>
                         <div className='category'>
-                           <span>Name: </span>
+                           <span className='category__title'>Name: </span>
                            <p>{person.name}</p>
                         </div>
 
                         <div className='category'>
-                           <span>Known for: </span>
+                           <span className='category__title'>Known for: </span>
                            <p>{person.known_for_department}</p>
                         </div>
 
                         <div className='category'>
-                           <span>Born: </span>
+                           <span className='category__title'>Born: </span>
                            <p>
                               {person.birthday !== null && person.birthday}
                               <span>, </span> {person.place_of_birth !== null && person.place_of_birth}
                            </p>
                         </div>
 
-                        <div className='category'>
-                           <span>Age: </span>
-                           <p>{person.birthday !== null && this.calculateAge(person.birthday)}</p>
-                        </div>
+                        {person.deathday === null && (
+                           <div className='category'>
+                              <span className='category__title'>Age: </span>
+                              <p>{person.birthday !== null && this.calculateAge(person.birthday)}</p>
+                           </div>
+                        )}
 
                         <div className='category'>
+                           <span className='category__title'>Died: </span>
+                           <p>{person.deathday}</p>
+                        </div>
+
+                        <div className='category biography-container'>
                            <p>{person.biography}</p>
                         </div>
                      </div>
