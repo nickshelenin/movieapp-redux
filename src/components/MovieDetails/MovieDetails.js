@@ -83,6 +83,16 @@ class MovieDetails extends Component {
       return rhours + "h " + rminutes + "m";
    };
 
+   // ABREVIATE NUMBER WITH THE WORDS
+
+   abbreviateNumber = n => {
+      if (n < 1e3) return n;
+      if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + " thousand";
+      if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + " million";
+      if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + " billion";
+      if (n >= 1e12) return +(n / 1e12).toFixed(1) + " trillion";
+   };
+
    componentDidMount() {
       this.fetchCast();
       this.fetchMovie();
@@ -125,7 +135,10 @@ class MovieDetails extends Component {
                               </div>
                            </div>
 
-                           <p className='release-date'>{movieDetails.release_date}</p>
+                           <div className='release-date'>
+                              <i class='far fa-calendar-alt'></i>
+                              <p className='release-date'>{movieDetails.release_date}</p>
+                           </div>
                            {/* <p className='tagline'>{movieDetails.tagline}</p> */}
 
                            <p className='overview'>{movieDetails.overview}</p>
@@ -134,47 +147,59 @@ class MovieDetails extends Component {
                   </div>
 
                   <div className='movie-details-body'>
-                     {/* ABOUT THE MOVIE */}
+                     <div className='movie-details__row'>
+                        {/* ABOUT THE MOVIE */}
 
-                     <div className='about-container'>
-                        <div className='title-container'>
-                           <h1>about</h1>
+                        <div className='about-container'>
+                           <div className='title-container'>
+                              <h1>about</h1>
+                           </div>
+
+                           <div className='about'>
+                              <div className='genres-container category'>
+                                 <span className='category__title'>Genre:</span>
+                                 <p>{movieDetails !== null && movieDetails.genres.map(genre => <span key={genre.id}>{genre.name}, </span>)}</p>
+                              </div>
+
+                              <div className='country-container category'>
+                                 <span className='category__title'>Country:</span>
+                                 <p>
+                                    {movieDetails.production_countries !== null &&
+                                       movieDetails.production_countries.map(country => <span>{country.name}, </span>)}
+                                 </p>
+                              </div>
+
+                              <div className='rating-container category'>
+                                 <span className='category__title'>Average rate:</span>
+                                 <p>{movieDetails.vote_average}</p>
+                              </div>
+
+                              <div className='release-container category'>
+                                 <span className='category__title'>Release:</span>
+                                 <p>{movieDetails.release_date}</p>
+                              </div>
+
+                              <div className='budget-container category'>
+                                 <span className='category__title'>Budget:</span>
+                                 <p>{this.abbreviateNumber(movieDetails.budget)} USD</p>
+                              </div>
+
+                              <div className='revenue-container category'>
+                                 <span className='category__title'>Box office:</span>
+                                 <p>{this.abbreviateNumber(movieDetails.revenue)} USD</p>
+                              </div>
+                           </div>
                         </div>
 
-                        <div className='about'>
-                           <div className='genres-container category'>
-                              <span className='category__title'>Genre:</span>
-                              <p>{movieDetails !== null && movieDetails.genres.map(genre => <span key={genre.id}>{genre.name}, </span>)}</p>
+                        {/* SUMMARY */}
+                        <div className='summary-container'>
+                           <div className='title-container'>
+                              <h1>summary</h1>
                            </div>
 
-                           <div className='country-container category'>
-                              <span className='category__title'>Country:</span>
-                              <p>
-                                 {movieDetails.production_countries !== null &&
-                                    movieDetails.production_countries.map(country => <span>{country.name}, </span>)}
-                              </p>
+                           <div className='summary'>
+                              <p>{movieDetails.overview}</p>
                            </div>
-
-                           <div className='rating-container category'>
-                              <span className='category__title'>Rating:</span>
-                              <p>{movieDetails.vote_average}</p>
-                           </div>
-
-                           <div className='release-container category'>
-                              <span className='category__title'>Release:</span>
-                              <p>{movieDetails.release_date}</p>
-                           </div>
-                        </div>
-                     </div>
-
-                     {/* SUMMARY */}
-                     <div className='summary-container'>
-                        <div className='title-container'>
-                           <h1>summary</h1>
-                        </div>
-
-                        <div className='summary'>
-                           <p>{movieDetails.overview}</p>
                         </div>
                      </div>
 

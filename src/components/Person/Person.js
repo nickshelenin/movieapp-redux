@@ -45,7 +45,6 @@ class Person extends Component {
    calculateAge = num => {
       const age = num.substring(0, 4);
       const currentYear = new Date().getFullYear();
-
       return currentYear - age + " years old";
    };
 
@@ -56,7 +55,7 @@ class Person extends Component {
 
    render() {
       const person = this.state.person;
-      const personMovies = this.state.personMovies;
+      const personMovies = this.state.personMovies === null ? "" : this.state.personMovies.slice(0, 5);
 
       console.log(this.state.person);
 
@@ -64,35 +63,44 @@ class Person extends Component {
          person !== null &&
          personMovies !== null && (
             <div className='person-container'>
-               <div>
+               <div className='person-profile-container'>
                   <div className='person-profile'>
-                     <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
+                     <div>
+                        <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
+                     </div>
 
                      <div className='person-biography'>
-                        <p>{person.name}</p>
+                        <div className='category'>
+                           <span>Name: </span>
+                           <p>{person.name}</p>
+                        </div>
 
-                        <p>
-                           {person.gender === 1 ? "female" : "male"} <span>|</span> {person.known_for_department}
-                        </p>
+                        <div className='category'>
+                           <span>Known for: </span>
+                           <p>{person.known_for_department}</p>
+                        </div>
 
-                        {person.birthday !== null && (
+                        <div className='category'>
+                           <span>Born: </span>
                            <p>
-                              {person.birthday} <span>|</span> {person.birthday !== null && this.calculateAge(person.birthday)}
+                              {person.birthday !== null && person.birthday}
+                              <span>, </span> {person.place_of_birth !== null && person.place_of_birth}
                            </p>
-                        )}
+                        </div>
 
-                        <a href={person.homepage} target='blank'>
-                           {person.homepage}
-                        </a>
+                        <div className='category'>
+                           <span>Age: </span>
+                           <p>{person.birthday !== null && this.calculateAge(person.birthday)}</p>
+                        </div>
+
+                        <div className='category'>
+                           <p>{person.biography}</p>
+                        </div>
                      </div>
-                  </div>
-
-                  <div className=''>
-                     <p>{person.biography}</p>
                   </div>
                </div>
 
-               <div>
+               <div className='person-movies-container'>
                   <h1>{person.name}'s movies</h1>
                   <div className='person-movies'>
                      {personMovies.map(
@@ -100,7 +108,7 @@ class Person extends Component {
                            // display movie if poster exists
 
                            movie.poster_path !== null && (
-                              <div>
+                              <div className='movie-thumb'>
                                  <Link to={`/film/${movie.id}`}>
                                     <img src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='test' />
                                     <p>{movie.title}</p>
