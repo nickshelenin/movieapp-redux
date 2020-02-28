@@ -112,9 +112,10 @@ class MovieDetails extends Component {
 
                         <div className='header-description'>
                            <p className='title'>{movieDetails.title}</p>
+
                            <div className='row'>
                               <div className='rating'>
-                                 <i class='far fa-star'></i>
+                                 <i class='far fa-star' style={{ color: "#ffd900" }}></i>
                                  <p>{movieDetails.vote_average}</p>
                               </div>
 
@@ -123,57 +124,92 @@ class MovieDetails extends Component {
                                  <p>{this.timeConvert(movieDetails.runtime)}</p>
                               </div>
                            </div>
-                           <div className='genres-container'>
-                              {movieDetails !== null && movieDetails.genres.map(genre => <span key={genre.id}>{genre.name} | </span>)}
-                           </div>
 
                            <p className='release-date'>{movieDetails.release_date}</p>
+                           {/* <p className='tagline'>{movieDetails.tagline}</p> */}
+
+                           <p className='overview'>{movieDetails.overview}</p>
                         </div>
                      </div>
                   </div>
-                  {/* SUMMARY */}
 
                   <div className='movie-details-body'>
-                     <div className='title-container'>
-                        <h1>summary</h1>
+                     {/* ABOUT THE MOVIE */}
+
+                     <div className='about-container'>
+                        <div className='title-container'>
+                           <h1>about</h1>
+                        </div>
+
+                        <div className='about'>
+                           <div className='genres-container category'>
+                              <span className='category__title'>Genre:</span>
+                              <p>{movieDetails !== null && movieDetails.genres.map(genre => <span key={genre.id}>{genre.name}, </span>)}</p>
+                           </div>
+
+                           <div className='country-container category'>
+                              <span className='category__title'>Country:</span>
+                              <p>
+                                 {movieDetails.production_countries !== null &&
+                                    movieDetails.production_countries.map(country => <span>{country.name}, </span>)}
+                              </p>
+                           </div>
+
+                           <div className='rating-container category'>
+                              <span className='category__title'>Rating:</span>
+                              <p>{movieDetails.vote_average}</p>
+                           </div>
+
+                           <div className='release-container category'>
+                              <span className='category__title'>Release:</span>
+                              <p>{movieDetails.release_date}</p>
+                           </div>
+                        </div>
                      </div>
 
+                     {/* SUMMARY */}
                      <div className='summary-container'>
-                        <div className='summary-container'>
+                        <div className='title-container'>
+                           <h1>summary</h1>
+                        </div>
+
+                        <div className='summary'>
                            <p>{movieDetails.overview}</p>
                         </div>
                      </div>
 
                      {/* CAST CONTAINER */}
-
-                     <div className='title-container'>
-                        <h1>cast</h1>
-                     </div>
-
                      <div className='cast-container'>
-                        {cast.map(
-                           (person, i) =>
-                              // display movie if poster exists
+                        <div className='title-container' style={{ marginBottom: "" }}>
+                           <h1>cast</h1>
+                        </div>
 
-                              person.profile_path !== null && (
-                                 <div className='person-thumb'>
-                                    <Link to={`/person/${person.id}`}>
-                                       <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
-                                       <p className='person'>{person.name}</p>
-                                       <p className='character'>as {person.character}</p>
-                                    </Link>
-                                 </div>
-                              )
-                        )}
+                        <div className='cast'>
+                           {cast.map(
+                              (person, i) =>
+                                 // display movie if poster exists
+
+                                 person.profile_path !== null && (
+                                    <div className='person-thumb'>
+                                       <Link to={`/person/${person.id}`}>
+                                          <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
+                                          <p className='person'>{person.name}</p>
+                                          <p className='character'>as {person.character}</p>
+                                       </Link>
+                                    </div>
+                                 )
+                           )}
+                        </div>
                      </div>
 
                      {/* TRAILERS CONTAINER */}
+                     <div className='trailers-container'>
+                        <div className='title-container' style={{ marginBottom: "3em" }}>
+                           <h1>trailers</h1>
+                        </div>
 
-                     <div className='title-container'>
-                        <h1>trailers</h1>
+                        <div className='trailers'>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>
                      </div>
-
-                     <div className='trailers-container'>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>
                   </div>
                </>
             )}

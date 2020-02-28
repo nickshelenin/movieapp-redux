@@ -25,9 +25,9 @@ export class HomeHero extends Component {
          loop: true,
          observer: true,
 
-         // autoplay: {
-         //    delay: 5000
-         // },
+         autoplay: {
+            delay: 5000
+         },
 
          pagination: {
             el: ".swiper-pagination",
