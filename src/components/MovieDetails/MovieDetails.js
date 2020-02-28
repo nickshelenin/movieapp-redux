@@ -113,7 +113,11 @@ class MovieDetails extends Component {
                         <div className='header-description'>
                            <p className='title'>{movieDetails.title}</p>
                            <div className='row'>
-                              <p className='rating'>IMDB {movieDetails.vote_average}</p>
+                              <div className='rating'>
+                                 <i class='far fa-star'></i>
+                                 <p>{movieDetails.vote_average}</p>
+                              </div>
+
                               <div className='runtime'>
                                  <i class='far fa-clock'></i>
                                  <p>{this.timeConvert(movieDetails.runtime)}</p>
@@ -130,11 +134,11 @@ class MovieDetails extends Component {
                   {/* SUMMARY */}
 
                   <div className='movie-details-body'>
-                     <div>
-                        <h1 className='container-title'>summary</h1>
+                     <div className='title-container'>
+                        <h1>summary</h1>
                      </div>
 
-                     <div className='movie-details-body'>
+                     <div className='summary-container'>
                         <div className='summary-container'>
                            <p>{movieDetails.overview}</p>
                         </div>
@@ -142,8 +146,8 @@ class MovieDetails extends Component {
 
                      {/* CAST CONTAINER */}
 
-                     <div>
-                        <h1 className='container-title'>cast</h1>
+                     <div className='title-container'>
+                        <h1>cast</h1>
                      </div>
 
                      <div className='cast-container'>
@@ -165,8 +169,8 @@ class MovieDetails extends Component {
 
                      {/* TRAILERS CONTAINER */}
 
-                     <div>
-                        <h1 className='container-title'>trailers</h1>
+                     <div className='title-container'>
+                        <h1>trailers</h1>
                      </div>
 
                      <div className='trailers-container'>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>

@@ -2,7 +2,6 @@
 
 span {
    // overright default span margin
-
    margin-left: 0 !important;
 }
 
@@ -25,7 +24,7 @@ span {
       margin: auto;
       display: flex;
       align-items: flex-start;
-      // padding-top: 13em;
+      padding-top: 3em;
 
       @include tablet {
          padding-top: 20em;
@@ -34,6 +33,10 @@ span {
       @include tabletPro {
          padding-top: 25em;
          width: 80%;
+      }
+
+      p {
+         margin: 0;
       }
 
       .thumb {
@@ -49,23 +52,29 @@ span {
       }
 
       .header-description {
+         line-height: 2.5em;
          .title {
             // font-weight: bold;
             font-size: 1.3rem;
+            line-height: 1.5em;
          }
 
          .row {
             display: flex;
             align-items: center;
 
+            .rating,
             .runtime {
                display: flex;
                align-items: center;
-               margin-left: 1em;
 
                i {
-                  margin-right: 0.5em;
+                  margin-right: 0.3em;
                }
+            }
+
+            .rating {
+               margin-right: 1em;
             }
          }
 
@@ -83,59 +92,55 @@ span {
 
 .movie-details-body {
    width: 90%;
-   margin: auto;
+   margin: 5em auto;
 
    @include tabletPro {
       width: 80%;
    }
-}
 
-.container-title {
-   text-transform: uppercase;
-   font-weight: normal;
-}
-
-.summary-container {
-   margin: 4em 0;
-   h1 {
-      text-transform: uppercase;
+   .title-container {
+      h1 {
+         text-transform: uppercase;
+         font-weight: normal;
+      }
    }
-   p {
-      line-height: 1.5em;
-      font-size: 1.2rem;
+
+   .summary-container {
+      h1 {
+         text-transform: uppercase;
+      }
+      p {
+         line-height: 1.5em;
+         font-size: 1.2rem;
+      }
    }
-}
 
-.cast-container {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-between;
+   .cast-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
 
-   .person-thumb {
-      width: 120px;
-      margin-bottom: 3em;
-      margin-right: 1.3em;
-      // margin-left: 3em;
-
-      img {
-         border-radius: 10px;
-         // width: 180px;
-         // height: 270px;
+      .person-thumb {
          width: 120px;
-      }
+         margin-bottom: 3em;
+         margin-right: 1.3em;
+         // margin-left: 3em;
 
-      .actor {
-         font-weight: bold;
-         // font-size: 1.1rem;
-      }
+         img {
+            border-radius: 10px;
+            // width: 180px;
+            // height: 270px;
+            width: 120px;
+         }
 
-      .character {
-         color: #f5de50;
+         .actor {
+            font-weight: bold;
+            // font-size: 1.1rem;
+         }
+
+         .character {
+            color: #f5de50;
+         }
       }
    }
-}
-
-.trailers-container {
-   width: 70%;
-   margin: 5em auto;
 }
