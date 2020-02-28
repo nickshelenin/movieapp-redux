@@ -9,10 +9,6 @@ class MovieCarousel extends Component {
    render() {
       // Initiates carousel
 
-      // const sliderEl = document.querySelectorAll(".swiper-container");
-      // if (!sliderEl) {
-      //    return;
-      // }
       const slider = new Swiper(".swiper-container", {
          init: true,
          slidesPerView: 7,
@@ -44,7 +40,7 @@ class MovieCarousel extends Component {
 
             <div className='swiper-wrapper'>
                {movies.map((movie, i) => (
-                  <div key={movie.id} className='swiper-slide movie-thumb'>
+                  <div key={movie.id} className='swiper-slide'>
                      <Link to={`/film/${movie.id}`}>
                         <img className='swiper-slide__image' src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='' />
                         <p className='swiper-slide__title'>{movie.title}</p>

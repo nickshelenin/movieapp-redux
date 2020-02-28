@@ -1,6 +1,12 @@
 @import "../../styles/mixins";
 
-.movie-details__header {
+span {
+   // overright default span margin
+
+   margin-left: 0 !important;
+}
+
+.movie-details-header {
    margin-top: -2em;
    height: 50vh;
    background-position: center;
@@ -13,13 +19,13 @@
       height: 88vh;
    }
 
-   .header-info {
+   .header-row {
       color: #fff;
       width: 90%;
       margin: auto;
       display: flex;
       align-items: flex-start;
-      padding-top: 13em;
+      // padding-top: 13em;
 
       @include tablet {
          padding-top: 20em;
@@ -30,11 +36,12 @@
          width: 80%;
       }
 
-      img {
+      .thumb {
          width: 100px;
          height: auto;
          border-radius: 5px;
          margin-right: 1em;
+         display: none;
 
          @include tabletPro {
             width: 150px;
@@ -43,8 +50,23 @@
 
       .header-description {
          .title {
-            font-weight: bold;
+            // font-weight: bold;
             font-size: 1.3rem;
+         }
+
+         .row {
+            display: flex;
+            align-items: center;
+
+            .runtime {
+               display: flex;
+               align-items: center;
+               margin-left: 1em;
+
+               i {
+                  margin-right: 0.5em;
+               }
+            }
          }
 
          .genres-container {
@@ -64,9 +86,15 @@
    margin: auto;
 
    @include tabletPro {
-      width: 70%;
+      width: 80%;
    }
 }
+
+.container-title {
+   text-transform: uppercase;
+   font-weight: normal;
+}
+
 .summary-container {
    margin: 4em 0;
    h1 {
@@ -79,35 +107,35 @@
 }
 
 .cast-container {
-   width: 70%;
-   margin: auto;
-   display: grid;
-   grid-template-columns: repeat(5, 1fr);
-   grid-gap: 1em;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
 
-   img {
-      border-radius: 10px;
-      width: 180px;
-      height: 270px;
-   }
+   .person-thumb {
+      width: 120px;
+      margin-bottom: 3em;
+      margin-right: 1.3em;
+      // margin-left: 3em;
 
-   .actor {
-      font-weight: bold;
-      font-size: 1.1rem;
-   }
+      img {
+         border-radius: 10px;
+         // width: 180px;
+         // height: 270px;
+         width: 120px;
+      }
 
-   .character {
-      color: #f5de50;
+      .actor {
+         font-weight: bold;
+         // font-size: 1.1rem;
+      }
+
+      .character {
+         color: #f5de50;
+      }
    }
 }
 
 .trailers-container {
    width: 70%;
    margin: 5em auto;
-}
-
-span {
-   // overright default span margin
-
-   margin-left: 0 !important;
 }

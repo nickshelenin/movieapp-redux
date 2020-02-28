@@ -102,57 +102,75 @@ class MovieDetails extends Component {
                <>
                   {/* MOVIE HERO SECTION */}
                   <div
-                     className='movie-details__header'
+                     className='movie-details-header'
                      style={{
-                        backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0, .9)), url(http://image.tmdb.org/t/p/original/${movieDetails.backdrop_path})`
+                        backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(http://image.tmdb.org/t/p/original/${movieDetails.backdrop_path})`
                      }}
                   >
-                     <div className='header-info'>
-                        <img src={`http://image.tmdb.org/t/p/w185/${movieDetails.poster_path}`} alt='test' />
+                     <div className='header-row'>
+                        <img src={`http://image.tmdb.org/t/p/w185/${movieDetails.poster_path}`} alt='test' className='thumb' />
 
                         <div className='header-description'>
                            <p className='title'>{movieDetails.title}</p>
-                           <p className='rating'>IMDB {movieDetails.vote_average}</p>
+                           <div className='row'>
+                              <p className='rating'>IMDB {movieDetails.vote_average}</p>
+                              <div className='runtime'>
+                                 <i class='far fa-clock'></i>
+                                 <p>{this.timeConvert(movieDetails.runtime)}</p>
+                              </div>
+                           </div>
                            <div className='genres-container'>
                               {movieDetails !== null && movieDetails.genres.map(genre => <span key={genre.id}>{genre.name} | </span>)}
                            </div>
-                           <p className='runtime'>{this.timeConvert(movieDetails.runtime)}</p>
-                           <p>{movieDetails.release_date}</p>
+
+                           <p className='release-date'>{movieDetails.release_date}</p>
                         </div>
                      </div>
                   </div>
-
                   {/* SUMMARY */}
 
                   <div className='movie-details-body'>
-                     <div className='summary-container'>
-                        <h1>summary</h1>
-                        <p>{movieDetails.overview}</p>
+                     <div>
+                        <h1 className='container-title'>summary</h1>
                      </div>
+
+                     <div className='movie-details-body'>
+                        <div className='summary-container'>
+                           <p>{movieDetails.overview}</p>
+                        </div>
+                     </div>
+
+                     {/* CAST CONTAINER */}
+
+                     <div>
+                        <h1 className='container-title'>cast</h1>
+                     </div>
+
+                     <div className='cast-container'>
+                        {cast.map(
+                           (person, i) =>
+                              // display movie if poster exists
+
+                              person.profile_path !== null && (
+                                 <div className='person-thumb'>
+                                    <Link to={`/person/${person.id}`}>
+                                       <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
+                                       <p className='person'>{person.name}</p>
+                                       <p className='character'>as {person.character}</p>
+                                    </Link>
+                                 </div>
+                              )
+                        )}
+                     </div>
+
+                     {/* TRAILERS CONTAINER */}
+
+                     <div>
+                        <h1 className='container-title'>trailers</h1>
+                     </div>
+
+                     <div className='trailers-container'>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>
                   </div>
-
-                  {/* CAST CONTAINER */}
-
-                  <div className='cast-container'>
-                     {cast.map(
-                        (person, i) =>
-                           // display movie if poster exists
-
-                           person.profile_path !== null && (
-                              <div>
-                                 <Link to={`/person/${person.id}`}>
-                                    <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
-                                    <p className='person'>{person.name}</p>
-                                    <p className='character'>{person.character}</p>
-                                 </Link>
-                              </div>
-                           )
-                     )}
-                  </div>
-
-                  {/* TRAILERS CONTAINER */}
-
-                  <div className='trailers-container'>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>
                </>
             )}
          </div>

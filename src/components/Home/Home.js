@@ -69,6 +69,8 @@ class Home extends Component {
    }
 
    render() {
+      console.log(this.state.moviesPopular);
+
       return (
          <div className='home-container'>
             <HomeHero movies={this.state.moviesPopular} />

@@ -16,28 +16,50 @@
 
       .swiper-slide {
          background-position: center;
-         background-size: 80em;
          background-repeat: no-repeat;
+         background-size: cover;
          position: relative;
-         width: 100%;
 
          .meta {
             position: absolute;
             left: 5%;
+            right: 5%;
             bottom: 10%;
-            // width: 90%;
+
+            @include tabletPro {
+               width: 70%;
+            }
 
             .title {
-               font-size: 1.86rem;
-               font-weight: lighter;
-               color: #fff;
+               font-size: 1.4rem;
+               transition: all 0.1s ease-in-out;
+
+               @include tabletPro {
+                  font-size: 1.8rem;
+               }
 
                &:hover {
-                  color: inherit;
+                  color: #888888;
+               }
+            }
+
+            .desc {
+               color: #9c9c9c;
+               font-size: 0.9rem;
+               display: none;
+               font-weight: lighter;
+
+               @include tablet {
+                  display: initial;
                }
             }
          }
       }
+   }
+
+   .swiper-pagination {
+      text-align: left;
+      margin-left: 5%;
    }
 
    .swiper-pagination-bullet {

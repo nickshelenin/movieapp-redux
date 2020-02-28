@@ -1,23 +1,30 @@
-@import "../../styles/carousel";
+@import "../../styles/mixins";
 
-.carousel-container {
-   margin: 5em 0;
-}
+.swiper-container {
+   margin: 4em 0;
 
-.movie-thumb {
-   width: 100px;
+   .swiper-container__title {
+      text-transform: uppercase;
+      margin-bottom: 2em;
 
-   img {
-      border-radius: 5px;
+      @include tablet {
+         margin-left: 1.2em;
+      }
    }
 
-   p {
-      width: 80%;
-      font-weight: bold;
-   }
-}
+   .swiper-slide {
+      display: flex;
+      justify-content: center;
 
-.swiper-slide {
-   display: flex;
-   justify-content: center;
+      .swiper-slide__image {
+         border-radius: 5px;
+         width: 170px;
+      }
+
+      .swiper-slide__title {
+         width: 80%;
+         // font-weight: bold;
+         color: #fff;
+      }
+   }
 }
