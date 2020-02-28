@@ -26,6 +26,9 @@ class MovieCarousel extends Component {
             },
             699: {
                slidesPerView: 3
+            },
+            0: {
+               slidesPerView: 1
             }
          },
          navigation: {

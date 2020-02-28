@@ -15,28 +15,30 @@ export class HomeHero extends Component {
          observer: true,
 
          autoplay: {
-            delay: 5000
+            delay: 1000
          },
 
          pagination: {
             el: ".swiper-pagination",
             // type: "bullets"
-            clickable: true
+            clickable: true,
+            // autoplayDisableOnInteraction: true
+            disableOnInteraction: false
          }
       });
       return (
          <div className='hero-swiper-container'>
             <div className='swiper-wrapper'>
                {this.props.movies.map((movie, i) => {
-                  if (i > 3 && i < 7) {
+                  // if (i > 3 && i < 7) {
                      return (
                         <div
                            className='swiper-slide'
                            style={{
-                              backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.1), rgba(0,0,0, .9)), url(http://image.tmdb.org/t/p/original/${movie.poster_path}) `
+                              backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.1), rgba(0,0,0, .9)), url(http://image.tmdb.org/t/p/original/${movie.backdrop_path}) `
                            }}
                         >
-                           <div className='description'>
+                           <div className='meta'>
                               <Link to={`/film/${movie.id}`}>
                                  <p className='title'>{movie.title}</p>
                               </Link>
@@ -46,7 +48,7 @@ export class HomeHero extends Component {
                            </div>
                         </div>
                      );
-                  }
+                  // }
                })}
             </div>
             <div className='swiper-pagination'></div>
