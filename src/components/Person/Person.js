@@ -80,25 +80,29 @@ class Person extends Component {
                            <p>{person.known_for_department}</p>
                         </div>
 
-                        <div className='category'>
-                           <span className='category__title'>Born: </span>
-                           <p>
-                              {person.birthday !== null && person.birthday}
-                              <span>, </span> {person.place_of_birth !== null && person.place_of_birth}
-                           </p>
-                        </div>
+                        {person.birthday !== null && person.place_of_birth !== null && (
+                           <div className='category'>
+                              <span className='category__title'>Born: </span>
+                              <p>
+                                 {person.birthday !== null && person.birthday}
+                                 <span>, </span> {person.place_of_birth !== null && person.place_of_birth}
+                              </p>
+                           </div>
+                        )}
 
-                        {person.deathday === null && (
+                        {person.deathday === null && person.birthday !== null && (
                            <div className='category'>
                               <span className='category__title'>Age: </span>
                               <p>{person.birthday !== null && this.calculateAge(person.birthday)}</p>
                            </div>
                         )}
 
-                        <div className='category'>
-                           <span className='category__title'>Died: </span>
-                           <p>{person.deathday}</p>
-                        </div>
+                        {person.deathday !== null && (
+                           <div className='category'>
+                              <span className='category__title'>Died: </span>
+                              <p>{person.deathday}</p>
+                           </div>
+                        )}
 
                         <div className='category biography-container'>
                            <p>{person.biography}</p>

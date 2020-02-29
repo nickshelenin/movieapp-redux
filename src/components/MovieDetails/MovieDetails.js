@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import { API_KEY } from "../../config";
 import TrailerCarousel from "../TrailerCarousel/TrailerCarousel";
 import { Link } from "react-router-dom";
-
-// import Swiper from "swiper";
-// import "swiper/css/swiper.css";
-// import "swiper/js/swiper.min.js";
+import Swiper from "swiper";
 
 import "./MovieDetails.scss";
 
