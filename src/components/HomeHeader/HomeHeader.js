@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Swiper from "swiper";
 
-import "./HomeHero.scss";
+import "./HomeHeader.scss";
 
 export class HomeHero extends Component {
    // Slice the release date to display only a year
@@ -18,31 +18,45 @@ export class HomeHero extends Component {
    };
 
    componentDidMount() {
-      // Initialize swiper 
-
-      const slider = new Swiper(".hero-swiper-container", {
-         slidesPerView: 1,
-         loop: true,
-         observer: true,
-
-         autoplay: {
-            delay: 5000
-         },
-
-         pagination: {
-            el: ".swiper-pagination",
-            clickable: true
-         }
-      });
+      // Initialize swiper
+      // const slider = new Swiper(".hero-swiper-container", {
+      //    slidesPerView: 1,
+      //    loop: true,
+      //    observer: true,
+      //    autoplay: {
+      //       delay: 5000
+      //    },
+      //    pagination: {
+      //       el: ".swiper-pagination",
+      //       clickable: true
+      //    }
+      // });
    }
 
    render() {
       // Display only 10 movies in hero slider
 
+      (() => {
+         const homeSwiper = new Swiper(".header-swiper-container", {
+            slidesPerView: 1,
+            loop: true,
+            observer: true,
+
+            autoplay: {
+               delay: 10000
+            },
+
+            pagination: {
+               el: ".header-swiper-pagination",
+               clickable: true
+            }
+         });
+      })();
+
       const movies = this.props.movies.slice(0, 10);
 
       return (
-         <div className='hero-swiper-container'>
+         <div className='header-swiper-container'>
             <div className='swiper-wrapper'>
                {movies.map((movie, i) => {
                   return (
@@ -53,7 +67,7 @@ export class HomeHero extends Component {
                         }}
                      >
                         <div className='meta'>
-                           <Link to={`/movie/${movie.id}`}>
+                           <Link to={`/info/movie/${movie.id}`}>
                               <p className='title'>
                                  {movie.title} ({this.getYear(movie.release_date)})
                               </p>
@@ -67,7 +81,9 @@ export class HomeHero extends Component {
                   );
                })}
             </div>
-            <div className='swiper-pagination'></div>
+
+            {/* Add pagination */}
+            <div className='header-swiper-pagination'></div>
          </div>
       );
    }

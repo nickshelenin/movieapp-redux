@@ -1,18 +1,15 @@
-.trailer-carousel {
+.trailer-swiper-container {
    position: relative;
+   overflow: hidden;
 
-   .trailer-swiper-container {
-      overflow: hidden;
+   .swiper-slide {
+      display: flex;
+      justify-content: center;
 
-      .swiper-slide {
-         display: flex;
-         justify-content: center;
-
-         iframe {
-            border: none;
-            height: 200px;
-            width: 347px;
-         }
+      iframe {
+         border: none;
+         height: 200px;
+         width: 347px;
       }
    }
 }

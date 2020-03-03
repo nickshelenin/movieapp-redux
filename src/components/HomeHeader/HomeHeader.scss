@@ -1,6 +1,6 @@
 @import "../../styles/mixins";
 
-.hero-swiper-container {
+.header-swiper-container {
    margin-top: -2em;
    overflow: hidden;
    position: relative;
@@ -11,7 +11,7 @@
       cursor: grab;
 
       @include tabletPro {
-         height: 70vh;
+         height: 42em;
       }
 
       .swiper-slide {
@@ -19,6 +19,7 @@
          background-repeat: no-repeat;
          background-size: cover;
          position: relative;
+         margin-bottom: -4em;
 
          .meta {
             position: absolute;
@@ -56,15 +57,17 @@
       }
    }
 
-   .swiper-pagination {
+   .header-swiper-pagination {
+      z-index: 999;
       text-align: left;
       margin-left: 5%;
-   }
+      position: absolute;
 
-   .swiper-pagination-bullet {
-      background: #fff;
-      width: 10px;
-      height: 10px;
-      margin: 0 10px;
+      .swiper-pagination-bullet {
+         background: #fff;
+         width: 10px;
+         height: 10px;
+         margin: 0 10px;
+      }
    }
 }

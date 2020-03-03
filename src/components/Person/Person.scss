@@ -39,7 +39,8 @@
    }
 
    .biography-container {
-      margin-top: 3em;
+      margin-top: 2em;
+      line-height: 1.5em;
    }
 }
 
@@ -59,10 +60,6 @@
          img {
             border-radius: 10px;
             width: 120px;
-         }
-
-         p {
-            // width: 90%;
          }
       }
    }

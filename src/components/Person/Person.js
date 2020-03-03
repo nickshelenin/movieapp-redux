@@ -66,7 +66,7 @@ class Person extends Component {
                <div className='person-profile-container'>
                   <div className='person-profile'>
                      <div>
-                        <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
+                        <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='' />
                      </div>
 
                      <div className='person-biography'>
@@ -120,7 +120,7 @@ class Person extends Component {
 
                            movie.poster_path !== null && (
                               <div className='movie-thumb'>
-                                 <Link to={`/${movie.media_type}/${movie.id}`}>
+                                 <Link to={`/info/${movie.media_type}/${movie.id}`}>
                                     <img src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='test' />
                                     <p>{movie.title || movie.name}</p>
                                     {movie.character && <p style={{ color: "#f5de50" }}>as {movie.character}</p>}

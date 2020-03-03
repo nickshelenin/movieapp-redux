@@ -10,7 +10,7 @@ span {
    background-position: center;
    background-repeat: no-repeat;
    width: 100%;
-   height: 70vh;
+   height: 75vh;
    background-size: cover;
 
    @include tabletPro {
@@ -55,14 +55,19 @@ span {
       }
 
       .header-description {
+         line-height: 2.5em;
+
          @include tabletPro {
             font-size: 1.2rem;
          }
 
-         line-height: 2.5em;
          .title {
-            font-size: 2.5rem;
-            line-height: 1.5em;
+            font-size: 1.3rem;
+            line-height: 1.2em;
+
+            @include tabletPro {
+               font-size: 1.8rem;
+            }
          }
 
          .row {
@@ -103,6 +108,7 @@ span {
 
          .overview {
             line-height: 1.5em;
+            font-size: 1.1rem;
 
             @include tabletPro {
                width: 70%;
@@ -159,6 +165,7 @@ span {
 
    .summary {
       margin-bottom: 4em;
+      line-height: 1.5em;
       h1 {
          text-transform: uppercase;
       }
@@ -181,6 +188,7 @@ span {
          img {
             border-radius: 10px;
             width: 120px;
+            height: 170px;
          }
 
          .actor {
@@ -188,7 +196,38 @@ span {
          }
 
          .character {
-            margin-top: .5em;
+            margin-top: 0.5em;
+            color: #f5de50;
+         }
+      }
+   }
+
+   .trailers {
+      margin-bottom: 7em;
+   }
+
+   .similar-movies {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-bottom: 4em;
+
+      .similar-movie {
+         width: 120px;
+         margin-bottom: 3em;
+         margin-right: 1.3em;
+
+         img {
+            border-radius: 10px;
+            width: 120px;
+         }
+
+         .actor {
+            font-weight: bold;
+         }
+
+         .character {
+            margin-top: 0.5em;
             color: #f5de50;
          }
       }

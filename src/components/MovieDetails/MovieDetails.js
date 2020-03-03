@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { API_KEY } from "../../config";
 import TrailerCarousel from "../TrailerCarousel/TrailerCarousel";
 import { Link } from "react-router-dom";
+import Swiper from "swiper";
 
 import "./MovieDetails.scss";
 
@@ -10,11 +11,11 @@ class MovieDetails extends Component {
       details: null,
       cast: null,
       actorId: null,
-      trailers: null
+      trailers: null,
+      similarMovies: null
    };
 
-   // FETCH MOVIE DETAILS
-
+   // Fetch movie details
    fetchMovie = () => {
       const { id } = this.props.match.params;
       const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
@@ -31,8 +32,7 @@ class MovieDetails extends Component {
          .catch(error => console.log(error));
    };
 
-   // FETCH MOVIE CAST
-
+   // Fetch movie cast
    fetchMovieCast = () => {
       const { id } = this.props.match.params;
       const url = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
@@ -49,8 +49,7 @@ class MovieDetails extends Component {
          .catch(error => console.log(error));
    };
 
-   // FETCH MOVIE TRAILERS
-
+   // Fetch movie trailers
    fetchMovieTrailers = () => {
       const { id } = this.props.match.params;
       const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`;
@@ -67,8 +66,24 @@ class MovieDetails extends Component {
          .catch(error => console.log(error));
    };
 
-   // FETCH TV DETIALS
+   // Fetch similar movies
+   fetchSimilarMovies = () => {
+      const { id } = this.props.match.params;
+      const url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=e6fa15c602cbdbd00979f735cba5d1f1&language=en-US&page=1`;
 
+      fetch(url)
+         .then(res => res.json())
+         .then(
+            data =>
+               this.setState({
+                  similarMovies: data.results
+               })
+            // console.log(data)
+         )
+         .catch(error => console.log(error));
+   };
+
+   // Fetch tv details
    fetchTv = () => {
       const { id } = this.props.match.params;
       const url = `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-US`;
@@ -85,8 +100,7 @@ class MovieDetails extends Component {
          .catch(error => console.log(error));
    };
 
-   // FETCH TV CAST
-
+   // Fetch tv cast
    fetchTvCast = () => {
       const { id } = this.props.match.params;
       const url = `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${API_KEY}&language=en-US`;
@@ -103,8 +117,7 @@ class MovieDetails extends Component {
          .catch(error => console.log(error));
    };
 
-   // FETCH TV TRAILERS
-
+   // Fetch tv trailers
    fetchTvTrailers = () => {
       const { id } = this.props.match.params;
       const url = `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${API_KEY}&language=en-US`;
@@ -121,8 +134,22 @@ class MovieDetails extends Component {
          .catch(error => console.log(error));
    };
 
-   // CONVERT MINUTES INTO HOURS
+   // Fetch similar tvs
+   fetchSimilarTvs = () => {
+      const { id } = this.props.match.params;
+      const url = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=e6fa15c602cbdbd00979f735cba5d1f1&language=en-US&page=1`;
 
+      fetch(url)
+         .then(res => res.json())
+         .then(data =>
+            this.setState({
+               similarMovies: data.results
+            })
+         )
+         .catch(error => console.log(error));
+   };
+
+   // Convert minutes to hours
    timeConvert = num => {
       const hours = num / 60;
       const rhours = Math.floor(hours);
@@ -131,8 +158,7 @@ class MovieDetails extends Component {
       return rhours + "h " + rminutes + "m";
    };
 
-   // ABREVIATE NUMBER WITH THE WORDS
-
+   // Abreviate number with letters
    abbreviateNumber = n => {
       if (n < 1e3) return n;
       if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + " thousand";
@@ -141,41 +167,36 @@ class MovieDetails extends Component {
       if (n >= 1e12) return +(n / 1e12).toFixed(1) + " trillion";
    };
 
-   // SLICE RELEASE DATE
-
+   // Slice release date to leave only year
    sliceDate = num => {
       return num.slice(0, 4);
    };
 
    componentDidMount() {
       const { type } = this.props.match.params;
-      // switch (type) {
-      //    case "movie":
-      //       this.fetchMovie();
-      //       this.fetchMovieCast();
-      //       this.fetchMovieTrailers();
-      //    case "tv":
-      //       this.fetchTv();
-      //       this.fetchTvCast();
-      //       this.fetchTvTrailers();
-      // }
 
       if (type === "movie") {
          this.fetchMovie();
          this.fetchMovieCast();
          this.fetchMovieTrailers();
+         this.fetchSimilarMovies();
       } else if (type === "tv") {
          this.fetchTv();
          this.fetchTvCast();
          this.fetchTvTrailers();
+         this.fetchSimilarTvs();
       }
    }
 
-   outputMovie = () => {
+   // Output data for either tv or movie depending on url
+   outputDetails = () => {
       const details = this.state.details;
       const cast = this.state.cast;
       const trailers = this.state.trailers;
+      const similarMovies = this.state.similarMovies;
       const { type } = this.props.match.params;
+
+      console.log(similarMovies);
 
       switch (type) {
          case "movie":
@@ -183,7 +204,7 @@ class MovieDetails extends Component {
                <div className='movie-details-container'>
                   {details !== null && cast !== null && trailers !== null && (
                      <>
-                        {/* HERO SECTION */}
+                        {/*Header section*/}
                         <div
                            className='movie-details-header'
                            style={{
@@ -221,7 +242,7 @@ class MovieDetails extends Component {
 
                         <div className='movie-details-body'>
                            <div className='movie-details__row'>
-                              {/* ABOUT SECTION */}
+                              {/* About section */}
 
                               <div className='about-container'>
                                  <div className='title-container'>
@@ -265,7 +286,7 @@ class MovieDetails extends Component {
                                  </div>
                               </div>
 
-                              {/* SUMMARY SECTION*/}
+                              {/* Summary section */}
                               <div className='summary-container'>
                                  <div className='title-container'>
                                     <h1>summary</h1>
@@ -277,7 +298,7 @@ class MovieDetails extends Component {
                               </div>
                            </div>
 
-                           {/* CAST SECTION */}
+                           {/* Cast section */}
                            <div className='cast-container'>
                               <div className='title-container' style={{ marginBottom: "" }}>
                                  <h1>cast</h1>
@@ -286,7 +307,7 @@ class MovieDetails extends Component {
                               <div className='cast'>
                                  {cast.map(
                                     (person, i) =>
-                                       // display movie if poster exists
+                                       // Display movie if poster exists
 
                                        person.profile_path !== null && (
                                           <div className='person-thumb'>
@@ -301,13 +322,33 @@ class MovieDetails extends Component {
                               </div>
                            </div>
 
-                           {/* TRAILERS SECTION */}
+                           {/* Trailers section */}
                            <div className='trailers-container'>
                               <div className='title-container' style={{ marginBottom: "3em" }}>
                                  <h1>trailers</h1>
                               </div>
 
                               <div className='trailers'>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>
+                           </div>
+
+                           {/* Similar movies section */}
+                           <div className='similar-movies-container'>
+                              <div className='title-container'>
+                                 <h1>similar movies</h1>
+                              </div>
+
+                              <div className='similar-movies'>
+                                 {similarMovies !== null &&
+                                    similarMovies !== undefined &&
+                                    similarMovies.map(movie => (
+                                       <div className='similar-movie'>
+                                          <Link to={`/info/movie/${movie.id}`}>
+                                             <img src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='' />
+                                             <p>{movie.title}</p>
+                                          </Link>
+                                       </div>
+                                    ))}
+                              </div>
                            </div>
                         </div>
                      </>
@@ -319,7 +360,7 @@ class MovieDetails extends Component {
                <div className='movie-details-container'>
                   {details !== null && cast !== null && trailers !== null && (
                      <>
-                        {/* HERO SECTION */}
+                        {/* Header section */}
                         <div
                            className='movie-details-header'
                            style={{
@@ -357,7 +398,7 @@ class MovieDetails extends Component {
 
                         <div className='movie-details-body'>
                            <div className='movie-details__row'>
-                              {/* ABOUT SECTION */}
+                              {/* About section */}
 
                               <div className='about-container'>
                                  <div className='title-container'>
@@ -372,11 +413,7 @@ class MovieDetails extends Component {
 
                                     <div className='country-container category'>
                                        <span className='category__title'>Country:</span>
-                                       <p>
-                                          {/* {details.origin_country !== null &&
-                                             details.origin_country.map(country => <span>{country.name}, </span>)} */}
-                                          {details.origin_country}
-                                       </p>
+                                       <p>{details.origin_country}</p>
                                     </div>
 
                                     <div className='rating-container category'>
@@ -388,7 +425,6 @@ class MovieDetails extends Component {
                                        <span className='category__title'>First release:</span>
                                        <p>{details.first_air_date}</p>
                                     </div>
-
 
                                     <div className='category'>
                                        <span className='category__title'>Number of seasons:</span>
@@ -412,7 +448,7 @@ class MovieDetails extends Component {
                                  </div>
                               </div>
 
-                              {/* SUMMARY SECTION*/}
+                              {/* Summary section */}
                               <div className='summary-container'>
                                  <div className='title-container'>
                                     <h1>summary</h1>
@@ -424,7 +460,7 @@ class MovieDetails extends Component {
                               </div>
                            </div>
 
-                           {/* CAST SECTION */}
+                           {/* Cast section */}
                            <div className='cast-container'>
                               <div className='title-container' style={{ marginBottom: "" }}>
                                  <h1>cast</h1>
@@ -434,7 +470,6 @@ class MovieDetails extends Component {
                                  {cast.map(
                                     (person, i) =>
                                        // display movie if poster exists
-
                                        person.profile_path !== null && (
                                           <div className='person-thumb'>
                                              <Link to={`/person/${person.id}`}>
@@ -448,7 +483,7 @@ class MovieDetails extends Component {
                               </div>
                            </div>
 
-                           {/* TRAILERS SECTION */}
+                           {/* Trailers section */}
                            <div className='trailers-container'>
                               <div className='title-container' style={{ marginBottom: "3em" }}>
                                  <h1>trailers</h1>
@@ -456,6 +491,9 @@ class MovieDetails extends Component {
 
                               <div className='trailers'>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>
                            </div>
+
+                           {/* Similar movies section */}
+                           <div className='similar-movies-section'></div>
                         </div>
                      </>
                   )}
@@ -470,9 +508,26 @@ class MovieDetails extends Component {
       const trailers = this.state.trailers;
       const { type } = this.props.match.params;
 
-      console.log(this.state.details);
+      const slider = new Swiper(".trailer-swiper-container", {
+         slidesPerView: 1,
+         loop: true,
+         observer: true,
+         centeredSlides: true,
+         breakpoints: {
+            800: {
+               slidesPerView: 2
+            }
+         },
+         navigation: {
+            prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-button-next"
+         },
+         scrollbar: {
+            el: ".swiper-scrollbar"
+         }
+      });
 
-      return <>{this.outputMovie()}</>;
+      return <>{this.outputDetails()}</>;
    }
 }
 

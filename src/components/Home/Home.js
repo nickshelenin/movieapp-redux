@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import Header from "../Header/Header";
 import MovieCarousel from "../MovieCarousel/MovieCarousel";
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from "../../config";
-import HomeHero from "../HomeHero/HomeHero";
+import HomeHeader from "../HomeHeader/HomeHeader";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
-import "swiper/js/swiper.min.js";
+// import "swiper/js/swiper.min.js";
 
 import "./Home.scss";
 
@@ -68,9 +68,29 @@ class Home extends Component {
    }
 
    render() {
+      const swiper = new Swiper(".swiper-container", {
+         slidesPerView: 2,
+         loop: true,
+         observer: true,
+         breakpoints: {
+            699: {
+               slidesPerView: 3
+            },
+            1145: {
+               slidesPerView: 6
+            },
+            1500: {
+               slidesPerView: 7
+            }
+         },
+         navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+         }
+      });
       return (
          <div className='home-container'>
-            <HomeHero movies={this.state.moviesPopular} />
+            <HomeHeader movies={this.state.moviesPopular} />
 
             <div className='home-sliders'>
                <MovieCarousel title='Upcoming' movies={this.state.moviesUpcoming} />
