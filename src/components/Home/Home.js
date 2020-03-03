@@ -7,15 +7,15 @@ import HomeHero from "../HomeHero/HomeHero";
 import "./Home.scss";
 
 class Home extends Component {
-   constructor(props) {
-      super(props);
+   // constructor(props) {
+   //    super(props);
 
-      this.state = {
+      state = {
          moviesUpcoming: [],
          moviesPopular: [],
          moviesTopRated: []
       };
-   }
+   // }
 
    // FETCHING UPCOMING MOVIES
 
@@ -69,7 +69,7 @@ class Home extends Component {
    }
 
    render() {
-      console.log(this.state.moviesPopular);
+      console.log(this.state.moviesTopRated);
 
       return (
          <div className='home-container'>

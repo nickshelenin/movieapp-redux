@@ -1,6 +1,6 @@
 @import "../../styles/mixins";
 
-.swiper-container {
+.movie-carousel-swiper-container {
    margin: 4em 0;
 
    .swiper-container__title {
@@ -12,19 +12,18 @@
       }
    }
 
-   .swiper-slide {
-      display: flex;
-      justify-content: center;
+   // .swiper-slide {
+   //    display: flex;
+   //    justify-content: center;
 
-      .swiper-slide__image {
-         border-radius: 5px;
-         width: 150px;
-      }
+   //    .swiper-slide__image {
+   //       border-radius: 5px;
+   //       width: 150px;
+   //    }
 
-      .swiper-slide__title {
-         width: 80%;
-         // font-weight: bold;
-         color: #fff;
-      }
-   }
+   //    .swiper-slide__title {
+   //       width: 80%;
+   //       color: #fff;
+   //    }
+   // }
 }

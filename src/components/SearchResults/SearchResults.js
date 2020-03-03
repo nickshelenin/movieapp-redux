@@ -28,8 +28,6 @@ class SearchResults extends Component {
 
    handleNextPage = () => {
       this.setState({
-         
-
          page: this.state.searchResults.length === 0 ? this.state.page - 1 : this.state.page + 1
       });
 
@@ -57,7 +55,7 @@ class SearchResults extends Component {
    }
 
    render() {
-      // console.log(this.state.searchResults !== null && this.state.searchResults[0]);
+      console.log(this.state.searchResults !== null && this.state.searchResults);
 
       const { title } = this.props.match.params;
 
@@ -71,7 +69,7 @@ class SearchResults extends Component {
                      <>
                         {searchResult.poster_path !== undefined && searchResult.poster_path !== null && (
                            <div className='search-result' key={searchResult.id}>
-                              <Link to={`/film/${searchResult.id}`}>
+                              <Link to={`/${searchResult.media_type}/${searchResult.id}`}>
                                  <img src={`http://image.tmdb.org/t/p/w185/${searchResult.poster_path}`} alt='test' />
                                  <p className='search-result-title'>{searchResult.name}</p>
                                  <p>{searchResult.title}</p>

@@ -23,14 +23,15 @@ span {
       margin: auto;
       display: flex;
       align-items: flex-start;
-      padding-top: 3em;
+      padding-top: 40%;
 
       @include tablet {
-         padding-top: 5em;
+         // padding-top: 10%;
+         padding-top: 30%;
       }
 
       @include tabletPro {
-         padding-top: 25em;
+         padding-top: 25%;
          width: 80%;
       }
 
@@ -48,9 +49,17 @@ span {
             width: 150px;
             margin-right: 2em;
          }
+
+         @include tabletPro {
+            width: 250px;
+         }
       }
 
       .header-description {
+         @include tabletPro {
+            font-size: 1.2rem;
+         }
+
          line-height: 2.5em;
          .title {
             // font-weight: bold;
@@ -127,8 +136,6 @@ span {
    .title-container {
       h1 {
          text-transform: uppercase;
-         // font-weight: normal;
-         // font-weight: lighter;
       }
    }
 

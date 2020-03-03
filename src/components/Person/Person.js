@@ -120,7 +120,7 @@ class Person extends Component {
 
                            movie.poster_path !== null && (
                               <div className='movie-thumb'>
-                                 <Link to={`/film/${movie.id}`}>
+                                 <Link to={`/${movie.media_type}/${movie.id}`}>
                                     <img src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='test' />
                                     <p>{movie.title}</p>
                                  </Link>
