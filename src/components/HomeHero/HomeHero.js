@@ -11,14 +11,14 @@ export class HomeHero extends Component {
       return date.slice(0, 4);
    };
 
+   // Slice text to 450 characters
+
    sliceText = text => {
       return text.slice(0, 450) + "...";
    };
 
-   render() {
-      // console.log(this.props.movies);
-
-      const movies = this.props.movies.slice(0, 10);
+   componentDidMount() {
+      // Initialize swiper 
 
       const slider = new Swiper(".hero-swiper-container", {
          slidesPerView: 1,
@@ -34,6 +34,13 @@ export class HomeHero extends Component {
             clickable: true
          }
       });
+   }
+
+   render() {
+      // Display only 10 movies in hero slider
+
+      const movies = this.props.movies.slice(0, 10);
+
       return (
          <div className='hero-swiper-container'>
             <div className='swiper-wrapper'>
@@ -46,14 +53,12 @@ export class HomeHero extends Component {
                         }}
                      >
                         <div className='meta'>
-                           <Link to={`/film/${movie.id}`}>
+                           <Link to={`/movie/${movie.id}`}>
                               <p className='title'>
                                  {movie.title} ({this.getYear(movie.release_date)})
                               </p>
                            </Link>
-
                            <p className='rating'>Rating {movie.vote_average}</p>
-
                            <div className='desc'>
                               <p>{this.sliceText(movie.overview)}</p>
                            </div>

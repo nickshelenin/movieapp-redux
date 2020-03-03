@@ -57,7 +57,7 @@ class Person extends Component {
       const person = this.state.person;
       const personMovies = this.state.personMovies;
 
-      console.log(this.state.person);
+      console.log(this.state.personMovies);
 
       return (
          person !== null &&
@@ -122,7 +122,8 @@ class Person extends Component {
                               <div className='movie-thumb'>
                                  <Link to={`/${movie.media_type}/${movie.id}`}>
                                     <img src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='test' />
-                                    <p>{movie.title}</p>
+                                    <p>{movie.title || movie.name}</p>
+                                    {movie.character && <p style={{ color: "#f5de50" }}>as {movie.character}</p>}
                                  </Link>
                               </div>
                            )

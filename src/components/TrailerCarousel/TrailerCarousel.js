@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import Swiper from "swiper";
+import "swiper/css/swiper.min.css";
+import "swiper/js/swiper.min.js";
 
 import "./TrailerCarousel.scss";
 
 class TrailerCarousel extends Component {
    render() {
       const slider = new Swiper(".trailer-swiper-container", {
-         init: true,
-         slidesPerView: 3,
+         slidesPerView: 1,
          loop: true,
          spaceBetween: 0,
          observer: true,
@@ -20,10 +21,6 @@ class TrailerCarousel extends Component {
             800: {
                slidesPerView: 1
             }
-         },
-         pagination: {
-            el: ".swiper-pagination",
-            clickable: true
          },
          navigation: {
             nextEl: ".swiper-button-next",

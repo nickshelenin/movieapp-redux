@@ -1,7 +1,8 @@
 @import "../../styles/mixins";
 
-.movie-carousel-swiper-container {
+.swiper-container {
    margin: 4em 0;
+   width: 100%;
 
    .swiper-container__title {
       text-transform: uppercase;
@@ -12,18 +13,22 @@
       }
    }
 
-   // .swiper-slide {
-   //    display: flex;
-   //    justify-content: center;
+   .swiper-wrapper {
+      position: relative;
+   }
 
-   //    .swiper-slide__image {
-   //       border-radius: 5px;
-   //       width: 150px;
-   //    }
+   .swiper-slide {
+      display: flex;
+      justify-content: center;
 
-   //    .swiper-slide__title {
-   //       width: 80%;
-   //       color: #fff;
-   //    }
-   // }
+      .swiper-slide__image {
+         border-radius: 5px;
+         width: 150px;
+      }
+
+      .swiper-slide__title {
+         width: 80%;
+         color: #fff;
+      }
+   }
 }

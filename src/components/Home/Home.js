@@ -3,19 +3,18 @@ import Header from "../Header/Header";
 import MovieCarousel from "../MovieCarousel/MovieCarousel";
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from "../../config";
 import HomeHero from "../HomeHero/HomeHero";
+import Swiper from "swiper";
+import "swiper/css/swiper.min.css";
+import "swiper/js/swiper.min.js";
 
 import "./Home.scss";
 
 class Home extends Component {
-   // constructor(props) {
-   //    super(props);
-
-      state = {
-         moviesUpcoming: [],
-         moviesPopular: [],
-         moviesTopRated: []
-      };
-   // }
+   state = {
+      moviesUpcoming: [],
+      moviesPopular: [],
+      moviesTopRated: []
+   };
 
    // FETCHING UPCOMING MOVIES
 
@@ -69,8 +68,6 @@ class Home extends Component {
    }
 
    render() {
-      console.log(this.state.moviesTopRated);
-
       return (
          <div className='home-container'>
             <HomeHero movies={this.state.moviesPopular} />
