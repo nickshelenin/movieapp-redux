@@ -5,32 +5,30 @@ import Swiper from "swiper";
 import "./SimilarMovies.scss";
 
 class SimilarMovies extends Component {
-   render() {
-      const slider25 = new Swiper(".trailer-swiper-container", {
-         //  slidesPerView: 2,
-         //  loop: true,
-         //  observer: true,
-         //  breakpoints: {
-         //     699: {
-         //        slidesPerView: 3
-         //     },
-         //     1145: {
-         //        slidesPerView: 6
-         //     },
-         //     1500: {
-         //        slidesPerView: 7
-         //     }
-         //  },
-         //  navigation: {
-         //     nextEl: ".swiper-button-next",
-         //     prevEl: ".swiper-button-prev"
-         //  }
-         scrollbar: {
-            el: ".swiper-scrollbar",
-            hide: true
+   componentDidMount() {
+      const slider = new Swiper(".similar-movies-swiper-container", {
+         slidesPerView: 2,
+         loop: true,
+         observer: true,
+         breakpoints: {
+            699: {
+               slidesPerView: 3
+            },
+            1145: {
+               slidesPerView: 6
+            },
+            1500: {
+               slidesPerView: 7
+            }
+         },
+         navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
          }
       });
+   }
 
+   render() {
       console.log(this.props.movies);
       return (
          <div className='similar-movies-swiper-container'>
@@ -46,9 +44,8 @@ class SimilarMovies extends Component {
             </div>
 
             {/* Add arrows */}
-            {/* <div className='swiper-button-prev swiper-button-white'></div>
-            <div className='swiper-button-next swiper-button-white'></div> */}
-            <div className='swiper-scrollbar'></div>
+            <div className='swiper-button-prev swiper-button-white'></div>
+            <div className='swiper-button-next swiper-button-white'></div>
          </div>
       );
    }

@@ -4,6 +4,24 @@ import Swiper from "swiper";
 import "./TrailerCarousel.scss";
 
 class TrailerCarousel extends Component {
+   componentDidMount() {
+      const slider = new Swiper(".trailer-swiper-container", {
+         slidesPerView: 1,
+         loop: true,
+         observer: true,
+         centeredSlides: true,
+         breakpoints: {
+            800: {
+               slidesPerView: 2
+            }
+         },
+         navigation: {
+            prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-button-next"
+         }
+      });
+   }
+
    render() {
       return (
          <div className='trailer-swiper-container'>
@@ -16,10 +34,8 @@ class TrailerCarousel extends Component {
             </div>
 
             {/* Add arrows */}
-            {/* <div className='swiper-button-prev  swiper-button-white'></div>
-            <div className='swiper-button-next swiper-button-white'></div> */}
-
-            <div className='swiper-scrollbar'></div>
+            <div className='swiper-button-prev  swiper-button-white'></div>
+            <div className='swiper-button-next swiper-button-white'></div>
          </div>
       );
    }

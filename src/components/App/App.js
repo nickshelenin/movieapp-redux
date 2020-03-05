@@ -17,7 +17,7 @@ class App extends React.Component {
             <Switch>
                <Route exact path='/' component={Home} />
                <Route path='/search/:title' component={SearchResults} />
-               <Route path='/person/:id' component={Person} />
+               <Route path='/info/person/:id' component={Person} />
                <Route path='/info/:type/:id' component={withRouter(MovieDetails)} />
 
                <Route component={NotFound} />

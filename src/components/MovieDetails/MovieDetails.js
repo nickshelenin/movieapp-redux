@@ -312,7 +312,7 @@ class MovieDetails extends Component {
 
                                        person.profile_path !== null && (
                                           <div className='person-thumb'>
-                                             <Link to={`/person/${person.id}`}>
+                                             <Link to={`/info/person/${person.id}`}>
                                                 <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
                                                 <p className='person'>{person.name}</p>
                                                 <p className='character'>as {person.character}</p>
@@ -339,16 +339,6 @@ class MovieDetails extends Component {
                               </div>
 
                               <div className='similar-movies'>
-                                 {/* {similarMovies !== null &&
-                                    similarMovies !== undefined &&
-                                    similarMovies.map(movie => (
-                                       <div className='similar-movie'>
-                                          <Link to={`/info/movie/${movie.id}`}>
-                                             <img src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='' />
-                                             <p>{movie.title}</p>
-                                          </Link>
-                                       </div>
-                                    ))} */}
                                  <SimilarMovies movies={similarMovies} />
                               </div>
                            </div>
@@ -474,7 +464,7 @@ class MovieDetails extends Component {
                                        // display movie if poster exists
                                        person.profile_path !== null && (
                                           <div className='person-thumb'>
-                                             <Link to={`/person/${person.id}`}>
+                                             <Link to={`/info/person/${person.id}`}>
                                                 <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
                                                 <p className='person'>{person.name}</p>
                                                 <p className='character'>as {person.character}</p>
@@ -497,21 +487,11 @@ class MovieDetails extends Component {
                            {/* Similar movies section */}
                            <div className='similar-movies-container'>
                               <div className='title-container'>
-                                 <h1>similar movies</h1>
+                                 <h1>similar tv shows</h1>
                               </div>
 
                               <div className='similar-movies'>
-                                 {/* {similarMovies !== null &&
-                                    similarMovies !== undefined &&
-                                    similarMovies.map(movie => (
-                                       <div className='similar-movie'>
-                                          <Link to={`/info/tv/${movie.id}`}>
-                                             <img src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='' />
-                                             <p>{movie.name}</p>
-                                          </Link>
-                                       </div>
-                                    ))} */}
-                                 {/* <SimilarMovies movies={similarMovies} /> */}
+                                 <SimilarMovies movies={similarMovies} />
                               </div>
                            </div>
                         </div>
@@ -529,25 +509,6 @@ class MovieDetails extends Component {
       const { type } = this.props.match.params;
 
       console.log(trailers);
-
-      const sliderq = new Swiper(".trailer-swiper-container", {
-         // slidesPerView: 1,
-         // loop: true,
-         // observer: true,
-         // centeredSlides: true,
-         // breakpoints: {
-         //    800: {
-         //       slidesPerView: 2
-         //    }
-         // },
-         // navigation: {
-         //    prevEl: ".swiper-button-prev",
-         //    nextEl: ".swiper-button-next"
-         // }
-         scrollbar: {
-            el: ".swiper-scrollbar"
-         }
-      });
 
       return <>{this.outputDetails()}</>;
    }
