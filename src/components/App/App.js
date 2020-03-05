@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import Header from "../Header/Header";
@@ -11,17 +11,18 @@ import NotFound from "../NotFound/NotFound";
 class App extends React.Component {
    render() {
       return (
-         <Router>
-            <Header />
+         <Router forceRefresh={false}>
+            <>
+               <Header />
 
-            <Switch>
-               <Route exact path='/' component={Home} />
-               <Route path='/search/:title' component={SearchResults} />
-               <Route path='/info/person/:id' component={Person} />
-               <Route path='/info/:type/:id' component={withRouter(MovieDetails)} />
-
-               <Route component={NotFound} />
-            </Switch>
+               <Switch>
+                  <Route exact path='/' component={Home} />
+                  <Route path='/search/:title' component={SearchResults} />
+                  <Route path='/info/person/:id' component={Person} />
+                  <Route path='/info/:type/:id' render={props => <MovieDetails key={props.match.params.id} {...props} />} />
+                  <Route component={NotFound} />
+               </Switch>
+            </>
          </Router>
       );
    }

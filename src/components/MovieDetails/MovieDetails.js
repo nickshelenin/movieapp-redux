@@ -197,8 +197,6 @@ class MovieDetails extends Component {
       const similarMovies = this.state.similarMovies;
       const { type } = this.props.match.params;
 
-      // console.log(similarMovies);
-
       switch (type) {
          case "movie":
             return (
@@ -503,13 +501,6 @@ class MovieDetails extends Component {
    };
 
    render() {
-      const details = this.state.details;
-      const cast = this.state.cast;
-      const trailers = this.state.trailers;
-      const { type } = this.props.match.params;
-
-      console.log(trailers);
-
       return <>{this.outputDetails()}</>;
    }
 }
