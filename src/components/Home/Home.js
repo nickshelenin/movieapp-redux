@@ -68,26 +68,7 @@ class Home extends Component {
    }
 
    render() {
-      const swiper = new Swiper(".swiper-container", {
-         slidesPerView: 2,
-         loop: true,
-         observer: true,
-         breakpoints: {
-            699: {
-               slidesPerView: 3
-            },
-            1145: {
-               slidesPerView: 6
-            },
-            1500: {
-               slidesPerView: 7
-            }
-         },
-         navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev"
-         }
-      });
+    
       return (
          <div className='home-container'>
             <HomeHeader movies={this.state.moviesPopular} />

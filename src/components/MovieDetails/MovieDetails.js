@@ -211,7 +211,7 @@ class MovieDetails extends Component {
                            }}
                         >
                            <div className='header-row'>
-                              <img src={`http://image.tmdb.org/t/p/w185/${details.poster_path}`} alt='test' className='thumb' />
+                              <img src={`http://image.tmdb.org/t/p/original/${details.poster_path}`} alt='test' className='thumb' />
 
                               <div className='header-description'>
                                  <p className='title'>{details.title}</p>
@@ -337,7 +337,7 @@ class MovieDetails extends Component {
                               </div>
 
                               <div className='similar-movies'>
-                                 <SimilarMovies movies={similarMovies} />
+                                 <SimilarMovies movies={similarMovies} type='movie' />
                               </div>
                            </div>
                         </div>
@@ -489,7 +489,7 @@ class MovieDetails extends Component {
                               </div>
 
                               <div className='similar-movies'>
-                                 <SimilarMovies movies={similarMovies} />
+                                 <SimilarMovies movies={similarMovies} type='tv' />
                               </div>
                            </div>
                         </div>

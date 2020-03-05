@@ -5,11 +5,30 @@ import { Swiper } from "swiper/js/swiper.esm.js";
 import "./MovieCarousel.scss";
 
 class MovieCarousel extends Component {
-   componentDidMount() {
-      // Inititalize swiper
-   }
    render() {
       const movies = this.props.movies;
+
+      // Inititalize swiper
+      const swiper = new Swiper(".swiper-container", {
+         slidesPerView: 2,
+         loop: true,
+         observer: true,
+         breakpoints: {
+            699: {
+               slidesPerView: 3
+            },
+            1145: {
+               slidesPerView: 6
+            },
+            1500: {
+               slidesPerView: 7
+            }
+         },
+         navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+         }
+      });
 
       return (
          <div className='swiper-container'>
