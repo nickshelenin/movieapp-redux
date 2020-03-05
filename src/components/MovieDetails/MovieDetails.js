@@ -3,6 +3,7 @@ import { API_KEY } from "../../config";
 import TrailerCarousel from "../TrailerCarousel/TrailerCarousel";
 import { Link } from "react-router-dom";
 import Swiper from "swiper";
+import SimilarMovies from "../SimilarMovies/SimilarMovies";
 
 import "./MovieDetails.scss";
 
@@ -196,13 +197,13 @@ class MovieDetails extends Component {
       const similarMovies = this.state.similarMovies;
       const { type } = this.props.match.params;
 
-      console.log(similarMovies);
+      // console.log(similarMovies);
 
       switch (type) {
          case "movie":
             return (
                <div className='movie-details-container'>
-                  {details !== null && cast !== null && trailers !== null && (
+                  {details !== null && cast !== null && trailers !== null && similarMovies !== null && (
                      <>
                         {/*Header section*/}
                         <div
@@ -338,7 +339,7 @@ class MovieDetails extends Component {
                               </div>
 
                               <div className='similar-movies'>
-                                 {similarMovies !== null &&
+                                 {/* {similarMovies !== null &&
                                     similarMovies !== undefined &&
                                     similarMovies.map(movie => (
                                        <div className='similar-movie'>
@@ -347,7 +348,8 @@ class MovieDetails extends Component {
                                              <p>{movie.title}</p>
                                           </Link>
                                        </div>
-                                    ))}
+                                    ))} */}
+                                 <SimilarMovies movies={similarMovies} />
                               </div>
                            </div>
                         </div>
@@ -358,7 +360,7 @@ class MovieDetails extends Component {
          case "tv":
             return (
                <div className='movie-details-container'>
-                  {details !== null && cast !== null && trailers !== null && (
+                  {details !== null && cast !== null && trailers !== null && similarMovies !== null && (
                      <>
                         {/* Header section */}
                         <div
@@ -493,7 +495,25 @@ class MovieDetails extends Component {
                            </div>
 
                            {/* Similar movies section */}
-                           <div className='similar-movies-section'></div>
+                           <div className='similar-movies-container'>
+                              <div className='title-container'>
+                                 <h1>similar movies</h1>
+                              </div>
+
+                              <div className='similar-movies'>
+                                 {/* {similarMovies !== null &&
+                                    similarMovies !== undefined &&
+                                    similarMovies.map(movie => (
+                                       <div className='similar-movie'>
+                                          <Link to={`/info/tv/${movie.id}`}>
+                                             <img src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='' />
+                                             <p>{movie.name}</p>
+                                          </Link>
+                                       </div>
+                                    ))} */}
+                                 {/* <SimilarMovies movies={similarMovies} /> */}
+                              </div>
+                           </div>
                         </div>
                      </>
                   )}
@@ -508,20 +528,22 @@ class MovieDetails extends Component {
       const trailers = this.state.trailers;
       const { type } = this.props.match.params;
 
-      const slider = new Swiper(".trailer-swiper-container", {
-         slidesPerView: 1,
-         loop: true,
-         observer: true,
-         centeredSlides: true,
-         breakpoints: {
-            800: {
-               slidesPerView: 2
-            }
-         },
-         navigation: {
-            prevEl: ".swiper-button-prev",
-            nextEl: ".swiper-button-next"
-         },
+      console.log(trailers);
+
+      const sliderq = new Swiper(".trailer-swiper-container", {
+         // slidesPerView: 1,
+         // loop: true,
+         // observer: true,
+         // centeredSlides: true,
+         // breakpoints: {
+         //    800: {
+         //       slidesPerView: 2
+         //    }
+         // },
+         // navigation: {
+         //    prevEl: ".swiper-button-prev",
+         //    nextEl: ".swiper-button-next"
+         // }
          scrollbar: {
             el: ".swiper-scrollbar"
          }

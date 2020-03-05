@@ -16,10 +16,10 @@ class TrailerCarousel extends Component {
             </div>
 
             {/* Add arrows */}
-            <div className='swiper-button-prev  swiper-button-white'></div>
-            <div className='swiper-button-next swiper-button-white'></div>
+            {/* <div className='swiper-button-prev  swiper-button-white'></div>
+            <div className='swiper-button-next swiper-button-white'></div> */}
 
-            {/* <div className="swiper-scrollbar"></div> */}
+            <div className='swiper-scrollbar'></div>
          </div>
       );
    }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { withRouter } from "react-router";
 import Header from "../Header/Header";
 import Home from "../Home/Home";
 import SearchResults from "../SearchResults/SearchResults";
@@ -18,6 +19,7 @@ class App extends React.Component {
                <Route path='/search/:title' component={SearchResults} />
                <Route path='/person/:id' component={Person} />
                <Route path='/info/:type/:id' component={withRouter(MovieDetails)} />
+
                <Route component={NotFound} />
             </Switch>
          </Router>

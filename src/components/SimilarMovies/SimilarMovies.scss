@@ -1,0 +1,27 @@
+@import "../../styles/mixins";
+
+.similar-movies-swiper-container {
+   overflow: hidden;
+   position: relative;
+   margin: 4em 0;
+   width: 100%;
+
+   .swiper-wrapper {
+      position: relative;
+   }
+
+   .swiper-slide {
+      display: flex;
+      justify-content: center;
+
+      .swiper-slide__image {
+         border-radius: 5px;
+         width: 150px;
+      }
+
+      .swiper-slide__title {
+         width: 80%;
+         color: #fff;
+      }
+   }
+}

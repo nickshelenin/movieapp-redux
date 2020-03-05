@@ -69,7 +69,7 @@ class SearchResults extends Component {
                      <>
                         {searchResult.poster_path !== undefined && searchResult.poster_path !== null && (
                            <div className='search-result' key={searchResult.id}>
-                              <Link to={`/${searchResult.media_type}/${searchResult.id}`}>
+                              <Link to={`/info/${searchResult.media_type}/${searchResult.id}`}>
                                  <img src={`http://image.tmdb.org/t/p/w185/${searchResult.poster_path}`} alt='test' />
                                  <p className='search-result-title'>{searchResult.name}</p>
                                  <p>{searchResult.title}</p>
