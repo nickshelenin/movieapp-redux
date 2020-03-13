@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Swiper } from "swiper/js/swiper.esm.js";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { Swiper } from 'swiper/js/swiper.esm.js';
 
-import "./MovieCarousel.scss";
+import './MovieCarousel.scss';
 
 class MovieCarousel extends Component {
    render() {
       const movies = this.props.movies;
 
       // Inititalize swiper
-      const swiper = new Swiper(".swiper-container", {
+      const swiper = new Swiper('.swiper-container', {
          slidesPerView: 2,
          loop: true,
          observer: true,
@@ -25,8 +25,8 @@ class MovieCarousel extends Component {
             }
          },
          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev"
+            prevEl: '.swiper-button-prev',
+            nextEl: '.swiper-button-next'
          }
       });
 
