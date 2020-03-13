@@ -45,6 +45,7 @@ span {
             display: initial;
             width: 350px;
             margin-right: 2em;
+            flex-shrink: 0;
          }
          // @include tabletPro {
          //    width: 350px;
