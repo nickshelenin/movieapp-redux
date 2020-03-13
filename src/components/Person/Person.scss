@@ -1,53 +1,53 @@
 @import '../../styles/mixins';
 
 .person-container {
-   width: 90%;
-   margin: auto;
-   @include tabletPro {
-      width: 80%;
-   }
+  width: 90%;
+  margin: auto;
+  @include tabletPro {
+    width: 80%;
+  }
 }
 
 .person-profile {
-   @include tablet {
-      display: flex;
-   }
-   p {
-      margin: 0;
-   }
-   img {
-      margin: 0 3em 3em 0;
-      border-radius: 5px;
-   }
-   .category {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 0.7em;
-      .category__title {
-         margin-right: 1.5em;
-         font-weight: bold;
-      }
-   }
-   .biography-container {
-      margin-top: 2em;
-      line-height: 1.5em;
-   }
+  @include tablet {
+    display: flex;
+  }
+  p {
+    margin: 0;
+  }
+  img {
+    margin: 0 3em 3em 0;
+    border-radius: 5px;
+  }
+  .category {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.7em;
+    .category__title {
+      margin-right: 1.5em;
+      font-weight: bold;
+    }
+  }
+  .biography-container {
+    margin-top: 2em;
+    line-height: 1.5em;
+  }
 }
 
 .person-movies-container {
-   margin-top: 5em;
-   .person-movies {
-      margin-bottom: 4em;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      .movie-thumb {
-         width: 120px;
-         margin-bottom: 3em;
-         margin-right: 1.3em;
-         img {
-            border-radius: 10px;
-            width: 120px;
-         }
+  margin-top: 5em;
+  .person-movies {
+    margin-bottom: 4em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    .movie-thumb {
+      width: 120px;
+      margin-bottom: 3em;
+      margin-right: 1.3em;
+      img {
+        border-radius: 10px;
+        width: 120px;
       }
-   }
+    }
+  }
 }

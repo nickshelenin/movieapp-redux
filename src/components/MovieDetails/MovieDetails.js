@@ -8,501 +8,465 @@ import SimilarMovies from '../SimilarMovies/SimilarMovies';
 import './MovieDetails.scss';
 
 class MovieDetails extends Component {
-   state = {
-      details: null,
-      cast: null,
-      actorId: null,
-      trailers: null,
-      similarMovies: null
-   };
+  state = {
+    details: null,
+    cast: null,
+    actorId: null,
+    trailers: null,
+    similarMovies: null
+  };
 
-   // Fetch movie details
-   fetchMovie = () => {
-      const { id } = this.props.match.params;
-      const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
+  // Fetch movie details
+  fetchMovie = () => {
+    const { id } = this.props.match.params;
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data =>
+        this.setState({
+          details: data
+        })
+      )
+      .catch(error => console.log(error));
+  };
 
-      fetch(url)
-         .then(res => res.json())
-         .then(
-            data =>
-               this.setState({
-                  details: data
-               })
-            // console.log(data)
-         )
-         .catch(error => console.log(error));
-   };
+  // Fetch movie cast
+  fetchMovieCast = () => {
+    const { id } = this.props.match.params;
+    const url = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data =>
+        this.setState({
+          cast: data.cast
+        })
+      )
+      .catch(error => console.log(error));
+  };
 
-   // Fetch movie cast
-   fetchMovieCast = () => {
-      const { id } = this.props.match.params;
-      const url = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
+  // Fetch movie trailers
+  fetchMovieTrailers = () => {
+    const { id } = this.props.match.params;
+    const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data =>
+        this.setState({
+          trailers: data.results
+        })
+      )
+      .catch(error => console.log(error));
+  };
 
-      fetch(url)
-         .then(res => res.json())
-         .then(
-            data =>
-               this.setState({
-                  cast: data.cast
-               })
-            // console.log(data)
-         )
-         .catch(error => console.log(error));
-   };
+  // Fetch similar movies
+  fetchSimilarMovies = () => {
+    const { id } = this.props.match.params;
+    const url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=e6fa15c602cbdbd00979f735cba5d1f1&language=en-US&page=1`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data =>
+        this.setState({
+          similarMovies: data.results
+        })
+      )
+      .catch(error => console.log(error));
+  };
 
-   // Fetch movie trailers
-   fetchMovieTrailers = () => {
-      const { id } = this.props.match.params;
-      const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`;
+  // Fetch tv details
+  fetchTv = () => {
+    const { id } = this.props.match.params;
+    const url = `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-US`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data =>
+        this.setState({
+          details: data
+        })
+      )
+      .catch(error => console.log(error));
+  };
 
-      fetch(url)
-         .then(res => res.json())
-         .then(
-            data =>
-               this.setState({
-                  trailers: data.results
-               })
-            // console.log(data)
-         )
-         .catch(error => console.log(error));
-   };
+  // Fetch tv cast
+  fetchTvCast = () => {
+    const { id } = this.props.match.params;
+    const url = `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${API_KEY}&language=en-US`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data =>
+        this.setState({
+          cast: data.cast
+        })
+      )
+      .catch(error => console.log(error));
+  };
 
-   // Fetch similar movies
-   fetchSimilarMovies = () => {
-      const { id } = this.props.match.params;
-      const url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=e6fa15c602cbdbd00979f735cba5d1f1&language=en-US&page=1`;
+  // Fetch tv trailers
+  fetchTvTrailers = () => {
+    const { id } = this.props.match.params;
+    const url = `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${API_KEY}&language=en-US`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data =>
+        this.setState({
+          trailers: data.results
+        })
+      )
+      .catch(error => console.log(error));
+  };
 
-      fetch(url)
-         .then(res => res.json())
-         .then(
-            data =>
-               this.setState({
-                  similarMovies: data.results
-               })
-            // console.log(data)
-         )
-         .catch(error => console.log(error));
-   };
+  // Fetch similar tvs
+  fetchSimilarTvs = () => {
+    const { id } = this.props.match.params;
+    const url = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=e6fa15c602cbdbd00979f735cba5d1f1&language=en-US&page=1`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data =>
+        this.setState({
+          similarMovies: data.results
+        })
+      )
+      .catch(error => console.log(error));
+  };
 
-   // Fetch tv details
-   fetchTv = () => {
-      const { id } = this.props.match.params;
-      const url = `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-US`;
+  // Convert minutes to hours
+  timeConvert = num => {
+    const hours = num / 60;
+    const rhours = Math.floor(hours);
+    const minutes = (hours - rhours) * 60;
+    const rminutes = Math.round(minutes);
+    return rhours + 'h ' + rminutes + 'm';
+  };
 
-      fetch(url)
-         .then(res => res.json())
-         .then(
-            data =>
-               this.setState({
-                  details: data
-               })
-            // console.log(data)
-         )
-         .catch(error => console.log(error));
-   };
+  // Abreviate number with letters
+  abbreviateNumber = n => {
+    if (n < 1e3) return n;
+    if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + ' thousand';
+    if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + ' million';
+    if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + ' billion';
+    if (n >= 1e12) return +(n / 1e12).toFixed(1) + ' trillion';
+  };
 
-   // Fetch tv cast
-   fetchTvCast = () => {
-      const { id } = this.props.match.params;
-      const url = `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${API_KEY}&language=en-US`;
+  // Slice release date to leave only year
+  sliceDate = num => {
+    return num.slice(0, 4);
+  };
 
-      fetch(url)
-         .then(res => res.json())
-         .then(
-            data =>
-               this.setState({
-                  cast: data.cast
-               })
-            // console.log(data)
-         )
-         .catch(error => console.log(error));
-   };
+  componentDidMount() {
+    const { type } = this.props.match.params;
 
-   // Fetch tv trailers
-   fetchTvTrailers = () => {
-      const { id } = this.props.match.params;
-      const url = `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${API_KEY}&language=en-US`;
+    if (type === 'movie') {
+      this.fetchMovie();
+      this.fetchMovieCast();
+      this.fetchMovieTrailers();
+      this.fetchSimilarMovies();
+    } else if (type === 'tv') {
+      this.fetchTv();
+      this.fetchTvCast();
+      this.fetchTvTrailers();
+      this.fetchSimilarTvs();
+    }
+  }
 
-      fetch(url)
-         .then(res => res.json())
-         .then(
-            data =>
-               this.setState({
-                  trailers: data.results
-               })
-            // console.log(data)
-         )
-         .catch(error => console.log(error));
-   };
+  // Output data for either tv or movie depending on url
+  outputDetails = () => {
+    const details = this.state.details;
+    const cast = this.state.cast;
+    const trailers = this.state.trailers;
+    const similarMovies = this.state.similarMovies;
+    const { type } = this.props.match.params;
 
-   // Fetch similar tvs
-   fetchSimilarTvs = () => {
-      const { id } = this.props.match.params;
-      const url = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=e6fa15c602cbdbd00979f735cba5d1f1&language=en-US&page=1`;
+    switch (type) {
+      case 'movie':
+        return (
+          <div className='movie-details-container'>
+            {details !== null && cast !== null && trailers !== null && similarMovies !== null && (
+              <>
+                {/*Header section*/}
+                <div
+                  className='movie-details-header'
+                  style={{
+                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(http://image.tmdb.org/t/p/original/${details.backdrop_path})`
+                  }}
+                >
+                  <div className='header-row'>
+                    <img src={`http://image.tmdb.org/t/p/original/${details.poster_path}`} alt='' className='thumb' />
 
-      fetch(url)
-         .then(res => res.json())
-         .then(data =>
-            this.setState({
-               similarMovies: data.results
-            })
-         )
-         .catch(error => console.log(error));
-   };
+                    <div className='header-description'>
+                      <p className='title'>{details.title}</p>
 
-   // Convert minutes to hours
-   timeConvert = num => {
-      const hours = num / 60;
-      const rhours = Math.floor(hours);
-      const minutes = (hours - rhours) * 60;
-      const rminutes = Math.round(minutes);
-      return rhours + 'h ' + rminutes + 'm';
-   };
-
-   // Abreviate number with letters
-   abbreviateNumber = n => {
-      if (n < 1e3) return n;
-      if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + ' thousand';
-      if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + ' million';
-      if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + ' billion';
-      if (n >= 1e12) return +(n / 1e12).toFixed(1) + ' trillion';
-   };
-
-   // Slice release date to leave only year
-   sliceDate = num => {
-      return num.slice(0, 4);
-   };
-
-   componentDidMount() {
-      const { type } = this.props.match.params;
-
-      if (type === 'movie') {
-         this.fetchMovie();
-         this.fetchMovieCast();
-         this.fetchMovieTrailers();
-         this.fetchSimilarMovies();
-      } else if (type === 'tv') {
-         this.fetchTv();
-         this.fetchTvCast();
-         this.fetchTvTrailers();
-         this.fetchSimilarTvs();
-      }
-   }
-
-   // Output data for either tv or movie depending on url
-   outputDetails = () => {
-      const details = this.state.details;
-      const cast = this.state.cast;
-      const trailers = this.state.trailers;
-      const similarMovies = this.state.similarMovies;
-      const { type } = this.props.match.params;
-
-      switch (type) {
-         case 'movie':
-            return (
-               <div className='movie-details-container'>
-                  {details !== null && cast !== null && trailers !== null && similarMovies !== null && (
-                     <>
-                        {/*Header section*/}
-                        <div
-                           className='movie-details-header'
-                           style={{
-                              backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(http://image.tmdb.org/t/p/original/${details.backdrop_path})`
-                           }}
-                        >
-                           <div className='header-row'>
-                              <img src={`http://image.tmdb.org/t/p/original/${details.poster_path}`} alt='' className='thumb' />
-
-                              <div className='header-description'>
-                                 <p className='title'>{details.title}</p>
-
-                                 <div className='row'>
-                                    <div className='rating'>
-                                       <i class='far fa-star' style={{ color: '#ffd900' }}></i>
-                                       <p>{details.vote_average}</p>
-                                    </div>
-
-                                    <div className='runtime'>
-                                       <i class='far fa-clock'></i>
-                                       <p>{this.timeConvert(details.runtime)}</p>
-                                    </div>
-                                 </div>
-
-                                 <div className='release-date'>
-                                    <i class='far fa-calendar-alt'></i>
-                                    <p className='release-date'>{details.release_date}</p>
-                                 </div>
-                                 {/* <p className='tagline'>{movieDetails.tagline}</p> */}
-
-                                 <p className='overview'>{details.overview}</p>
-                              </div>
-                           </div>
+                      <div className='row'>
+                        <div className='rating'>
+                          <i class='far fa-star' style={{ color: '#ffd900' }}></i>
+                          <p>{details.vote_average}</p>
                         </div>
 
-                        <div className='movie-details-body'>
-                           <div className='movie-details__row'>
-                              {/* About section */}
-
-                              <div className='about-container'>
-                                 <div className='title-container'>
-                                    <h1>about</h1>
-                                 </div>
-
-                                 <div className='about'>
-                                    <div className='genres-container category'>
-                                       <span className='category__title'>Genre:</span>
-                                       <p>{details !== null && details.genres.map(genre => <span key={genre.id}>{genre.name}, </span>)}</p>
-                                    </div>
-
-                                    <div className='country-container category'>
-                                       <span className='category__title'>Country:</span>
-                                       <p>
-                                          {details.production_countries !== null &&
-                                             details.production_countries &&
-                                             details.production_countries.map(country => <span>{country.name}, </span>)}
-                                       </p>
-                                    </div>
-
-                                    <div className='rating-container category'>
-                                       <span className='category__title'>Average rate:</span>
-                                       <p>{details.vote_average}</p>
-                                    </div>
-
-                                    <div className='release-container category'>
-                                       <span className='category__title'>Release:</span>
-                                       <p>{details.release_date}</p>
-                                    </div>
-
-                                    <div className='budget-container category'>
-                                       <span className='category__title'>Budget:</span>
-                                       <p>{this.abbreviateNumber(details.budget)} USD</p>
-                                    </div>
-
-                                    <div className='revenue-container category'>
-                                       <span className='category__title'>Box office:</span>
-                                       <p>{this.abbreviateNumber(details.revenue)} USD</p>
-                                    </div>
-                                 </div>
-                              </div>
-
-                              {/* Summary section */}
-                              <div className='summary-container'>
-                                 <div className='title-container'>
-                                    <h1>summary</h1>
-                                 </div>
-
-                                 <div className='summary'>
-                                    <p>{details.overview}</p>
-                                 </div>
-                              </div>
-                           </div>
-
-                           {/* Cast section */}
-                           <div className='cast-container'>
-                              <div className='title-container' style={{ marginBottom: '' }}>
-                                 <h1>cast</h1>
-                              </div>
-
-                              <div className='cast'>
-                                 {cast.map(
-                                    (person, i) =>
-                                       // Display movie if poster exists
-
-                                       person.profile_path !== null && (
-                                          <div className='person-thumb'>
-                                             <Link to={`/info/person/${person.id}`}>
-                                                <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
-                                                <p className='person'>{person.name}</p>
-                                                <p className='character'>as {person.character}</p>
-                                             </Link>
-                                          </div>
-                                       )
-                                 )}
-                              </div>
-                           </div>
-
-                           {/* Trailers section */}
-                           <div className='trailers-container'>
-                              <div className='title-container' style={{ marginBottom: '3em' }}>
-                                 <h1>trailers</h1>
-                              </div>
-
-                              <div className='trailers'>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>
-                           </div>
-
-                           {/* Similar movies section */}
-                           <div className='similar-movies-container'>
-                              <div className='title-container'>
-                                 <h1>similar movies</h1>
-                              </div>
-
-                              <div className='similar-movies'>
-                                 <SimilarMovies movies={similarMovies} type='movie' />
-                              </div>
-                           </div>
+                        <div className='runtime'>
+                          <i class='far fa-clock'></i>
+                          <p>{this.timeConvert(details.runtime)}</p>
                         </div>
-                     </>
-                  )}
-               </div>
-            );
-         case 'tv':
-            return (
-               <div className='movie-details-container'>
-                  {details !== null && cast !== null && trailers !== null && similarMovies !== null && (
-                     <>
-                        {/* Header section */}
-                        <div
-                           className='movie-details-header'
-                           style={{
-                              backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(http://image.tmdb.org/t/p/original/${details.backdrop_path})`
-                           }}
-                        >
-                           <div className='header-row'>
-                              <img src={`http://image.tmdb.org/t/p/w185/${details.poster_path}`} alt='' className='thumb' />
+                      </div>
 
-                              <div className='header-description'>
-                                 <p className='title'>{details.original_name}</p>
+                      <div className='release-date'>
+                        <i class='far fa-calendar-alt'></i>
+                        <p className='release-date'>{details.release_date}</p>
+                      </div>
 
-                                 <div className='row'>
-                                    <div className='rating'>
-                                       <i class='far fa-star' style={{ color: '#ffd900' }}></i>
-                                       <p>{details.vote_average}</p>
-                                    </div>
+                      <p className='overview'>{details.overview}</p>
+                    </div>
+                  </div>
+                </div>
 
-                                    {/* <div className='runtime'>
-                                       <i class='far fa-clock'></i>
-                                       <p>{this.timeConvert(details.runtime)}</p>
-                                    </div> */}
-                                    <div className='release-date'>
-                                       <i class='far fa-calendar-alt'></i>
-                                       <p className='release-date'>{this.sliceDate(details.first_air_date)}</p>
-                                    </div>
-                                 </div>
+                <div className='movie-details-body'>
+                  <div className='movie-details__row'>
+                    {/* About section */}
+                    <div className='about-container'>
+                      <div className='title-container'>
+                        <h1>about</h1>
+                      </div>
 
-                                 {/* <p className='tagline'>{movieDetails.tagline}</p> */}
-
-                                 <p className='overview'>{details.overview}</p>
-                              </div>
-                           </div>
+                      <div className='about'>
+                        <div className='genres-container category'>
+                          <span className='category__title'>Genre:</span>
+                          <p>{details !== null && details.genres.map(genre => <span key={genre.id}>{genre.name}, </span>)}</p>
                         </div>
 
-                        <div className='movie-details-body'>
-                           <div className='movie-details__row'>
-                              {/* About section */}
-
-                              <div className='about-container'>
-                                 <div className='title-container'>
-                                    <h1>about</h1>
-                                 </div>
-
-                                 <div className='about'>
-                                    <div className='genres-container category'>
-                                       <span className='category__title'>Genre:</span>
-                                       <p>{details !== null && details.genres.map(genre => <span key={genre.id}>{genre.name}, </span>)}</p>
-                                    </div>
-
-                                    <div className='country-container category'>
-                                       <span className='category__title'>Country:</span>
-                                       <p>{details.origin_country}</p>
-                                    </div>
-
-                                    <div className='rating-container category'>
-                                       <span className='category__title'>Average rate:</span>
-                                       <p>{details.vote_average}</p>
-                                    </div>
-
-                                    <div className='release-container category'>
-                                       <span className='category__title'>First release:</span>
-                                       <p>{details.first_air_date}</p>
-                                    </div>
-
-                                    <div className='category'>
-                                       <span className='category__title'>Number of seasons:</span>
-                                       <p>{details.number_of_seasons} </p>
-                                    </div>
-
-                                    <div className='category'>
-                                       <span className='category__title'>Number of episodes:</span>
-                                       <p>{details.number_of_episodes} </p>
-                                    </div>
-
-                                    <div className='runtime-container category'>
-                                       <span className='category__title'>Episode runtime:</span>
-                                       <p>{details.episode_run_time} min</p>
-                                    </div>
-
-                                    <div className='director-container category'>
-                                       <span className='category__title'>Director:</span>
-                                       <p>{details.created_by[0].name}</p>
-                                    </div>
-                                 </div>
-                              </div>
-
-                              {/* Summary section */}
-                              <div className='summary-container'>
-                                 <div className='title-container'>
-                                    <h1>summary</h1>
-                                 </div>
-
-                                 <div className='summary'>
-                                    <p>{details.overview}</p>
-                                 </div>
-                              </div>
-                           </div>
-
-                           {/* Cast section */}
-                           <div className='cast-container'>
-                              <div className='title-container' style={{ marginBottom: '' }}>
-                                 <h1>cast</h1>
-                              </div>
-
-                              <div className='cast'>
-                                 {cast.map(
-                                    (person, i) =>
-                                       // display movie if poster exists
-                                       person.profile_path !== null && (
-                                          <div className='person-thumb'>
-                                             <Link to={`/info/person/${person.id}`}>
-                                                <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
-                                                <p className='person'>{person.name}</p>
-                                                <p className='character'>as {person.character}</p>
-                                             </Link>
-                                          </div>
-                                       )
-                                 )}
-                              </div>
-                           </div>
-
-                           {/* Trailers section */}
-                           <div className='trailers-container'>
-                              <div className='title-container' style={{ marginBottom: '3em' }}>
-                                 <h1>trailers</h1>
-                              </div>
-
-                              <div className='trailers'>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>
-                           </div>
-
-                           {/* Similar movies section */}
-                           <div className='similar-movies-container'>
-                              <div className='title-container'>
-                                 <h1>similar tv shows</h1>
-                              </div>
-
-                              <div className='similar-movies'>
-                                 <SimilarMovies movies={similarMovies} type='tv' />
-                              </div>
-                           </div>
+                        <div className='country-container category'>
+                          <span className='category__title'>Country:</span>
+                          <p>
+                            {details.production_countries !== null &&
+                              details.production_countries &&
+                              details.production_countries.map(country => <span>{country.name}, </span>)}
+                          </p>
                         </div>
-                     </>
-                  )}
-               </div>
-            );
-      }
-   };
 
-   render() {
-      return <>{this.outputDetails()}</>;
-   }
+                        <div className='rating-container category'>
+                          <span className='category__title'>Average rate:</span>
+                          <p>{details.vote_average}</p>
+                        </div>
+
+                        <div className='release-container category'>
+                          <span className='category__title'>Release:</span>
+                          <p>{details.release_date}</p>
+                        </div>
+
+                        <div className='budget-container category'>
+                          <span className='category__title'>Budget:</span>
+                          <p>{this.abbreviateNumber(details.budget)} USD</p>
+                        </div>
+
+                        <div className='revenue-container category'>
+                          <span className='category__title'>Box office:</span>
+                          <p>{this.abbreviateNumber(details.revenue)} USD</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Summary section */}
+                    <div className='summary-container'>
+                      <div className='title-container'>
+                        <h1>summary</h1>
+                      </div>
+
+                      <div className='summary'>
+                        <p>{details.overview}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Cast section */}
+                  <div className='cast-container'>
+                    <div className='title-container' style={{ marginBottom: '' }}>
+                      <h1>cast</h1>
+                    </div>
+
+                    <div className='cast'>
+                      {cast.map(
+                        (person, i) =>
+                          // do not display actor profile if there's no poster image
+                          person.profile_path !== null && (
+                            <div className='person-thumb'>
+                              <Link to={`/info/person/${person.id}`}>
+                                <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
+                                <p className='person'>{person.name}</p>
+                                <p className='character'>as {person.character}</p>
+                              </Link>
+                            </div>
+                          )
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Trailers section */}
+                  <div className='trailers-container'>
+                    <div className='title-container' style={{ marginBottom: '3em' }}>
+                      <h1>trailers</h1>
+                    </div>
+                    <div className='trailers'>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>
+                  </div>
+
+                  {/* Similar movies section */}
+                  <div className='similar-movies-container'>
+                    <div className='title-container'>
+                      <h1>similar movies</h1>
+                    </div>
+                    <div className='similar-movies'>
+                      <SimilarMovies movies={similarMovies} type='movie' />
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        );
+      case 'tv':
+        return (
+          <div className='movie-details-container'>
+            {details !== null && cast !== null && trailers !== null && similarMovies !== null && (
+              <>
+                {/* Header section */}
+                <div
+                  className='movie-details-header'
+                  style={{
+                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(http://image.tmdb.org/t/p/original/${details.backdrop_path})`
+                  }}
+                >
+                  <div className='header-row'>
+                    <img src={`http://image.tmdb.org/t/p/w185/${details.poster_path}`} alt='' className='thumb' />
+
+                    <div className='header-description'>
+                      <p className='title'>{details.original_name}</p>
+
+                      <div className='row'>
+                        <div className='rating'>
+                          <i class='far fa-star' style={{ color: '#ffd900' }}></i>
+                          <p>{details.vote_average}</p>
+                        </div>
+
+                        <div className='release-date'>
+                          <i class='far fa-calendar-alt'></i>
+                          <p className='release-date'>{this.sliceDate(details.first_air_date)}</p>
+                        </div>
+                      </div>
+
+                      <p className='overview'>{details.overview}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='movie-details-body'>
+                  <div className='movie-details__row'>
+                    {/* About section */}
+
+                    <div className='about-container'>
+                      <div className='title-container'>
+                        <h1>about</h1>
+                      </div>
+
+                      <div className='about'>
+                        <div className='genres-container category'>
+                          <span className='category__title'>Genre:</span>
+                          <p>{details !== null && details.genres.map(genre => <span key={genre.id}>{genre.name}, </span>)}</p>
+                        </div>
+
+                        <div className='country-container category'>
+                          <span className='category__title'>Country:</span>
+                          <p>{details.origin_country}</p>
+                        </div>
+
+                        <div className='rating-container category'>
+                          <span className='category__title'>Average rate:</span>
+                          <p>{details.vote_average}</p>
+                        </div>
+
+                        <div className='release-container category'>
+                          <span className='category__title'>First release:</span>
+                          <p>{details.first_air_date}</p>
+                        </div>
+
+                        <div className='category'>
+                          <span className='category__title'>Number of seasons:</span>
+                          <p>{details.number_of_seasons} </p>
+                        </div>
+
+                        <div className='category'>
+                          <span className='category__title'>Number of episodes:</span>
+                          <p>{details.number_of_episodes} </p>
+                        </div>
+
+                        <div className='runtime-container category'>
+                          <span className='category__title'>Episode runtime:</span>
+                          <p>{details.episode_run_time} min</p>
+                        </div>
+
+                        <div className='director-container category'>
+                          <span className='category__title'>Director:</span>
+                          <p>{details.created_by[0].name}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Summary section */}
+                    <div className='summary-container'>
+                      <div className='title-container'>
+                        <h1>summary</h1>
+                      </div>
+                      <div className='summary'>
+                        <p>{details.overview}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Cast section */}
+                  <div className='cast-container'>
+                    <div className='title-container' style={{ marginBottom: '' }}>
+                      <h1>cast</h1>
+                    </div>
+
+                    <div className='cast'>
+                      {cast.map(
+                        (person, i) =>
+                          // display movie if poster exists
+                          person.profile_path !== null && (
+                            <div className='person-thumb'>
+                              <Link to={`/info/person/${person.id}`}>
+                                <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
+                                <p className='person'>{person.name}</p>
+                                <p className='character'>as {person.character}</p>
+                              </Link>
+                            </div>
+                          )
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Trailers section */}
+                  <div className='trailers-container'>
+                    <div className='title-container' style={{ marginBottom: '3em' }}>
+                      <h1>trailers</h1>
+                    </div>
+                    <div className='trailers'>{trailers !== null && <TrailerCarousel trailers={trailers} />}</div>
+                  </div>
+
+                  {/* Similar movies section */}
+                  <div className='similar-movies-container'>
+                    <div className='title-container'>
+                      <h1>similar tv shows</h1>
+                    </div>
+                    <div className='similar-movies'>
+                      <SimilarMovies movies={similarMovies} type='tv' />
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        );
+    }
+  };
+
+  render() {
+    return <>{this.outputDetails()}</>;
+  }
 }
 
 export default MovieDetails;

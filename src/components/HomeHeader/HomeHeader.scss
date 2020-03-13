@@ -1,73 +1,64 @@
-@import "../../styles/mixins";
+@import '../../styles/mixins';
 
 .header-swiper-container {
-   margin-top: -2em;
-   overflow: hidden;
-   position: relative;
+  margin-top: -2em;
+  overflow: hidden;
+  position: relative;
 
-   .swiper-wrapper {
-      width: 50%;
-      height: 60vh;
-      cursor: grab;
+  .swiper-wrapper {
+    width: 50%;
+    height: 60vh;
+    cursor: grab;
+    @include tabletPro {
+      height: 42em;
+    }
 
-      @include tabletPro {
-         height: 42em;
+    .swiper-slide {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+      margin-bottom: -4em;
+      .meta {
+        position: absolute;
+        left: 5%;
+        right: 5%;
+        bottom: 10%;
+        @include tabletPro {
+          width: 70%;
+        }
+        .title {
+          font-size: 1.4rem;
+          transition: all 0.1s ease-in-out;
+          @include tabletPro {
+            font-size: 1.8rem;
+          }
+          &:hover {
+            color: #888888;
+          }
+        }
+        .desc {
+          color: #9c9c9c;
+          font-size: 0.9rem;
+          display: none;
+          @include tablet {
+            display: initial;
+          }
+        }
       }
+    }
+  }
 
-      .swiper-slide {
-         background-position: center;
-         background-repeat: no-repeat;
-         background-size: cover;
-         position: relative;
-         margin-bottom: -4em;
-
-         .meta {
-            position: absolute;
-            left: 5%;
-            right: 5%;
-            bottom: 10%;
-
-            @include tabletPro {
-               width: 70%;
-            }
-
-            .title {
-               font-size: 1.4rem;
-               transition: all 0.1s ease-in-out;
-
-               @include tabletPro {
-                  font-size: 1.8rem;
-               }
-
-               &:hover {
-                  color: #888888;
-               }
-            }
-
-            .desc {
-               color: #9c9c9c;
-               font-size: 0.9rem;
-               display: none;
-
-               @include tablet {
-                  display: initial;
-               }
-            }
-         }
-      }
-   }
-
-   .header-swiper-pagination {
-      z-index: 999;
-      text-align: left;
-      margin-left: 5%;
-      position: absolute;
-
-      .swiper-pagination-bullet {
-         background: #fff;
-         width: 10px;
-         height: 10px;
-         margin: 0 10px;
-      }
-   }
+  .header-swiper-pagination {
+    z-index: 999;
+    text-align: left;
+    margin-left: 5%;
+    position: absolute;
+    .swiper-pagination-bullet {
+      background: #fff;
+      width: 10px;
+      height: 10px;
+      margin: 0 10px;
+    }
+  }
 }
