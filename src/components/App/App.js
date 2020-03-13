@@ -14,7 +14,6 @@ class App extends React.Component {
          <Router forceRefresh={false}>
             <>
                <Header />
-
                <Switch>
                   <Route exact path='/' component={Home} />
                   <Route path='/search/:title' component={SearchResults} />
