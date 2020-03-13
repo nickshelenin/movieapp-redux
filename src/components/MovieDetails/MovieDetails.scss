@@ -1,4 +1,4 @@
-@import "../../styles/mixins";
+@import '../../styles/mixins';
 
 span {
    // overright default span margin
@@ -12,11 +12,9 @@ span {
    width: 100%;
    height: 30em;
    background-size: cover;
-
    @include tablet {
       height: 40em;
    }
-
    @include tabletPro {
       height: 45em;
    }
@@ -28,11 +26,9 @@ span {
       display: flex;
       align-items: flex-start;
       padding-top: 8em;
-
       @include tablet {
          padding-top: 15em;
       }
-
       @include tabletPro {
          width: 80%;
       }
@@ -45,29 +41,24 @@ span {
          height: auto;
          border-radius: 5px;
          display: none;
-
          @include tablet {
             display: initial;
             width: 150px;
             margin-right: 2em;
          }
-
          @include tabletPro {
-            width: 250px;
+            width: 650px;
          }
       }
 
       .header-description {
          line-height: 2.5em;
-
          @include tabletPro {
             font-size: 1.2rem;
          }
-
          .title {
             font-size: 1.3rem;
             line-height: 1.2em;
-
             @include tabletPro {
                font-size: 1.8rem;
             }
@@ -76,17 +67,14 @@ span {
          .row {
             display: flex;
             align-items: center;
-
             .rating,
             .runtime {
                display: flex;
                align-items: center;
-
                i {
                   margin-right: 0.3em;
                }
             }
-
             .rating {
                margin-right: 1em;
             }
@@ -112,7 +100,6 @@ span {
          .overview {
             line-height: 1.5em;
             font-size: 1.1rem;
-
             @include tabletPro {
                width: 70%;
             }
@@ -149,19 +136,13 @@ span {
    .about {
       width: 90%;
       margin-bottom: 4em;
-
       .category {
          display: flex;
          align-items: flex-start;
          margin-bottom: 0.7em;
-
          .category__title {
             margin-right: 1.5em;
             font-weight: bold;
-         }
-
-         p {
-            font-weight: lighter;
          }
       }
    }
@@ -172,32 +153,24 @@ span {
       h1 {
          text-transform: uppercase;
       }
-      p {
-         font-weight: lighter;
-      }
    }
 
    .cast {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
       margin-bottom: 4em;
-
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       .person-thumb {
          width: 120px;
          margin-bottom: 3em;
          margin-right: 1.3em;
-
          img {
             border-radius: 10px;
             width: 120px;
             height: 170px;
          }
-
          .actor {
             font-weight: bold;
          }
-
          .character {
             margin-top: 0.5em;
             color: #f5de50;
@@ -208,27 +181,22 @@ span {
    .trailers {
       margin-bottom: 7em;
    }
-
    .similar-movies {
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
       margin-bottom: 4em;
-
       .similar-movie {
          width: 120px;
          margin-bottom: 3em;
          margin-right: 1.3em;
-
          img {
             border-radius: 10px;
             width: 120px;
          }
-
          .actor {
             font-weight: bold;
          }
-
          .character {
             margin-top: 0.5em;
             color: #f5de50;

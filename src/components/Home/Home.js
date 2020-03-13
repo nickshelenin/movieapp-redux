@@ -71,7 +71,7 @@ class Home extends Component {
     
       return (
          <div className='home-container'>
-            <HomeHeader movies={this.state.moviesPopular} />
+            <HomeHeader movies={this.state.moviesUpcoming} />
 
             <div className='home-sliders'>
                <MovieCarousel title='Upcoming' movies={this.state.moviesUpcoming} />

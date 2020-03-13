@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { API_KEY } from "../../config";
-import TrailerCarousel from "../TrailerCarousel/TrailerCarousel";
-import { Link } from "react-router-dom";
-import Swiper from "swiper";
-import SimilarMovies from "../SimilarMovies/SimilarMovies";
+import React, { Component } from 'react';
+import { API_KEY } from '../../config';
+import TrailerCarousel from '../TrailerCarousel/TrailerCarousel';
+import { Link } from 'react-router-dom';
+import Swiper from 'swiper';
+import SimilarMovies from '../SimilarMovies/SimilarMovies';
 
-import "./MovieDetails.scss";
+import './MovieDetails.scss';
 
 class MovieDetails extends Component {
    state = {
@@ -156,16 +156,16 @@ class MovieDetails extends Component {
       const rhours = Math.floor(hours);
       const minutes = (hours - rhours) * 60;
       const rminutes = Math.round(minutes);
-      return rhours + "h " + rminutes + "m";
+      return rhours + 'h ' + rminutes + 'm';
    };
 
    // Abreviate number with letters
    abbreviateNumber = n => {
       if (n < 1e3) return n;
-      if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + " thousand";
-      if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + " million";
-      if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + " billion";
-      if (n >= 1e12) return +(n / 1e12).toFixed(1) + " trillion";
+      if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + ' thousand';
+      if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + ' million';
+      if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + ' billion';
+      if (n >= 1e12) return +(n / 1e12).toFixed(1) + ' trillion';
    };
 
    // Slice release date to leave only year
@@ -176,12 +176,12 @@ class MovieDetails extends Component {
    componentDidMount() {
       const { type } = this.props.match.params;
 
-      if (type === "movie") {
+      if (type === 'movie') {
          this.fetchMovie();
          this.fetchMovieCast();
          this.fetchMovieTrailers();
          this.fetchSimilarMovies();
-      } else if (type === "tv") {
+      } else if (type === 'tv') {
          this.fetchTv();
          this.fetchTvCast();
          this.fetchTvTrailers();
@@ -198,7 +198,7 @@ class MovieDetails extends Component {
       const { type } = this.props.match.params;
 
       switch (type) {
-         case "movie":
+         case 'movie':
             return (
                <div className='movie-details-container'>
                   {details !== null && cast !== null && trailers !== null && similarMovies !== null && (
@@ -211,14 +211,14 @@ class MovieDetails extends Component {
                            }}
                         >
                            <div className='header-row'>
-                              <img src={`http://image.tmdb.org/t/p/original/${details.poster_path}`} alt='test' className='thumb' />
+                              <img src={`http://image.tmdb.org/t/p/original/${details.poster_path}`} alt='' className='thumb' />
 
                               <div className='header-description'>
                                  <p className='title'>{details.title}</p>
 
                                  <div className='row'>
                                     <div className='rating'>
-                                       <i class='far fa-star' style={{ color: "#ffd900" }}></i>
+                                       <i class='far fa-star' style={{ color: '#ffd900' }}></i>
                                        <p>{details.vote_average}</p>
                                     </div>
 
@@ -299,7 +299,7 @@ class MovieDetails extends Component {
 
                            {/* Cast section */}
                            <div className='cast-container'>
-                              <div className='title-container' style={{ marginBottom: "" }}>
+                              <div className='title-container' style={{ marginBottom: '' }}>
                                  <h1>cast</h1>
                               </div>
 
@@ -323,7 +323,7 @@ class MovieDetails extends Component {
 
                            {/* Trailers section */}
                            <div className='trailers-container'>
-                              <div className='title-container' style={{ marginBottom: "3em" }}>
+                              <div className='title-container' style={{ marginBottom: '3em' }}>
                                  <h1>trailers</h1>
                               </div>
 
@@ -345,7 +345,7 @@ class MovieDetails extends Component {
                   )}
                </div>
             );
-         case "tv":
+         case 'tv':
             return (
                <div className='movie-details-container'>
                   {details !== null && cast !== null && trailers !== null && similarMovies !== null && (
@@ -358,14 +358,14 @@ class MovieDetails extends Component {
                            }}
                         >
                            <div className='header-row'>
-                              <img src={`http://image.tmdb.org/t/p/w185/${details.poster_path}`} alt='test' className='thumb' />
+                              <img src={`http://image.tmdb.org/t/p/w185/${details.poster_path}`} alt='' className='thumb' />
 
                               <div className='header-description'>
                                  <p className='title'>{details.original_name}</p>
 
                                  <div className='row'>
                                     <div className='rating'>
-                                       <i class='far fa-star' style={{ color: "#ffd900" }}></i>
+                                       <i class='far fa-star' style={{ color: '#ffd900' }}></i>
                                        <p>{details.vote_average}</p>
                                     </div>
 
@@ -452,7 +452,7 @@ class MovieDetails extends Component {
 
                            {/* Cast section */}
                            <div className='cast-container'>
-                              <div className='title-container' style={{ marginBottom: "" }}>
+                              <div className='title-container' style={{ marginBottom: '' }}>
                                  <h1>cast</h1>
                               </div>
 
@@ -475,7 +475,7 @@ class MovieDetails extends Component {
 
                            {/* Trailers section */}
                            <div className='trailers-container'>
-                              <div className='title-container' style={{ marginBottom: "3em" }}>
+                              <div className='title-container' style={{ marginBottom: '3em' }}>
                                  <h1>trailers</h1>
                               </div>
 
