@@ -28,10 +28,6 @@ export class HomeHero extends Component {
       pagination: {
         el: '.header-swiper-pagination',
         clickable: true
-      },
-      navigation: {
-        prevEl: '.swiper-button-prev',
-        nextEl: '.swiper-button-next'
       }
     });
   }
