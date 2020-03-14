@@ -288,7 +288,7 @@ class MovieDetails extends Component {
                           person.profile_path !== null && (
                             <div className='person-thumb'>
                               <Link to={`/info/person/${person.id}`}>
-                                <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
+                                <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='' />
                                 <p className='person'>{person.name}</p>
                                 <p className='character'>as {person.character}</p>
                               </Link>

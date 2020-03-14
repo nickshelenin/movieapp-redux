@@ -1,6 +1,6 @@
 @import '../../styles/mixins';
 
-.swiper-container-test {
+.swiper-container {
   margin: 4em 0;
   width: 100%;
   overflow: hidden;
@@ -18,10 +18,11 @@
     .swiper-slide {
       display: flex;
       justify-content: center;
+
       .swiper-slide__image {
         border-radius: 5px;
         width: 150px;
-        height: 200px;
+        height: 220px;
       }
       .swiper-slide__title {
         width: 80%;
