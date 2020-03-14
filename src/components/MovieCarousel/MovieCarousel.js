@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Swiper } from 'swiper/js/swiper.esm.js';
+import Swiper from 'swiper';
 import './MovieCarousel.scss';
 
 class MovieCarousel extends Component {
@@ -8,7 +8,7 @@ class MovieCarousel extends Component {
     const movies = this.props.movies;
 
     // Inititalize swiper
-    const swiper = new Swiper('.swiper-container-test', {
+    const swiper = new Swiper('.swiper-container', {
       slidesPerView: 2,
       loop: true,
       observer: true,
@@ -30,7 +30,7 @@ class MovieCarousel extends Component {
     });
 
     return (
-      <div className='swiper-container-test'>
+      <div className='swiper-container'>
         <h2 className='swiper-container__title'>{this.props.title}</h2>
 
         <div className='swiper-wrapper'>

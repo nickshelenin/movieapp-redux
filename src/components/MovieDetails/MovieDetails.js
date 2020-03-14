@@ -175,6 +175,8 @@ class MovieDetails extends Component {
     const similarMovies = this.state.similarMovies;
     const { type } = this.props.match.params;
 
+    console.log(trailers);
+
     switch (type) {
       case 'movie':
         return (

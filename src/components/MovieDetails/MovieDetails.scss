@@ -43,6 +43,7 @@ span {
         display: initial;
         width: 200px;
         margin-right: 2em;
+        flex-shrink: 0;
       }
     }
 
@@ -98,15 +99,18 @@ span {
   @include tabletPro {
     width: 80%;
   }
+
   p {
     margin: 0;
   }
+
   .movie-details__row {
     @include tabletPro {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
     }
   }
+
   .title-container {
     h1 {
       text-transform: uppercase;
@@ -161,6 +165,7 @@ span {
   .trailers {
     margin-bottom: 7em;
   }
+
   .similar-movies {
     display: flex;
     flex-wrap: wrap;

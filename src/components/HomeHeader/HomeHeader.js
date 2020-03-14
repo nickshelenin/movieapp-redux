@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Swiper from 'swiper';
-
 import './HomeHeader.scss';
 
 export class HomeHero extends Component {
@@ -19,40 +18,26 @@ export class HomeHero extends Component {
 
   componentDidMount() {
     // Initialize swiper
-    // const slider = new Swiper(".hero-swiper-container", {
-    //    slidesPerView: 1,
-    //    loop: true,
-    //    observer: true,
-    //    autoplay: {
-    //       delay: 5000
-    //    },
-    //    pagination: {
-    //       el: ".swiper-pagination",
-    //       clickable: true
-    //    }
-    // });
+    const slider = new Swiper('.header-swiper-container', {
+      slidesPerView: 1,
+      loop: true,
+      observer: true,
+      autoplay: {
+        delay: 5000
+      },
+      pagination: {
+        el: '.header-swiper-pagination',
+        clickable: true
+      },
+      navigation: {
+        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next'
+      }
+    });
   }
 
   render() {
-    // Display only 10 movies in hero slider
-
-    (() => {
-      const homeSwiper = new Swiper('.header-swiper-container', {
-        slidesPerView: 1,
-        loop: true,
-        observer: true,
-
-        autoplay: {
-          delay: 10000
-        },
-
-        pagination: {
-          el: '.header-swiper-pagination',
-          clickable: true
-        }
-      });
-    })();
-
+    // get data of only 10 movies
     const movies = this.props.movies.slice(0, 10);
 
     return (

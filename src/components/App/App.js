@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from '../Header/Header';
 import Home from '../Home/Home';
 import SearchResults from '../SearchResults/SearchResults';
