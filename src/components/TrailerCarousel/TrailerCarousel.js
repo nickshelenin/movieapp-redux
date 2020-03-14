@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Swiper from 'swiper';
-
 import './TrailerCarousel.scss';
 
 class TrailerCarousel extends Component {

@@ -5,13 +5,11 @@ import './HomeHeader.scss';
 
 export class HomeHero extends Component {
   // Slice the release date to display only a year
-
   getYear = date => {
     return date.slice(0, 4);
   };
 
   // Slice text to 450 characters
-
   sliceText = text => {
     return text.slice(0, 450) + '...';
   };

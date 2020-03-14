@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { API_KEY } from '../../config';
+import { API_KEY, API_URL } from '../../config';
 import { Link } from 'react-router-dom';
-
 import './SearchResults.scss';
 
 class SearchResults extends Component {

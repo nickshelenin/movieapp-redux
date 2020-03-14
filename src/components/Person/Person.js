@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
+import { API_KEY, API_URL } from '../../config';
 import { Link } from 'react-router-dom';
-
 import './Person.scss';
 
 class Person extends Component {

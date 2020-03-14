@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
 import MovieCarousel from '../MovieCarousel/MovieCarousel';
-import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
+import { API_URL, API_KEY } from '../../config';
 import HomeHeader from '../HomeHeader/HomeHeader';
 import Swiper from 'swiper';
 import 'swiper/css/swiper.min.css';
