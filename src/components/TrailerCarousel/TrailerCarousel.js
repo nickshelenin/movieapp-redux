@@ -27,7 +27,16 @@ class TrailerCarousel extends Component {
         <div className='swiper-wrapper'>
           {this.props.trailers.map(trailer => (
             <div key={trailer.key} className='swiper-slide'>
-              <iframe title='1' width='420' height='315' src={`https://www.youtube.com/embed/${trailer.key}`}></iframe>
+              <iframe
+                allowfullscreen='allowfullscreen'
+                mozallowfullscreen='mozallowfullscreen'
+                msallowfullscreen='msallowfullscreen'
+                oallowfullscreen='oallowfullscreen'
+                webkitallowfullscreen='webkitallowfullscreen'
+                width='420'
+                height='315'
+                src={`https://www.youtube.com/embed/${trailer.key}`}
+              ></iframe>
             </div>
           ))}
         </div>

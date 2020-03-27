@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { API_KEY, API_URL } from '../../config';
+import { API_KEY } from '../../config';
 import TrailerCarousel from '../TrailerCarousel/TrailerCarousel';
 import { Link } from 'react-router-dom';
-import Swiper from 'swiper';
 import SimilarMovies from '../SimilarMovies/SimilarMovies';
 import './MovieDetails.scss';
 
@@ -200,7 +199,6 @@ class MovieDetails extends Component {
                           <i class='far fa-star' style={{ color: '#ffd900' }}></i>
                           <p>{details.vote_average}</p>
                         </div>
-
                         <div className='runtime'>
                           <i class='far fa-clock'></i>
                           <p>{this.timeConvert(details.runtime)}</p>

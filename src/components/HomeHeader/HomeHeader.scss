@@ -7,10 +7,10 @@
 
   .swiper-wrapper {
     width: 50%;
-    height: 60vh;
+    height: 35em;
     cursor: grab;
     @include tabletPro {
-      height: 42em;
+      height: 50em;
     }
 
     .swiper-slide {

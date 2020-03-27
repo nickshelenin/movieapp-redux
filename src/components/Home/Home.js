@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
 import MovieCarousel from '../MovieCarousel/MovieCarousel';
-import { API_URL, API_KEY } from '../../config';
+import { API_KEY } from '../../config';
 import HomeHeader from '../HomeHeader/HomeHeader';
 import Swiper from 'swiper';
 import 'swiper/css/swiper.min.css';
@@ -11,7 +11,8 @@ class Home extends Component {
   state = {
     moviesUpcoming: [],
     moviesPopular: [],
-    moviesTopRated: []
+    moviesTopRated: [],
+    type: 'tv'
   };
 
   // FETCHING UPCOMING MOVIES
@@ -52,6 +53,7 @@ class Home extends Component {
       )
       .catch(error => console.log(error));
   };
+  
 
   componentDidMount() {
     this.fetchUpcomingMovies();
@@ -62,7 +64,7 @@ class Home extends Component {
   render() {
     return (
       <div className='home-container'>
-        <HomeHeader movies={this.state.moviesUpcoming} />
+        {/* <HomeHeader movies={this.state.moviesUpcoming} /> */}
 
         <div className='home-sliders'>
           <MovieCarousel title='Upcoming' movies={this.state.moviesUpcoming} />

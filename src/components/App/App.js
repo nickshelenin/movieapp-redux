@@ -10,7 +10,7 @@ import NotFound from '../NotFound/NotFound';
 class App extends React.Component {
   render() {
     return (
-      <Router forceRefresh={false}>
+      <Router>
         <>
           <Header />
           <Switch>
