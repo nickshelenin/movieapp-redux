@@ -115,7 +115,7 @@ class MovieDetails extends Component {
   // Fetch similar tvs
   fetchSimilarTvs = () => {
     const { id } = this.props.match.params;
-    const url = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=e6fa15c602cbdbd00979f735cba5d1f1&language=en-US&page=1`;
+    const url = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
     fetch(url)
       .then(res => res.json())
       .then(data =>
@@ -149,6 +149,10 @@ class MovieDetails extends Component {
     return num.slice(0, 4);
   };
 
+  trim = data => {
+    return data.slice(0, -1);
+  };
+
   componentDidMount() {
     const { type } = this.props.match.params;
 
@@ -173,14 +177,14 @@ class MovieDetails extends Component {
     const similarMovies = this.state.similarMovies;
     const { type } = this.props.match.params;
 
-    console.log(trailers);
-
     switch (type) {
       case 'movie':
         return (
           <div className='movie-details-container'>
             {details !== null && cast !== null && trailers !== null && similarMovies !== null && (
               <>
+                {console.log(details.production_countries !== null && details.production_countries.name)}
+
                 {/*Header section*/}
                 <div
                   className='movie-details-header'
@@ -193,7 +197,6 @@ class MovieDetails extends Component {
 
                     <div className='header-description'>
                       <p className='title'>{details.title}</p>
-
                       <div className='row'>
                         <div className='rating'>
                           <i class='far fa-star' style={{ color: '#ffd900' }}></i>
@@ -209,7 +212,6 @@ class MovieDetails extends Component {
                         <i class='far fa-calendar-alt'></i>
                         <p className='release-date'>{details.release_date}</p>
                       </div>
-
                       <p className='overview'>{details.overview}</p>
                     </div>
                   </div>
@@ -234,7 +236,7 @@ class MovieDetails extends Component {
                           <p>
                             {details.production_countries !== null &&
                               details.production_countries &&
-                              details.production_countries.map(country => <span>{country.name}, </span>)}
+                              details.production_countries.map(country => <span>{country.name + this.trim(',')} </span>)}
                           </p>
                         </div>
 
@@ -265,7 +267,6 @@ class MovieDetails extends Component {
                       <div className='title-container'>
                         <h1>summary</h1>
                       </div>
-
                       <div className='summary'>
                         <p>{details.overview}</p>
                       </div>
