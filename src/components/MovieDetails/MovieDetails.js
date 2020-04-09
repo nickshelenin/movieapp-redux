@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API_KEY } from '../../config';
+import { API_KEY, API_URL, IMAGE_URL } from '../../config';
 import TrailerCarousel from '../TrailerCarousel/TrailerCarousel';
 import { Link } from 'react-router-dom';
 import SimilarMovies from '../SimilarMovies/SimilarMovies';
@@ -17,7 +17,7 @@ class MovieDetails extends Component {
   // Fetch movie details
   fetchMovie = () => {
     const { id } = this.props.match.params;
-    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
+    const url = `${API_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`;
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -31,7 +31,7 @@ class MovieDetails extends Component {
   // Fetch movie cast
   fetchMovieCast = () => {
     const { id } = this.props.match.params;
-    const url = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
+    const url = `${API_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -45,7 +45,7 @@ class MovieDetails extends Component {
   // Fetch movie trailers
   fetchMovieTrailers = () => {
     const { id } = this.props.match.params;
-    const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`;
+    const url = `${API_URL}/movie/${id}/videos?api_key=${API_KEY}&language=en-US`;
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -59,7 +59,7 @@ class MovieDetails extends Component {
   // Fetch similar movies
   fetchSimilarMovies = () => {
     const { id } = this.props.match.params;
-    const url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=e6fa15c602cbdbd00979f735cba5d1f1&language=en-US&page=1`;
+    const url = `${API_URL}/movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -73,7 +73,7 @@ class MovieDetails extends Component {
   // Fetch tv details
   fetchTv = () => {
     const { id } = this.props.match.params;
-    const url = `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-US`;
+    const url = `${API_URL}/tv/${id}?api_key=${API_KEY}&language=en-US`;
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -87,7 +87,7 @@ class MovieDetails extends Component {
   // Fetch tv cast
   fetchTvCast = () => {
     const { id } = this.props.match.params;
-    const url = `https://api.themoviedb.org/3/tv/${id}/credits?api_key=${API_KEY}&language=en-US`;
+    const url = `${API_URL}/tv/${id}/credits?api_key=${API_KEY}&language=en-US`;
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -101,7 +101,7 @@ class MovieDetails extends Component {
   // Fetch tv trailers
   fetchTvTrailers = () => {
     const { id } = this.props.match.params;
-    const url = `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${API_KEY}&language=en-US`;
+    const url = `${API_URL}/tv/${id}/videos?api_key=${API_KEY}&language=en-US`;
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -115,7 +115,7 @@ class MovieDetails extends Component {
   // Fetch similar tvs
   fetchSimilarTvs = () => {
     const { id } = this.props.match.params;
-    const url = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
+    const url = `${API_URL}/tv/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -169,7 +169,7 @@ class MovieDetails extends Component {
     }
   }
 
-  // Output data for either tv or movie depending on url
+  // Output data either for tv or movie depending on url
   outputDetails = () => {
     const details = this.state.details;
     const cast = this.state.cast;
@@ -189,27 +189,27 @@ class MovieDetails extends Component {
                 <div
                   className='movie-details-header'
                   style={{
-                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(http://image.tmdb.org/t/p/original/${details.backdrop_path})`,
+                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(${IMAGE_URL}/original/${details.backdrop_path})`,
                   }}
                 >
                   <div className='header-row'>
-                    <img src={`https://image.tmdb.org/t/p/original/${details.poster_path}`} alt='' className='thumb' />
+                    <img src={`${IMAGE_URL}/original/${details.poster_path}`} alt='' className='thumb' />
 
                     <div className='header-description'>
                       <p className='title'>{details.title}</p>
                       <div className='row'>
                         <div className='rating'>
-                          <i class='far fa-star' style={{ color: '#ffd900' }}></i>
+                          <i className='far fa-star' style={{ color: '#ffd900' }}></i>
                           <p>{details.vote_average}</p>
                         </div>
                         <div className='runtime'>
-                          <i class='far fa-clock'></i>
+                          <i className='far fa-clock'></i>
                           <p>{this.timeConvert(details.runtime)}</p>
                         </div>
                       </div>
 
                       <div className='release-date'>
-                        <i class='far fa-calendar-alt'></i>
+                        <i className='far fa-calendar-alt'></i>
                         <p className='release-date'>{details.release_date}</p>
                       </div>
                       <p className='overview'>{details.overview}</p>
@@ -236,7 +236,9 @@ class MovieDetails extends Component {
                           <p>
                             {details.production_countries !== null &&
                               details.production_countries &&
-                              details.production_countries.map((country) => <span>{country.name + this.trim(',')} </span>)}
+                              details.production_countries.map((country) => (
+                                <span key={country.name}>{country.name + this.trim(',')} </span>
+                              ))}
                           </p>
                         </div>
 
@@ -285,9 +287,9 @@ class MovieDetails extends Component {
                         (person, i) =>
                           // do not display actor profile if there's no poster image
                           person.profile_path !== null && (
-                            <div className='person-thumb'>
+                            <div className='person-thumb' key={person.id}>
                               <Link to={`/info/person/${person.id}`}>
-                                <img src={`https://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='' />
+                                <img src={`${IMAGE_URL}/w185/${person.profile_path}`} alt='' />
                                 <p className='person'>{person.name}</p>
                                 <p className='character'>as {person.character}</p>
                               </Link>
@@ -307,6 +309,7 @@ class MovieDetails extends Component {
 
                   {/* Similar movies section */}
                   <div className='similar-movies-container'>
+                    {/* {similarMovies } */}
                     <div className='title-container'>
                       <h1>similar movies</h1>
                     </div>
@@ -329,23 +332,23 @@ class MovieDetails extends Component {
                 <div
                   className='movie-details-header'
                   style={{
-                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(http://image.tmdb.org/t/p/original/${details.backdrop_path})`,
+                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(${IMAGE_URL}/original/${details.backdrop_path})`,
                   }}
                 >
                   <div className='header-row'>
-                    <img src={`https://image.tmdb.org/t/p/w185/${details.poster_path}`} alt='' className='thumb' />
+                    <img src={`${IMAGE_URL}/original/${details.poster_path}`} className='thumb' alt='' />
 
                     <div className='header-description'>
                       <p className='title'>{details.original_name}</p>
 
                       <div className='row'>
                         <div className='rating'>
-                          <i class='far fa-star' style={{ color: '#ffd900' }}></i>
+                          <i className='far fa-star' style={{ color: '#ffd900' }}></i>
                           <p>{details.vote_average}</p>
                         </div>
 
                         <div className='release-date'>
-                          <i class='far fa-calendar-alt'></i>
+                          <i className='far fa-calendar-alt'></i>
                           <p className='release-date'>{this.sliceDate(details.first_air_date)}</p>
                         </div>
                       </div>
@@ -429,9 +432,9 @@ class MovieDetails extends Component {
                         (person, i) =>
                           // display movie if poster exists
                           person.profile_path !== null && (
-                            <div className='person-thumb'>
+                            <div className='person-thumb' key={person.id}>
                               <Link to={`/info/person/${person.id}`}>
-                                <img src={`https://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='test' />
+                                <img src={`${IMAGE_URL}/original/${person.profile_path}`} alt='' />
                                 <p className='person'>{person.name}</p>
                                 <p className='character'>as {person.character}</p>
                               </Link>
@@ -467,7 +470,10 @@ class MovieDetails extends Component {
   };
 
   render() {
+    // console.log(this.state.cast);
+
     return <>{this.outputDetails()}</>;
+    // return <div></div>;
   }
 }
 

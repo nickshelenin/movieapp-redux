@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Swiper from 'swiper';
+import { API_KEY, API_URL, IMAGE_URL } from '../../config';
 import './SimilarMovies.scss';
 
 class SimilarMovies extends Component {
@@ -11,19 +12,19 @@ class SimilarMovies extends Component {
       observer: true,
       breakpoints: {
         699: {
-          slidesPerView: 3
+          slidesPerView: 3,
         },
         1145: {
-          slidesPerView: 6
+          slidesPerView: 6,
         },
         1500: {
-          slidesPerView: 7
-        }
+          slidesPerView: 7,
+        },
       },
       navigation: {
         nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      }
+        prevEl: '.swiper-button-prev',
+      },
     });
   }
 
@@ -32,12 +33,12 @@ class SimilarMovies extends Component {
       <div className='similar-movies-swiper-container'>
         <div className='swiper-wrapper'>
           {this.props.movies.map(
-            movie =>
+            (movie) =>
               // do not display movie if there's no poster
               movie.backdrop_path !== null && (
                 <div className='swiper-slide'>
                   <Link to={`/info/${this.props.type === 'movie' ? 'movie' : 'tv'}/${movie.id}`}>
-                    <img className='swiper-slide__image' src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='' />
+                    <img className='swiper-slide__image' src={`${IMAGE_URL}/w185/${movie.poster_path}`} alt='' />
                     <p className='swiper-slide__title'>{movie.title || movie.name}</p>
                   </Link>
                 </div>

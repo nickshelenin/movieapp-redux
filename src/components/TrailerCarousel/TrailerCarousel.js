@@ -11,13 +11,13 @@ class TrailerCarousel extends Component {
       centeredSlides: true,
       breakpoints: {
         800: {
-          slidesPerView: 2
-        }
+          slidesPerView: 2,
+        },
       },
       navigation: {
         prevEl: '.swiper-button-prev',
-        nextEl: '.swiper-button-next'
-      }
+        nextEl: '.swiper-button-next',
+      },
     });
   }
 
@@ -25,7 +25,7 @@ class TrailerCarousel extends Component {
     return (
       <div className='trailer-swiper-container'>
         <div className='swiper-wrapper'>
-          {this.props.trailers.map(trailer => (
+          {this.props.trailers.map((trailer) => (
             <div key={trailer.key} className='swiper-slide'>
               <iframe
                 allowfullscreen='allowfullscreen'

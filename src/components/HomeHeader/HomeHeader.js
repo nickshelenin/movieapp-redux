@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { API_KEY, API_URL, IMAGE_URL } from '../../config';
 import Swiper from 'swiper';
 import './HomeHeader.scss';
 
 export class HomeHero extends Component {
   // Slice the release date to display only a year
-  getYear = date => {
+  getYear = (date) => {
     return date.slice(0, 4);
   };
 
   // Slice text to 450 characters
-  sliceText = text => {
+  sliceText = (text) => {
     return text.slice(0, 450) + '...';
   };
 
@@ -21,12 +22,12 @@ export class HomeHero extends Component {
       loop: true,
       observer: true,
       autoplay: {
-        delay: 5000
+        delay: 5000,
       },
       pagination: {
         el: '.header-swiper-pagination',
-        clickable: true
-      }
+        clickable: true,
+      },
     });
   }
 
@@ -42,7 +43,7 @@ export class HomeHero extends Component {
               <div
                 className='swiper-slide'
                 style={{
-                  backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0, .9)), url(https://image.tmdb.org/t/p/original/${movie.poster_path}) `
+                  backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0, .9)), url(${IMAGE_URL}/original/${movie.poster_path}) `,
                 }}
               >
                 <div className='meta'>
@@ -51,7 +52,9 @@ export class HomeHero extends Component {
                       {movie.title} ({this.getYear(movie.release_date)})
                     </p>
                   </Link>
+
                   <p className='rating'>Rating {movie.vote_average}</p>
+
                   <div className='desc'>
                     <p>{this.sliceText(movie.overview)}</p>
                   </div>

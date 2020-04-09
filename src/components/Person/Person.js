@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API_KEY, API_URL } from '../../config';
+import { API_KEY, API_URL, IMAGE_URL } from '../../config';
 import { Link } from 'react-router-dom';
 import './Person.scss';
 
@@ -12,7 +12,7 @@ class Person extends Component {
   // fetch person profile
   fetchPerson = () => {
     const { id } = this.props.match.params;
-    const url = `https://api.themoviedb.org/3/person/${id}/?api_key=${API_KEY}&language=en-US`;
+    const url = `${API_URL}/person/${id}/?api_key=${API_KEY}&language=en-US`;
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -26,7 +26,7 @@ class Person extends Component {
   // fetch person's movies and tv shows
   fetchPersonMovies = () => {
     const { id } = this.props.match.params;
-    const url = `https://api.themoviedb.org/3/person/${id}/combined_credits/?api_key=${API_KEY}&language=en-US`;
+    const url = `${API_URL}/person/${id}/combined_credits/?api_key=${API_KEY}&language=en-US`;
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -34,7 +34,7 @@ class Person extends Component {
           personMovies: data.cast,
         })
       )
-      .catch((error) => console.log(error));
+      .catch((error) => console.log('Error: ' + error));
   };
 
   calculateAge = (num) => {
@@ -58,8 +58,8 @@ class Person extends Component {
         <div className='person-container'>
           <div className='person-profile-container'>
             <div className='person-profile'>
-              <div>
-                <img src={`https://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='' />
+              <div className='person-profile-image'>
+                <img src={`${IMAGE_URL}/original/${person.profile_path}`} alt='' />
               </div>
 
               <div className='person-biography'>
@@ -114,7 +114,7 @@ class Person extends Component {
                   movie.poster_path !== null && (
                     <div className='movie-thumb'>
                       <Link to={`/info/${movie.media_type}/${movie.id}`}>
-                        <img src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='test' />
+                        <img src={`${IMAGE_URL}/w185/${movie.poster_path}`} alt='test' />
                         <p>{movie.title || movie.name}</p>
                         {movie.character && <p style={{ color: '#f5de50' }}>as {movie.character}</p>}
                       </Link>

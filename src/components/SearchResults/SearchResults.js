@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
-import { API_KEY, API_URL } from '../../config';
+import { API_KEY, API_URL, IMAGE_URL } from '../../config';
 import { Link } from 'react-router-dom';
 import './SearchResults.scss';
 
 class SearchResults extends Component {
   state = {
     searchResults: null,
-    page: 1
+    page: 1,
   };
 
   fetchResults = () => {
     const { title } = this.props.match.params;
-    const url = `https://api.themoviedb.org/3/search/multi/?api_key=${API_KEY}&language=en-US&query=${title}&page=${this.state.page}&include_adult=false`;
+    const url = `${API_URL}/search/multi/?api_key=${API_KEY}&language=en-US&query=${title}&page=${this.state.page}&include_adult=false`;
     fetch(url)
-      .then(res => res.json())
-      .then(data =>
+      .then((res) => res.json())
+      .then((data) =>
         this.setState({
-          searchResults: data.results
+          searchResults: data.results,
         })
       )
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   };
 
   handleNextPage = () => {
     this.setState({
-      page: this.state.searchResults.length === 0 ? this.state.page - 1 : this.state.page + 1
+      page: this.state.searchResults.length === 0 ? this.state.page - 1 : this.state.page + 1,
     });
     window.scrollTo({ top: 0 });
   };
@@ -32,7 +32,7 @@ class SearchResults extends Component {
   handlePrevPage = () => {
     // Disable prevpage button if current page = 1
     this.setState({
-      page: this.state.page !== 1 ? this.state.page - 1 : 1
+      page: this.state.page !== 1 ? this.state.page - 1 : 1,
     });
 
     this.state.page !== 1 && window.scrollTo({ top: 0 });
@@ -57,13 +57,13 @@ class SearchResults extends Component {
 
         <div className='search-results'>
           {this.state.searchResults !== null &&
-            this.state.searchResults.map(searchResult => (
+            this.state.searchResults.map((searchResult) => (
               <>
                 {/* do not display movie if there's no poster image */}
                 {searchResult.poster_path !== undefined && searchResult.poster_path !== null && (
                   <div className='search-result' key={searchResult.id}>
                     <Link to={`/info/${searchResult.media_type}/${searchResult.id}`}>
-                      <img src={`https://image.tmdb.org/t/p/w185/${searchResult.poster_path}`} alt='test' />
+                      <img src={`${IMAGE_URL}/original/${searchResult.poster_path}`} alt='' />
                       <p className='search-result-title'>{searchResult.name}</p>
                       <p>{searchResult.title}</p>
                     </Link>

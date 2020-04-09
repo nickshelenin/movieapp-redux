@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { API_KEY, API_URL, IMAGE_URL } from '../../config';
 import Swiper from 'swiper';
 import './MovieCarousel.scss';
 
@@ -14,19 +15,19 @@ class MovieCarousel extends Component {
       observer: true,
       breakpoints: {
         699: {
-          slidesPerView: 4
+          slidesPerView: 4,
         },
         1145: {
-          slidesPerView: 7
+          slidesPerView: 7,
         },
         1500: {
-          slidesPerView: 9
-        }
+          slidesPerView: 9,
+        },
       },
       navigation: {
         prevEl: '.swiper-button-prev',
-        nextEl: '.swiper-button-next'
-      }
+        nextEl: '.swiper-button-next',
+      },
     });
 
     return (
@@ -37,7 +38,7 @@ class MovieCarousel extends Component {
           {movies.map((movie, i) => (
             <div key={i} className='swiper-slide'>
               <Link to={`/info/movie/${movie.id}`}>
-                <img className='swiper-slide__image' src={`https://image.tmdb.org/t/p/w154/${movie.poster_path}`} alt='' />
+                <img className='swiper-slide__image' src={`${IMAGE_URL}/w154/${movie.poster_path}`} alt='' />
                 <p className='swiper-slide__title'>{movie.title}</p>
               </Link>
             </div>

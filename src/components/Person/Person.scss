@@ -12,13 +12,22 @@
   @include tablet {
     display: flex;
   }
+
+  .person-profile-image {
+    img {
+      width: 250px;
+    }
+  }
+
   p {
     margin: 0;
   }
+
   img {
     margin: 0 3em 3em 0;
     border-radius: 5px;
   }
+
   .category {
     display: flex;
     align-items: flex-start;
@@ -28,6 +37,7 @@
       font-weight: bold;
     }
   }
+
   .biography-container {
     margin-top: 2em;
     line-height: 1.5em;
@@ -44,6 +54,7 @@
       width: 120px;
       margin-bottom: 3em;
       margin-right: 1.3em;
+
       img {
         border-radius: 10px;
         width: 120px;
