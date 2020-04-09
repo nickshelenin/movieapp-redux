@@ -37,7 +37,7 @@ class SimilarMovies extends Component {
               movie.backdrop_path !== null && (
                 <div className='swiper-slide'>
                   <Link to={`/info/${this.props.type === 'movie' ? 'movie' : 'tv'}/${movie.id}`}>
-                    <img className='swiper-slide__image' src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='' />
+                    <img className='swiper-slide__image' src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='' />
                     <p className='swiper-slide__title'>{movie.title || movie.name}</p>
                   </Link>
                 </div>

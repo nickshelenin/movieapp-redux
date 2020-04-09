@@ -10,7 +10,7 @@
     height: 35em;
     cursor: grab;
     @include tabletPro {
-      height: 50em;
+      height: 40em;
     }
 
     .swiper-slide {
@@ -19,6 +19,7 @@
       background-size: cover;
       position: relative;
       margin-bottom: -4em;
+
       .meta {
         position: absolute;
         left: 5%;
@@ -27,6 +28,7 @@
         @include tabletPro {
           width: 70%;
         }
+
         .title {
           font-size: 1.4rem;
           transition: all 0.1s ease-in-out;
@@ -37,6 +39,7 @@
             color: #888888;
           }
         }
+
         .desc {
           color: #9c9c9c;
           font-size: 0.9rem;
@@ -54,6 +57,7 @@
     text-align: left;
     margin-left: 5%;
     position: absolute;
+
     .swiper-pagination-bullet {
       background: #fff;
       width: 10px;

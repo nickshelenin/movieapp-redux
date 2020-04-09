@@ -42,7 +42,7 @@ export class HomeHero extends Component {
               <div
                 className='swiper-slide'
                 style={{
-                  backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0, .9)), url(http://image.tmdb.org/t/p/original/${movie.poster_path}) `
+                  backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0, .9)), url(https://image.tmdb.org/t/p/original/${movie.poster_path}) `
                 }}
               >
                 <div className='meta'>

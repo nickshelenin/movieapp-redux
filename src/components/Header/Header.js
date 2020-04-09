@@ -4,13 +4,13 @@ import './Header.scss';
 
 class Header extends React.Component {
   state = {
-    searchValue: ''
+    searchValue: '',
   };
 
-  handleSeachInput = e => {
+  handleSeachInput = (e) => {
     e.preventDefault();
     this.setState({
-      searchValue: e.target.value
+      searchValue: e.target.value,
     });
   };
 
@@ -20,7 +20,7 @@ class Header extends React.Component {
         <div className='header-container'>
           <div className='logo-container'>
             <Link to='/'>
-              <img src='./img/logo.png' alt='' />
+              <img src='/img/logo.png' alt='' />
             </Link>
           </div>
 

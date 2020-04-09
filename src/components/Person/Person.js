@@ -6,7 +6,7 @@ import './Person.scss';
 class Person extends Component {
   state = {
     person: null,
-    personMovies: null
+    personMovies: null,
   };
 
   // fetch person profile
@@ -14,13 +14,13 @@ class Person extends Component {
     const { id } = this.props.match.params;
     const url = `https://api.themoviedb.org/3/person/${id}/?api_key=${API_KEY}&language=en-US`;
     fetch(url)
-      .then(res => res.json())
-      .then(data =>
+      .then((res) => res.json())
+      .then((data) =>
         this.setState({
-          person: data
+          person: data,
         })
       )
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   };
 
   // fetch person's movies and tv shows
@@ -28,16 +28,16 @@ class Person extends Component {
     const { id } = this.props.match.params;
     const url = `https://api.themoviedb.org/3/person/${id}/combined_credits/?api_key=${API_KEY}&language=en-US`;
     fetch(url)
-      .then(res => res.json())
-      .then(data =>
+      .then((res) => res.json())
+      .then((data) =>
         this.setState({
-          personMovies: data.cast
+          personMovies: data.cast,
         })
       )
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   };
 
-  calculateAge = num => {
+  calculateAge = (num) => {
     const age = num.substring(0, 4);
     const currentYear = new Date().getFullYear();
     return currentYear - age + ' years old';
@@ -59,7 +59,7 @@ class Person extends Component {
           <div className='person-profile-container'>
             <div className='person-profile'>
               <div>
-                <img src={`http://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='' />
+                <img src={`https://image.tmdb.org/t/p/w185/${person.profile_path}`} alt='' />
               </div>
 
               <div className='person-biography'>
@@ -106,14 +106,15 @@ class Person extends Component {
 
           <div className='person-movies-container'>
             <h1>{person.name}'s movies</h1>
+
             <div className='person-movies'>
               {personMovies.map(
-                movie =>
+                (movie) =>
                   // do not display movie if there's not poster image
                   movie.poster_path !== null && (
                     <div className='movie-thumb'>
                       <Link to={`/info/${movie.media_type}/${movie.id}`}>
-                        <img src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='test' />
+                        <img src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt='test' />
                         <p>{movie.title || movie.name}</p>
                         {movie.character && <p style={{ color: '#f5de50' }}>as {movie.character}</p>}
                       </Link>
