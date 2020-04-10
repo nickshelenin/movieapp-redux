@@ -20,7 +20,7 @@ class Person extends Component {
           person: data,
         })
       )
-      .catch((error) => console.log(error));
+      .catch((error) => console.log('Error: ' + error));
   };
 
   // fetch person's movies and tv shows
@@ -51,9 +51,6 @@ class Person extends Component {
   render() {
     const person = this.state.person;
     const personMovies = this.state.personMovies;
-
-    console.log(personMovies);
-    
 
     return (
       person !== null &&
