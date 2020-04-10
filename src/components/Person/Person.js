@@ -52,6 +52,9 @@ class Person extends Component {
     const person = this.state.person;
     const personMovies = this.state.personMovies;
 
+    console.log(personMovies);
+    
+
     return (
       person !== null &&
       personMovies !== null && (
@@ -112,7 +115,7 @@ class Person extends Component {
                 (movie) =>
                   // do not display movie if there's not poster image
                   movie.poster_path !== null && (
-                    <div className='movie-thumb'>
+                    <div className='movie-thumb' key={movie.credit_id}>
                       <Link to={`/info/${movie.media_type}/${movie.id}`}>
                         <img src={`${IMAGE_URL}/${movie.poster_path}`} alt='test' />
                         <p>{movie.title || movie.name}</p>

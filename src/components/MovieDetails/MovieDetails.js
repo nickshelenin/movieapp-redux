@@ -284,7 +284,7 @@ class MovieDetails extends Component {
 
                     <div className='cast'>
                       {cast.map(
-                        (person, i) =>
+                        (person) =>
                           // do not display actor profile if there's no poster image
                           person.profile_path !== null && (
                             <div className='person-thumb' key={person.id}>
@@ -431,7 +431,7 @@ class MovieDetails extends Component {
 
                     <div className='cast'>
                       {cast.map(
-                        (person, i) =>
+                        (person) =>
                           // display movie if poster exists
                           person.profile_path !== null && (
                             <div className='person-thumb' key={person.id}>
@@ -476,7 +476,6 @@ class MovieDetails extends Component {
     // console.log(this.state.cast);
 
     return <>{this.outputDetails()}</>;
-    // return <div></div>;
   }
 }
 

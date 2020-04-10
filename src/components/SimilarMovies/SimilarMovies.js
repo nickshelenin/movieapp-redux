@@ -38,7 +38,7 @@ class SimilarMovies extends Component {
             (movie) =>
               // check if movie has poster
               movie.backdrop_path !== null && (
-                <div className='swiper-slide'>
+                <div className='swiper-slide' key={movie.id}>
                   <Link to={`/info/${this.props.type === 'movie' ? 'movie' : 'tv'}/${movie.id}`}>
                     <img className='swiper-slide__image' src={`${IMAGE_URL}/${movie.poster_path}`} alt='' />
                     <p className='swiper-slide__title'>{movie.title || movie.name}</p>

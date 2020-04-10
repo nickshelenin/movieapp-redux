@@ -35,8 +35,8 @@ class MovieCarousel extends Component {
         <h2 className='swiper-container__title'>{this.props.title}</h2>
 
         <div className='swiper-wrapper'>
-          {movies.map((movie, i) => (
-            <div key={i} className='swiper-slide'>
+          {movies.map((movie) => (
+            <div key={movie.id} className='swiper-slide'>
               <Link to={`/info/movie/${movie.id}`}>
                 <img className='swiper-slide__image' src={`${IMAGE_URL}/${movie.poster_path}`} alt='' />
                 <p className='swiper-slide__title'>{movie.title}</p>

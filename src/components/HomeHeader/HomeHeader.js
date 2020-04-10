@@ -38,14 +38,14 @@ export class HomeHero extends Component {
     return (
       <div className='header-swiper-container'>
         <div className='swiper-wrapper'>
-          {movies.map((movie, i) => {
+          {movies.map((movie) => {
             return (
               <div
                 className='swiper-slide'
                 style={{
                   backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0, .9)), url(${IMAGE_URL}/${movie.poster_path}) `,
                 }}
-                key={i}
+                key={movie.id}
               >
                 <div className='meta'>
                   <Link to={`/info/movie/${movie.id}`}>
