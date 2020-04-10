@@ -29,8 +29,6 @@ class SimilarMovies extends Component {
   }
 
   render() {
-      console.log(this.props.movies);
-      
     return (
       <div className='similar-movies-swiper-container'>
         <div className='swiper-wrapper'>
