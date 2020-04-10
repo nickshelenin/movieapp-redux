@@ -32,9 +32,11 @@ span {
     @include tabletPro {
       width: 80%;
     }
+
     p {
       margin: 0;
     }
+    
     .thumb {
       height: auto;
       border-radius: 5px;
@@ -52,6 +54,7 @@ span {
       @include tabletPro {
         font-size: 1.2rem;
       }
+
       .title {
         font-size: 1.3rem;
         line-height: 1.2em;
@@ -62,10 +65,12 @@ span {
       .row {
         display: flex;
         align-items: center;
+
         .rating,
         .runtime {
           display: flex;
           align-items: center;
+
           i {
             margin-right: 0.3em;
           }
@@ -78,6 +83,7 @@ span {
       .release-date {
         display: flex;
         align-items: center;
+
         i {
           margin-right: 0.5em;
         }
@@ -120,10 +126,12 @@ span {
   .about {
     width: 90%;
     margin-bottom: 4em;
+
     .category {
       display: flex;
       align-items: flex-start;
       margin-bottom: 0.7em;
+
       .category__title {
         margin-right: 1.5em;
         font-weight: bold;
@@ -134,6 +142,7 @@ span {
   .summary {
     margin-bottom: 4em;
     line-height: 1.5em;
+
     h1 {
       text-transform: uppercase;
     }
@@ -143,14 +152,16 @@ span {
     margin-bottom: 4em;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
     .person-thumb {
-      width: 120px;
+      width: 130px;
       margin-bottom: 3em;
       margin-right: 1.3em;
+
       img {
         border-radius: 10px;
-        width: 120px;
-        height: 170px;
+        width: 130px;
+        height: 200px;
       }
       .actor {
         font-weight: bold;
@@ -171,17 +182,21 @@ span {
     flex-wrap: wrap;
     justify-content: flex-start;
     margin-bottom: 4em;
+
     .similar-movie {
       width: 120px;
       margin-bottom: 3em;
       margin-right: 1.3em;
+
       img {
         border-radius: 10px;
         width: 120px;
       }
+
       .actor {
         font-weight: bold;
       }
+
       .character {
         margin-top: 0.5em;
         color: #f5de50;

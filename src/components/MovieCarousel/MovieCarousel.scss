@@ -5,6 +5,7 @@
   width: 100%;
   overflow: hidden;
   position: relative;
+
   .swiper-container__title {
     text-transform: uppercase;
     margin-bottom: 2em;
@@ -15,6 +16,7 @@
 
   .swiper-wrapper {
     position: relative;
+
     .swiper-slide {
       display: flex;
       justify-content: center;
@@ -24,6 +26,7 @@
         width: 150px;
         height: 220px;
       }
+
       .swiper-slide__title {
         width: 80%;
         color: #fff;

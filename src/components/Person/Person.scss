@@ -32,6 +32,7 @@
     display: flex;
     align-items: flex-start;
     margin-bottom: 0.7em;
+
     .category__title {
       margin-right: 1.5em;
       font-weight: bold;
@@ -46,18 +47,21 @@
 
 .person-movies-container {
   margin-top: 5em;
+
   .person-movies {
     margin-bottom: 4em;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
     .movie-thumb {
-      width: 120px;
+      width: 130px;
       margin-bottom: 3em;
       margin-right: 1.3em;
 
       img {
         border-radius: 10px;
-        width: 120px;
+        width: 130px;
+        height: 200px;
       }
     }
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { API_KEY, API_URL, IMAGE_URL } from '../../config';
+import { IMAGE_URL } from '../../config';
 import Swiper from 'swiper';
 import './HomeHeader.scss';
 
@@ -43,8 +43,9 @@ export class HomeHero extends Component {
               <div
                 className='swiper-slide'
                 style={{
-                  backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0, .9)), url(${IMAGE_URL}/original/${movie.poster_path}) `,
+                  backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0, .9)), url(${IMAGE_URL}/${movie.poster_path}) `,
                 }}
+                key={i}
               >
                 <div className='meta'>
                   <Link to={`/info/movie/${movie.id}`}>

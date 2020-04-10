@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import Header from '../Header/Header';
 import MovieCarousel from '../MovieCarousel/MovieCarousel';
 import { API_KEY, API_URL, IMAGE_URL } from '../../config';
 import HomeHeader from '../HomeHeader/HomeHeader';
-import Swiper from 'swiper';
 import 'swiper/css/swiper.min.css';
 import './Home.scss';
 

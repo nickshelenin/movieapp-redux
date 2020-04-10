@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Swiper from 'swiper';
-import { API_KEY, API_URL, IMAGE_URL } from '../../config';
+import { IMAGE_URL } from '../../config';
 import './SimilarMovies.scss';
 
 class SimilarMovies extends Component {
@@ -29,16 +29,18 @@ class SimilarMovies extends Component {
   }
 
   render() {
+      console.log(this.props.movies);
+      
     return (
       <div className='similar-movies-swiper-container'>
         <div className='swiper-wrapper'>
           {this.props.movies.map(
             (movie) =>
-              // do not display movie if there's no poster
+              // check if movie has poster
               movie.backdrop_path !== null && (
                 <div className='swiper-slide'>
                   <Link to={`/info/${this.props.type === 'movie' ? 'movie' : 'tv'}/${movie.id}`}>
-                    <img className='swiper-slide__image' src={`${IMAGE_URL}/w185/${movie.poster_path}`} alt='' />
+                    <img className='swiper-slide__image' src={`${IMAGE_URL}/${movie.poster_path}`} alt='' />
                     <p className='swiper-slide__title'>{movie.title || movie.name}</p>
                   </Link>
                 </div>
