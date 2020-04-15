@@ -1,9 +1,11 @@
 .trailer-swiper-container {
   position: relative;
   overflow: hidden;
+
   .swiper-slide {
     display: flex;
     justify-content: center;
+
     iframe {
       border: none;
       height: 200px;

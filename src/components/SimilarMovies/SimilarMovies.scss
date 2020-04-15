@@ -9,10 +9,12 @@
   .swiper-slide {
     display: flex;
     justify-content: center;
+
     .swiper-slide__image {
       border-radius: 5px;
       width: 150px;
     }
+    
     .swiper-slide__title {
       width: 80%;
       color: #fff;
