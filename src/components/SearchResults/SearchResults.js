@@ -26,8 +26,7 @@ class SearchResults extends Component {
   // Load next page
   handleNextPage = () => {
     this.setState({
-      //   page: this.state.searchResults.length === 0 ? this.state.page - 1 : this.state.page + 1,
-      page: this.state.searchResults.length < 20 ? 1 : this.state.page + 1,
+      page: this.state.searchResults.length < 20 ? this.state.page : this.state.page + 1,
     });
     window.scrollTo({ top: 0 });
   };
@@ -55,7 +54,7 @@ class SearchResults extends Component {
   render() {
     const { title } = this.props.match.params;
 
-    // console.log(this.state.searchResults);
+    console.log(this.state.searchResults);
 
     return (
       <div className='search-results-container'>
@@ -77,6 +76,10 @@ class SearchResults extends Component {
                 )}
               </>
             ))}
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <h1>{this.state.page}</h1>
         </div>
 
         <div className='page-navigation-buttons'>

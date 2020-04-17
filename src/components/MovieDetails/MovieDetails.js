@@ -18,6 +18,7 @@ class MovieDetails extends Component {
   fetchMovie = () => {
     const { id } = this.props.match.params;
     const url = `${API_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`;
+
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -33,6 +34,7 @@ class MovieDetails extends Component {
     const { id } = this.props.match.params;
     const url = `${API_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
     fetch(url)
+
       .then((res) => res.json())
       .then((data) =>
         this.setState({
@@ -46,6 +48,7 @@ class MovieDetails extends Component {
   fetchMovieTrailers = () => {
     const { id } = this.props.match.params;
     const url = `${API_URL}/movie/${id}/videos?api_key=${API_KEY}&language=en-US`;
+
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -60,6 +63,7 @@ class MovieDetails extends Component {
   fetchSimilarMovies = () => {
     const { id } = this.props.match.params;
     const url = `${API_URL}/movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
+
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -74,6 +78,7 @@ class MovieDetails extends Component {
   fetchTv = () => {
     const { id } = this.props.match.params;
     const url = `${API_URL}/tv/${id}?api_key=${API_KEY}&language=en-US`;
+
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -88,6 +93,7 @@ class MovieDetails extends Component {
   fetchTvCast = () => {
     const { id } = this.props.match.params;
     const url = `${API_URL}/tv/${id}/credits?api_key=${API_KEY}&language=en-US`;
+
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -102,6 +108,7 @@ class MovieDetails extends Component {
   fetchTvTrailers = () => {
     const { id } = this.props.match.params;
     const url = `${API_URL}/tv/${id}/videos?api_key=${API_KEY}&language=en-US`;
+
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -116,6 +123,7 @@ class MovieDetails extends Component {
   fetchSimilarTvs = () => {
     const { id } = this.props.match.params;
     const url = `${API_URL}/tv/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
+    
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
