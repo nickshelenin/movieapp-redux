@@ -189,11 +189,11 @@ class MovieDetails extends Component {
                 <div
                   className='movie-details-header'
                   style={{
-                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(${IMAGE_URL}/${details.backdrop_path})`,
+                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(${IMAGE_URL}/original/${details.backdrop_path})`,
                   }}
                 >
                   <div className='header-row'>
-                    <img src={`${IMAGE_URL}/${details.poster_path}`} alt='' className='thumb' />
+                    <img src={`${IMAGE_URL}/w185/${details.poster_path}`} alt='' className='thumb' />
 
                     <div className='header-description'>
                       <p className='title'>{details.title}</p>
@@ -289,7 +289,7 @@ class MovieDetails extends Component {
                           person.profile_path !== null && (
                             <div className='person-thumb' key={person.id}>
                               <Link to={`/info/person/${person.id}`}>
-                                <img src={`${IMAGE_URL}/${person.profile_path}`} alt='' />
+                                <img src={`${IMAGE_URL}/w185/${person.profile_path}`} alt='' />
                                 <p className='person'>{person.name}</p>
                                 <p className='character'>as {person.character}</p>
                               </Link>
@@ -334,11 +334,11 @@ class MovieDetails extends Component {
                 <div
                   className='movie-details-header'
                   style={{
-                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(${IMAGE_URL}/${details.backdrop_path})`,
+                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(${IMAGE_URL}/original/${details.backdrop_path})`,
                   }}
                 >
                   <div className='header-row'>
-                    <img src={`${IMAGE_URL}/${details.poster_path}`} className='thumb' alt='' />
+                    <img src={`${IMAGE_URL}/w185/${details.poster_path}`} className='thumb' alt='' />
 
                     <div className='header-description'>
                       <p className='title'>{details.original_name}</p>
@@ -436,7 +436,7 @@ class MovieDetails extends Component {
                           person.profile_path !== null && (
                             <div className='person-thumb' key={person.id}>
                               <Link to={`/info/person/${person.id}`}>
-                                <img src={`${IMAGE_URL}/${person.profile_path}`} alt='' />
+                                <img src={`${IMAGE_URL}/w185/${person.profile_path}`} alt='' />
                                 <p className='person'>{person.name}</p>
                                 <p className='character'>as {person.character}</p>
                               </Link>

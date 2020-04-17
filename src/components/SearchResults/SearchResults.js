@@ -5,10 +5,11 @@ import './SearchResults.scss';
 
 class SearchResults extends Component {
   state = {
-    searchResults: null,
+    searchResults: [],
     page: 1,
   };
 
+  // Fetch results based on search input
   fetchResults = () => {
     const { title } = this.props.match.params;
     const url = `${API_URL}/search/multi/?api_key=${API_KEY}&language=en-US&query=${title}&page=${this.state.page}&include_adult=false`;
@@ -22,13 +23,16 @@ class SearchResults extends Component {
       .catch((error) => console.log(error));
   };
 
+  // Load next page
   handleNextPage = () => {
     this.setState({
-      page: this.state.searchResults.length === 0 ? this.state.page - 1 : this.state.page + 1,
+      //   page: this.state.searchResults.length === 0 ? this.state.page - 1 : this.state.page + 1,
+      page: this.state.searchResults.length < 20 ? 1 : this.state.page + 1,
     });
     window.scrollTo({ top: 0 });
   };
 
+  // Load previous page
   handlePrevPage = () => {
     // Disable prevpage button if current page = 1
     this.setState({
@@ -51,6 +55,8 @@ class SearchResults extends Component {
   render() {
     const { title } = this.props.match.params;
 
+    // console.log(this.state.searchResults);
+
     return (
       <div className='search-results-container'>
         <h1 className='search-results-heading'>Search results for {title}</h1>
@@ -63,7 +69,7 @@ class SearchResults extends Component {
                 {searchResult.poster_path !== undefined && searchResult.poster_path !== null && (
                   <div className='search-result' key={searchResult.id}>
                     <Link to={`/info/${searchResult.media_type}/${searchResult.id}`}>
-                      <img src={`${IMAGE_URL}/${searchResult.poster_path}`} alt='' />
+                      <img src={`${IMAGE_URL}/w185/${searchResult.poster_path}`} alt='' />
                       <p className='search-result-title'>{searchResult.name}</p>
                       <p>{searchResult.title}</p>
                     </Link>

@@ -43,7 +43,7 @@ export class HomeHero extends Component {
               <div
                 className='swiper-slide'
                 style={{
-                  backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0, .9)), url(${IMAGE_URL}/${movie.poster_path}) `,
+                  backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0, .9)), url(${IMAGE_URL}/original/${movie.poster_path}) `,
                 }}
                 key={movie.id}
               >
