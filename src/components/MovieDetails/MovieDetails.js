@@ -177,6 +177,8 @@ class MovieDetails extends Component {
     const similarMovies = this.state.similarMovies;
     const { type } = this.props.match.params;
 
+    console.log(details);
+
     switch (type) {
       case 'movie':
         return (
@@ -189,7 +191,7 @@ class MovieDetails extends Component {
                 <div
                   className='movie-details-header'
                   style={{
-                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(${IMAGE_URL}/original/${details.backdrop_path})`,
+                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(${IMAGE_URL}/w1280/${details.backdrop_path})`,
                   }}
                 >
                   <div className='header-row'>
@@ -324,7 +326,7 @@ class MovieDetails extends Component {
           </div>
         );
         break;
-        
+
       case 'tv':
         return (
           <div className='movie-details-container'>
@@ -334,7 +336,7 @@ class MovieDetails extends Component {
                 <div
                   className='movie-details-header'
                   style={{
-                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(${IMAGE_URL}/original/${details.backdrop_path})`,
+                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0, .9)), url(${IMAGE_URL}/w1280/${details.backdrop_path})`,
                   }}
                 >
                   <div className='header-row'>

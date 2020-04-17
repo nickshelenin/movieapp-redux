@@ -59,7 +59,7 @@ class Person extends Component {
           <div className='person-profile-container'>
             <div className='person-profile'>
               <div className='person-profile-image'>
-                <img src={`${IMAGE_URL}/original/${person.profile_path}`} alt='' />
+                <img src={`${IMAGE_URL}/w300/${person.profile_path}`} alt='' />
               </div>
 
               <div className='person-biography'>
